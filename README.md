@@ -14,7 +14,7 @@
   
   **Herramientas del Proyecto:** El desarrollo del proyecto lo haremos en Java, y la interfaz gráfica aún por determinar, la haremos en alguna librería como JavaFX o Swing.
   
-  **Entrega Final:** Esperamos terminar el proyecto con una versión del juego 1vs1 entre jugadores, 1vs1 entre máquina y máquina.
+  **Entrega Final:** Esperamos terminar el proyecto con una versión del juego 1vs1 entre jugadores, 1vs1 entre máquina y máquina y 1vs1 entre jugador y máquina.
 
 
 
