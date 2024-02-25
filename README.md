@@ -7,6 +7,10 @@
   
   **Características:** Es un juego en el que dos jugadores se enfrentan para lograr poner 4 fichas del mismo color seguidas, ya sea en vertical, horizontal o diagonal, en un tablero de 7 columnas x 6 filas.
 
+  **Modos de juego:** Los diferentes modos de juego que habrá son, 1vs1 entre jugadores, 1vs1 entre máquina y máquina y 1vs1 entre jugador y máquina.
+
+  **Niveles en la implementación:** Se añadirán distintos niveles de dificultad a la máquina, entre ellos fácil, difícil, insano, en cada uno la máquina jugará con el potencial correspondiente a su nivel.
+
   **Método de desarrollo del Proyecto:** Utilizaremos Scrum para gestionar el proyecto poco a poco, algunas características como los 3 pilares de Scrum, que son:
       **1. Transparencia:** en el que queremos que el desarrollo del proyecto sea visible por todos los miembros del equipo.
       **2. Inspección:** Queremos que se revise el progreso y resultados para identificar mejoras, incluyendo reuniones para ponernos al día de la situación del proyecto.
