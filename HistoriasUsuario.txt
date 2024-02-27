@@ -1,0 +1,7 @@
+Como jugador, quiero poder jugar a este juego con otro jugador para disfrutar de él con un amigo.
+
+Como usuario, quiero poder jugar solo por mi cuenta contra la máquina sin necesidad de otra persona para mejorar mis habilidades en este juego.
+
+Como jugador, quiero poder analizar como la máquina juega contra sí misma para aprender nuevos movimientos y ver cómo mejorar
+
+Como usuario, quiero enfrentar diferentes niveles de dificultad de la máquina entre si para ver cuál gana más partidas y cómo funcionan los algoritmos.
