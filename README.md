@@ -12,6 +12,7 @@
   **Niveles en la implementación:** Se añadirán distintos niveles de dificultad a la máquina, entre ellos fácil, difícil, insano, en cada uno la máquina jugará con el potencial correspondiente a su nivel.
 
   **Método de desarrollo del Proyecto:** Utilizaremos Scrum para gestionar el proyecto poco a poco, este método se basa en los siguientes 3 pilares, que son:
+  
       **1. Transparencia:** en el que queremos que el desarrollo del proyecto sea visible por todos los miembros del equipo.
       **2. Inspección:** Queremos que se revise el progreso y resultados para identificar mejoras, incluyendo reuniones para ponernos al día de la situación del proyecto.
       **3. Adaptación:** Para adaptar  los aspectos que se desvían del proyecto.
