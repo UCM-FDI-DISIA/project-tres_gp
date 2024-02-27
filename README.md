@@ -16,7 +16,7 @@
       **2. Inspección:** Queremos que se revise el progreso y resultados para identificar mejoras, incluyendo reuniones para ponernos al día de la situación del proyecto.  
       **3. Adaptación:** Para adaptar  los aspectos que se desvían del proyecto.
   
-  **Herramientas del Proyecto:** El desarrollo del proyecto lo haremos en Java, y la interfaz gráfica aún por determinar, la haremos en alguna librería como JavaFX o Swing.
+  **Herramientas del Proyecto:** El desarrollo del proyecto lo haremos en Java, y para la interfaz gráfica utilizaremos JavaFx. Este software está escrito como una API de Java y que permite a los desarrolladores diseñar, crear y desplegar aplicaciones con contenidos avanzados de audio y video, además de poder incluir animaciones.Con esta herramienta, además de poder jugar en interfaz gráfica, podremos hacer el juego algo más entretenido pudiendo diseñar, por ejemplo, varios tableros, fichas y pantallas para cada nivel. 
   
   **Entrega Final:** Esperamos terminar el proyecto con una versión del juego 1vs1 entre jugadores, 1vs1 entre máquina y máquina y 1vs1 entre jugador y máquina.
 
