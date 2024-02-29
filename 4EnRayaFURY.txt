@@ -1,4 +1,4 @@
-**Estructura del Juego**
+Estructura del Juego
 
 
 Implementamos nuestro juego de la siguiente forma:
