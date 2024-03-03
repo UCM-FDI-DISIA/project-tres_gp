@@ -1,0 +1,13 @@
+package Logic;
+
+public class Game {
+	public static final int DIM_X = 7;
+	public static final int DIM_Y = 6;
+	
+	public String positionToString(int col, int row) {
+		return container.toString(new Position(col, row));
+	}
+	
+	
+	
+}

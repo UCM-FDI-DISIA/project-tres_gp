@@ -1,0 +1,14 @@
+package GameObjects;
+
+public class Ficha {
+	
+	
+	public String toString(GameObject c, Position p, int turno) {
+		String mensaje = " ";
+		if(c.pos.getCol() == p.getCol() && c.pos.getRow() == p.getRow())//cada objeto tiene un toString, para que la nave se muestre bien
+			mensaje = c.getSymbol();
+		
+		return mensaje;
+	}
+	
+}

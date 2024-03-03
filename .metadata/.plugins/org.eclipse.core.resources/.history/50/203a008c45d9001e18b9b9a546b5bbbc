@@ -1,0 +1,19 @@
+package GameObjects;
+
+import Logic.Position;
+
+public class Ficha {
+	
+	
+	public String toString(GameObject c, Position p, int turno) {
+		if(c.pos.getCol() == p.getCol() && c.pos.getRow() == p.getRow()) {
+			
+			if (turno == 1) {
+				return Messages.FICHA1;
+			}
+			else
+				return Messages.FICHA2;
+		}
+	}
+	
+}

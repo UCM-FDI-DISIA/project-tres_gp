@@ -1,0 +1,17 @@
+package principal;
+
+import Logic.Game;
+import view.GamePrinter;
+import view.Messages;
+
+
+public class Main {
+	
+	private GamePrinter printer;
+	
+	public static void main() {
+		printGame();
+	}
+
+}
+

@@ -1,0 +1,19 @@
+package gp;
+
+import java.util.Scanner;
+
+import gp.control.Controller;
+import gp.logic.Game;
+import gp.logic.GameObjectContainer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		GameObjectContainer container = new GameObjectContainer();
+		Game game = new Game();
+        Scanner scanner = new Scanner(System.in);
+        Controller controller = new Controller(game, scanner);
+        controller.run();	
+	}
+
+}

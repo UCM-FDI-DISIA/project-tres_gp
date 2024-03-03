@@ -1,0 +1,15 @@
+package GameObjects;
+
+
+import Logic.Position;
+import Logic.Game;
+
+public class GameObject {
+	protected Position pos;
+	
+	public GameObject(Game game, Position pos) {	
+		this.pos = pos;
+		this.game = game;
+	}
+	
+}

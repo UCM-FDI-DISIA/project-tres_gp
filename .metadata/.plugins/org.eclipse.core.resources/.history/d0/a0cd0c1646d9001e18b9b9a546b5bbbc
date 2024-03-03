@@ -1,0 +1,16 @@
+package view;
+
+
+import util.StringUtils;
+
+public abstract class GamePrinter {
+	
+	protected GameStatus game;
+	
+	public GamePrinter(GameStatus game) {
+		this.game = game;
+	}
+
+	public abstract String endMessage();
+	
+}

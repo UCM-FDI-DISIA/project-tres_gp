@@ -1,0 +1,23 @@
+package Logic;
+
+import java.util.List;
+import java.util.ArrayList;
+import GameObjects.GameObject;
+public class gameObjectContainer {
+	private List<GameObject> objects;
+	
+	public gameObjectContainer() {
+		object = new ArrayList<>;
+	}
+	
+	public String toString(Position position) {
+		String obj=" ";
+		int i=0;
+		while(obj==" " && i<objects.size()) {
+			GameObject c=objects.get(i);
+			obj = c.toString(c,position);
+			i++;
+		}
+		return obj;
+	}
+}

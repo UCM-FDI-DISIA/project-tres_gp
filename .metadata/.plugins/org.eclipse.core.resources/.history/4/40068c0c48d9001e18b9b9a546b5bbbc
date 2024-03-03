@@ -1,0 +1,21 @@
+package principal;
+
+import java.util.Scanner;
+
+import Logic.Game;
+import view.GamePrinter;
+import view.Messages;
+
+
+public class Main {
+	
+	
+	public static void main() {
+		Game game = new Game();
+        Scanner scanner = new Scanner(System.in);
+        Controller controller = new Controller(game, scanner);
+        controller.run();		
+	}
+
+}
+

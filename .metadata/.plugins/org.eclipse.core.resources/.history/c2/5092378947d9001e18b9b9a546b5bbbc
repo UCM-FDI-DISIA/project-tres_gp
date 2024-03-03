@@ -1,0 +1,11 @@
+package principal;
+
+import view.GamePrinter;
+
+public class Controller {
+	private GamePrinter printer;
+	
+	private void printGame() {
+		System.out.println(printer);
+	}
+}

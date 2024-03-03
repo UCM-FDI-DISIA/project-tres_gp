@@ -1,0 +1,17 @@
+package view;
+
+
+import Logic.Game;
+import util.StringUtils;
+
+public abstract class GamePrinter {
+	
+	protected Game game;
+	
+	public GamePrinter(Game game) {
+		this.game = game;
+	}
+
+	public abstract String endMessage();
+	
+}
