@@ -1,0 +1,30 @@
+package gp.logic;
+
+public class Place {
+	private Position pos;
+	private int x;
+	private int y;
+	
+	private Place(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+	
+	public void place() {
+		pos.setCol(x);
+		pos.setRow(y);
+	}
+	
+	public boolean isOnBoard() {
+		return (x >= 0) && (x < Game.DIM_X );
+	}
+}
+

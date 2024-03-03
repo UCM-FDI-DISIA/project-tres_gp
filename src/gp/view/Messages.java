@@ -30,10 +30,10 @@ public class Messages {
 	public static final String COMMAND_HELP_DETAILS = "[h]elp";
 	public static final String COMMAND_HELP_HELP = "shows this help";
 		
-	public static final String COMMAND_MOVE_NAME = "move";
-	public static final String COMMAND_MOVE_SHORTCUT = "m";
-	//public static final String COMMAND_MOVE_DETAILS = "[m]ove " + ALLOWED_UCMSHIP_MOVES;
-	public static final String COMMAND_MOVE_HELP = "moves the UCMShip in the indicated direction";
+	public static final String COMMAND_PLACE_NAME = "place";
+	public static final String COMMAND_PLACE_SHORTCUT = "p";
+	public static final String COMMAND_PLACE_DETAILS = "[p]lace col";
+	public static final String COMMAND_PLACE_HELP = "places the piece in the indicated column";
 		
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";
@@ -41,9 +41,11 @@ public class Messages {
 	public static final String COMMAND_RESET_HELP = "resets the game using the initial configuration in file filename. If no file is given the standard configuration is used";
 	
 	public static final String POSITION = "(%s, %s)";
-	public static final String OFF_WORLD_MESSAGE = "Cannot move in direction %s from position %s";
-	public static final String OFF_WORLD_POSITION = "Position %s is off board";
-	
+	public static final String OFF_WORLD_MESSAGE = "Column %s is off board";
+	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
+	public static final String UNKNOWN_COMMAND = "Unknown command";
+	public static final String FULL_COLUMN_MESSAGE = "Column %s is full";
+
 	
 	public static final String debug(String message) {
 		return Messages.DEBUG.formatted(message);

@@ -13,12 +13,15 @@ public abstract class GameObject {
 		this.game = game;
 	}
 	
+	public GameObject() {
+		
+	}
 	public Position getPosition() {
 		return pos;
 	}
 	
 	public boolean isOnPosition(Position pos) {
-		return this.pos.getCol() == pos.getCol() && this.pos.getRow() == pos.getRow();
+		return this.getPosition().equals(pos);
 	}
 	
 	protected abstract String getSymbol();
