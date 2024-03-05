@@ -12,8 +12,6 @@ public class Game {
 	private int currentCycle;
 	private GameObjectContainer container;
 	private Piece piece;
-	private boolean doExit = false;
-	
 	public Game() {
 		container = new GameObjectContainer();
 		currentCycle = 0;
@@ -46,9 +44,5 @@ public class Game {
 	public void addObject(GameObject object) {
 		container.add(object);
 		
-	}
-	public void exit() {
-		System.out.println(Messages.GAME_OVER);
-		doExit  = true;		
 	}
 }

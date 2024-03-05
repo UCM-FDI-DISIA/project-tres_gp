@@ -33,7 +33,7 @@ public class ExitCommand extends NoParamsCommand{
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		game.exit();
+		game.exit()
 		return false;
 	}
 }

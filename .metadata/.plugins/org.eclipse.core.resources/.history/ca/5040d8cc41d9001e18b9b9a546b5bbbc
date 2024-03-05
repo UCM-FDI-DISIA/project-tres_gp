@@ -1,8 +1,0 @@
-package funcionalidad;
-
-public class game {
-
-	public static final int DIM_X = 7;
-	public static final int DIM_Y = 6;
-
-}

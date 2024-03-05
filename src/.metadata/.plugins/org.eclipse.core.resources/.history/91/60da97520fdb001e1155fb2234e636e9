@@ -34,7 +34,7 @@ public class Piece extends GameObject{
 		return game.findRow(col);		
 	}
 	@Override
-	protected String getSymbol(int turno) {
+	protected String getSymbol() {
 		if (turno == 1) 
 			return Messages.FICHA1;
 		else

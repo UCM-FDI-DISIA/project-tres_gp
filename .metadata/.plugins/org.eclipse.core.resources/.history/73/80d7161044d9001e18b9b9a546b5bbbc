@@ -1,9 +1,0 @@
-package GameObjects;
-
-
-import Logic.Position;
-
-
-public class GameObject {
-
-}

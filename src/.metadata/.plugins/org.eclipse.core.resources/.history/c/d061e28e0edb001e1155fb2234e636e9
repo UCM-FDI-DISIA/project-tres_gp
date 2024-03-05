@@ -3,37 +3,43 @@ package gp.commands;
 import gp.exceptions.CommandExecuteException;
 import gp.exceptions.CommandParseException;
 import gp.logic.Game;
-import gp.view.Messages;
 
-public class ExitCommand extends NoParamsCommand{
+public class ExitCommand extends Command{
 
 	@Override
 	protected String getName() {
 		// TODO Auto-generated method stub
-		return Messages.COMMAND_EXIT_NAME;
+		return null;
 	}
 
 	@Override
 	protected String getShortcut() {
 		// TODO Auto-generated method stub
-		return Messages.COMMAND_EXIT_SHORTCUT;
+		return null;
 	}
 
 	@Override
 	protected String getDetails() {
 		// TODO Auto-generated method stub
-		return Messages.COMMAND_EXIT_DETAILS;
+		return null;
 	}
 
 	@Override
 	protected String getHelp() {
 		// TODO Auto-generated method stub
-		return Messages.COMMAND_EXIT_HELP;
+		return null;
 	}
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		game.exit();
+		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Command parse(String[] commandWords) throws CommandParseException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -33,7 +33,14 @@ public class ExitCommand extends NoParamsCommand{
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		game.exit();
+		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Command parse(String[] commandWords) throws CommandParseException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

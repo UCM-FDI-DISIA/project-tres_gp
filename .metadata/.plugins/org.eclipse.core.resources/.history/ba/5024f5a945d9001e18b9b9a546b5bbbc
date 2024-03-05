@@ -1,7 +1,0 @@
-package view;
-
-public class Messages {
-
-	public static final String FICHA1 = "X";
-	public static final String FICHA2 = "O";
-}

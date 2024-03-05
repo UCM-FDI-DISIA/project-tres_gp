@@ -13,7 +13,6 @@ public class Game {
 	private GameObjectContainer container;
 	private Piece piece;
 	private boolean doExit = false;
-	
 	public Game() {
 		container = new GameObjectContainer();
 		currentCycle = 0;

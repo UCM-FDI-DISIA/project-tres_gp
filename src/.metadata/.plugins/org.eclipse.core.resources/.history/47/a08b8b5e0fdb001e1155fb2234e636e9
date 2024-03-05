@@ -24,7 +24,7 @@ public abstract class GameObject {
 		return this.getPosition().equals(pos);
 	}
 	
-	protected abstract String getSymbol(int turno);
+	protected abstract String getSymbol();
 	public abstract String toString(GameObject c, Position position);
 	
 }
