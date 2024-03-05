@@ -1,5 +1,0 @@
-package gp.exceptions;
-
-public class FullColumnException {
-
-}
