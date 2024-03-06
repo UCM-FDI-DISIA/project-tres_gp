@@ -1,0 +1,26 @@
+Estructura del Juego
+
+
+Implementamos nuestro juego de la siguiente forma:
+
+	-Tenemos la clase CuatroEnRaya para devolver la dimensión del tablero,
+	gestionar si hay ganador o no y quién es, y si el juego ha terminado.
+
+	-Tenemos la clase CrearJuego que es donde vamos a crear todo el juego
+	(el tablero, los controles).
+	
+	-Tenemos la clase del IniciarJuego, en la que llamaremos a la clase Aplicacion
+	para iniciar el juego.
+
+	-Tenemos la clase Tablero, en la que se pinta todo el tablreo y sus fichas y
+	además se muestra.
+
+	-Tenemos la clase SoltarFicha, donde implementamos como actua el juego a la hora
+	de colocar una ficha, se actualiza y verifica si el juego acaba.
+
+	-Tenemos la clase Error, que mostrará un mensaje por pantalla de fallo en caso
+	de que se produzca algún error o alguna acción imposible de realizar.
+
+	-Tenemos la clase Celda, que consistirá en devolver los posibles valores de
+	una celda (color1, color2, vacío).
+
