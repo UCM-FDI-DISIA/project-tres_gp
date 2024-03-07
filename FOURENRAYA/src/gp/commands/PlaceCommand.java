@@ -38,6 +38,7 @@ public class PlaceCommand extends Command {
 		boolean execution = true;
 		try {
 			game.place(col);
+			game.update();
 			return execution;
 		}
 		catch(OffWorldException | FullColumnException e){

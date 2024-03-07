@@ -6,15 +6,15 @@ import gp.logic.Position;
 import gp.view.Messages;
 
 public class Piece extends GameObject{
-
+	private int turno;
 	public Piece(Game game, Position pos) {
 		super(game, pos);
+		turno = game.getTurno();;
 	}
 	public Piece() {
 		super();
 	}
 	public String toString() {
-		int turno = game.getTurno();
 		if (turno == 1) 
 			return Messages.FICHA1;
 		else
