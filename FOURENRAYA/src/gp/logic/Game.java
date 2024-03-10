@@ -11,7 +11,7 @@ public class Game {
 	public static final int DIM_Y = 6;
 	private int currentCycle;
 	private GameObjectContainer container;
-	private int turno = 1;
+	private int turn = 1;
 	private boolean doExit = false;
 	public Game() {
 		container = new GameObjectContainer();
@@ -25,11 +25,15 @@ public class Game {
 	}
 	
 	public void update() {
-		if(turno ==1)
-			turno = 2;
-		else
-			turno = 1;
+		flip();
 		currentCycle++;
+	}
+	
+	private void flip() {
+		if(turn ==1)
+			turn = 2;
+		else
+			turn = 1;
 	}
 	
 	public void place(int col) throws OffWorldException, FullColumnException{
@@ -51,14 +55,18 @@ public class Game {
 		container.add(object);
 		
 	}
-	public int getTurno() {
-		return turno;
-	}
+
 	public void exit() {
 		doExit = true;
 		System.out.println(Messages.GAME_OVER);
 	}
 	public boolean isFinished() {
-		return doExit;
+		return doExit || container.isFinished(turn);
 	}
+
+	public int getTurn() {
+		return turn;
+	}
+
+	
 }

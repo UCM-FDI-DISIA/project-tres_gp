@@ -32,4 +32,8 @@ public class Position {
 	}
 	
 
+public boolean isOnBoard() {
+	return (col >= 0) && (col < Game.DIM_X) && (row >= 0) && (row < Game.DIM_Y);
+}
+
 }
