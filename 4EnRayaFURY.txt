@@ -3,12 +3,19 @@ Estructura del Juego
 
 Implementamos nuestro juego de la siguiente forma:
 
-	-Tenemos la clase CuatroEnRaya para devolver la dimensión del tablero,
-	gestionar si hay ganador o no y quién es, y si el juego ha terminado.
+	-Tenemos el paquete GameObjects, donde tenemos as clases GameObject y la clase
+	piece. En la clase Gameobject devolvemos las posiciones de los objetos del juego,verificamos si
+	algún objeto esta en una posición determinada posición y cogemos el turno del jugador correspondiente.
+	Y en Piece cogemos que tipo de ficha según el jugador que toca.
 
-	-Tenemos la clase CrearJuego que es donde vamos a crear todo el juego
-	(el tablero, los controles).
-	
+	-Tenemos la clase commands que es donde vamos a programar todos los comandos del juego, que son:
+	La clase ExitCommand, donde programamos la acción de salir del juego.
+	La clase HelpCommand, donde programamos una ventana de ayuda que nos diga los posibles comandos e
+	instrucciones del juego.
+	La clase NoParamsCommand, donde programamos en caso de que no se meta ningún comando o un comando incorrecto. 
+	La clase PlaceCommand, donde programamos la opción de poner una ficha en el tablero.
+	Y a parte de estos comandos, dentro del mismo paquete tenemos las clases: Command
+
 	-Tenemos la clase del IniciarJuego, en la que llamaremos a la clase Aplicacion
 	para iniciar el juego.
 
