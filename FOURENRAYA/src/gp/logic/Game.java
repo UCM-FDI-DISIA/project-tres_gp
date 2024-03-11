@@ -67,6 +67,10 @@ public class Game {
 	public int getTurn() {
 		return turn;
 	}
-
+	public void reset() {
+		container = new GameObjectContainer();
+		currentCycle = 0;
+		turn = 1;
+	}
 	
 }
