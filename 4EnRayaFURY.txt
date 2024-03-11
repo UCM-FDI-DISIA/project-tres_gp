@@ -8,22 +8,35 @@ Implementamos nuestro juego de la siguiente forma:
 	algún objeto esta en una posición determinada posición y cogemos el turno del jugador correspondiente.
 	Y en Piece cogemos que tipo de ficha según el jugador que toca.
 
-	-Tenemos la clase commands que es donde vamos a programar todos los comandos del juego, que son:
+	-Tenemos el paquete commands que es donde vamos a programar todos los comandos del juego, que son:
 	La clase ExitCommand, donde programamos la acción de salir del juego.
 	La clase HelpCommand, donde programamos una ventana de ayuda que nos diga los posibles comandos e
 	instrucciones del juego.
 	La clase NoParamsCommand, donde programamos en caso de que no se meta ningún comando o un comando incorrecto. 
 	La clase PlaceCommand, donde programamos la opción de poner una ficha en el tablero.
-	Y a parte de estos comandos, dentro del mismo paquete tenemos las clases: Command
+	Y a parte de estos comandos, dentro del mismo paquete tenemos las clases: Command(clase superior), donde 
+	ejecutamos todos los comandos, y la clase CommandGenerator, donde creamos los comandos para oder luego ser 
+	procesados.
 
-	-Tenemos la clase del IniciarJuego, en la que llamaremos a la clase Aplicacion
-	para iniciar el juego.
+	-Tenemos el paquete control, en el que se encuentra la clase Controller, que es la encargada de crear el juego
+	y de procesarlo hasta que acabe o salgamos de él. Es como la clase main de nuestro juego.
 
-	-Tenemos la clase Tablero, en la que se pinta todo el tablreo y sus fichas y
-	además se muestra.
+	-Tenemos el paquete exceptions, donde se encuentran las siguientes clases:
+	CommandExecuteException, es una clase en la que llamamos a mensajes para que salgan por pantalla en caso de 
+	una excepción en la ejecución.
+	CommandParseException, es una clase en la que llamamos a mensajes para que salgan por pantalla en caso de 
+	una excepción a la hora de parsear algo.
+	FullColumnException, en esta clase lanzamos un mensaje en caso de que se produzca la excepción de que hay 
+	una columna llena de fichas en la que ya no se pueden insertar más.
+	OffWorldException, en esta clase lanzamos la excepción en forma de mensaje en caso de que intentemos insertar 
+	una ficha fuera de los límites de nuestro tablero.
 
-	-Tenemos la clase SoltarFicha, donde implementamos como actua el juego a la hora
-	de colocar una ficha, se actualiza y verifica si el juego acaba.
+	-Tenemos el paquete logic, que incluye las clases Direction, Game, GameObjectContainer y Position.
+	En la clase Direction, obtenemos las posibles direcciones (Up, Right, Left, Down).
+	En la clase Game tenemos las variables principales del juego y las funciones básicas a realizar del juego, 
+	como ejecutar una acción, actualizar el juego, contar los ciclos, crear un objeto, versi es correcta la posición 
+	de un objeto...
+	
 
 	-Tenemos la clase Error, que mostrará un mensaje por pantalla de fallo en caso
 	de que se produzca algún error o alguna acción imposible de realizar.
