@@ -30,7 +30,8 @@ public class BoardPrinter extends GamePrinter {
 		StringBuilder buffer = new StringBuilder();
 		/* @formatter:off */
 		buffer
-		.append(Messages.NUMBER_OF_CYCLES).append(SPACE).append(game.getCycle()).append(NEW_LINE);
+		.append(Messages.NUMBER_OF_CYCLES).append(SPACE).append(game.getCycle()).append(NEW_LINE)
+		.append("Turn for player: ").append(game.getTurn()).append(NEW_LINE);
 		//.append(game.stateToString())
 		return buffer.toString();
 	}
@@ -60,7 +61,7 @@ public class BoardPrinter extends GamePrinter {
 	}
 
 	public String endMessage() {
-		return "";
+		return Messages.GAME_OVER;
 	}
 }
 

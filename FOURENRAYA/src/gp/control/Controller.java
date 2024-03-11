@@ -73,6 +73,7 @@ public class Controller {
 		System.out.println(printer);
 	}
 	public void printEndMessage() {
+		System.out.println(printer.whowins());
 		System.out.println(printer.endMessage());
 	}
 

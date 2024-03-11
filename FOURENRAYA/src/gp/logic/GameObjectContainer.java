@@ -48,7 +48,7 @@ public class GameObjectContainer {
                 row--;
             }
         }
-        if(!find) return Game.DIM_Y - 1;
+        if(!find && row > 0) return Game.DIM_Y - 1;
         else throw new FullColumnException(Messages.FULL_COLUMN_MESSAGE.formatted(col));
 
 
@@ -65,17 +65,19 @@ public class GameObjectContainer {
 	public boolean isFinished(int turn) {
 		boolean isFinished = false;
 		int length = 3;
-		for (int i = 0; i < objects.size(); i++) {
-			
-			GameObject currentObject  = objects.get(i);
-			Position currentPosition = currentObject.getPosition();
-			
-			for(Direction dir : Direction.values()) {
-				if (fitIn(length, dir, currentPosition) &&
-						checkConsecutiveTurns(turn, length, dir, currentPosition)) {
-					isFinished = true;
-					win(dir, currentPosition);
-				}	
+		if (objects.size()>5) {
+			for (int i = 0; i < objects.size(); i++) {
+				
+				GameObject currentObject  = objects.get(i);
+				Position currentPosition = currentObject.getPosition();
+				
+				for(Direction dir : Direction.values()) {
+					if (fitIn(length, dir, currentPosition) &&
+							checkConsecutiveTurns(turn, length, dir, currentPosition)) {
+						isFinished = true;
+						win(dir, currentPosition);
+					}	
+				}
 			}
 		}
 		return isFinished;

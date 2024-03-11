@@ -24,8 +24,8 @@ public class Main {
 		} catch (Exception e) {
 			System.out.println(error(e.getMessage()));
 			e.printStackTrace();
+			//E
 		}
-        System.out.println(Messages.PROMPT);
 	}
 
 }

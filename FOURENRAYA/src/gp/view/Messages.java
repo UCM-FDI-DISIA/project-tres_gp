@@ -8,7 +8,7 @@ public class Messages {
 	public static final String PROMPT = "Command > ";
 	public static final String LINE_SEPARATOR = System.lineSeparator();
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands: ";
-	public static final String PLAYER_1_WINS = "Player 1 win!";
+	public static final String PLAYER_1_WINS = "Player 1 wins!";
 	public static final String PLAYER_2_WINS = "Player 2 wins!";
 	public static final String DEBUG = "%n[DEBUG] Executing: %s%n";
 	public static final String NUMBER_OF_CYCLES = "Number of cycles:";
