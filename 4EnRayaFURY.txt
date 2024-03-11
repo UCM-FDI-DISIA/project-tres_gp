@@ -36,11 +36,18 @@ Implementamos nuestro juego de la siguiente forma:
 	En la clase Game tenemos las variables principales del juego y las funciones básicas a realizar del juego, 
 	como ejecutar una acción, actualizar el juego, contar los ciclos, crear un objeto, versi es correcta la posición 
 	de un objeto...
+	En la clase GameObjectContainer tenemos todos los objetos del juego en un array de objetos y además añadimos objetos
+	nuevos al juego.
+	En la clase Position tenemos la opción de obtener la posición de algo del juego (objeto), si coinciden posiciones
+	dos objetos y si está en el tablero un objeto.
 	
+	-Tenemos el paquete util, con la clase StringUtils, que sirve para modificar los strings que 
+	utilizamos en el juego.
 
-	-Tenemos la clase Error, que mostrará un mensaje por pantalla de fallo en caso
-	de que se produzca algún error o alguna acción imposible de realizar.
+	-Tenemos el paquete view, que consiste en todo lo que se ve por pantalla del juego. Contiene las siguientes clases:
+	BoardPrinter, donde pintamos el tablero del juego.
+	GamePrinter (clase superior), donde pintamos todo el juego.
+	Messages, donde tenemos todos los mensajes posibles que podemos sacar por pantalla del juego.
 
-	-Tenemos la clase Celda, que consistirá en devolver los posibles valores de
-	una celda (color1, color2, vacío).
+	-Por último, tenemos nuestro Main que utiliza todos los paquetes.
 
