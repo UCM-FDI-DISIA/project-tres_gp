@@ -48,7 +48,7 @@ public class GameObjectContainer {
                 row--;
             }
         }
-        if(!find && row > 0) return Game.DIM_Y - 1;
+        if(!find) return Game.DIM_Y - 1;
         else throw new FullColumnException(Messages.FULL_COLUMN_MESSAGE.formatted(col));
 
 
@@ -65,26 +65,24 @@ public class GameObjectContainer {
 	public boolean isFinished(int turn) {
 		boolean isFinished = false;
 		int length = 3;
-		if (objects.size()>5) {
-			for (int i = 0; i < objects.size(); i++) {
-				
-				GameObject currentObject  = objects.get(i);
-				Position currentPosition = currentObject.getPosition();
-				
-				for(Direction dir : Direction.values()) {
-					if (fitIn(length, dir, currentPosition) &&
-							checkConsecutiveTurns(turn, length, dir, currentPosition)) {
-						isFinished = true;
-						win(dir, currentPosition);
-					}	
-				}
+		for (int i = 0; i < objects.size(); i++) {
+			
+			GameObject currentObject  = objects.get(i);
+			Position currentPosition = currentObject.getPosition();
+			
+			for(Direction dir : Direction.values()) {
+				if (fitIn(length, dir, currentPosition) &&
+						checkConsecutiveTurns(turn, length, dir, currentPosition)) {
+					isFinished = true;
+					win(dir, currentPosition);
+				}	
 			}
 		}
 		return isFinished;
 	}
 	
 	// Comprueba si desde una posicion cabe una longitud de fichas en una determinada posición
-	public boolean fitIn(int length , Direction dir, Position pos) {
+	private boolean fitIn(int length , Direction dir, Position pos) {
 		Position newPos = new Position(pos.getCol() + length * dir.getY(),
 				pos.getRow() + length * dir.getX());
 		return newPos.isOnBoard();
@@ -92,7 +90,7 @@ public class GameObjectContainer {
 	
 	// Comprueba si desde una posicion en una determianda dirección la siguiente ficha es del mismo
 		// turno que la anterior
-	public boolean checkConsecutiveTurns(int turn, int length, Direction dir, Position pos) {
+	private boolean checkConsecutiveTurns(int turn, int length, Direction dir, Position pos) {
 		boolean ok = true;
 	    int consecutiveCount = 0;
 		while(ok && (consecutiveCount <= length)) {
@@ -108,7 +106,7 @@ public class GameObjectContainer {
 	}
 	
 	// Agrega la solución encontrada a la lista de soluciones
-	public void win(Direction dir, Position pos) {
+	private void win(Direction dir, Position pos) {
 		int length = 4;
 		List<Position> positionsList = new ArrayList<Position>();
 		for (int i = 0; i < length; i++) {
@@ -120,7 +118,7 @@ public class GameObjectContainer {
 	}
 	
 	// Encuentra si existe una ficha en esa posicíon y devuelve su turno
-	public int findConsecutiveTurn(Position pos) {
+	int findConsecutiveTurn(Position pos) {
 		int turn = -1, i = 0;
 		boolean find = false;
 		while(!find && (i < objects.size())) {

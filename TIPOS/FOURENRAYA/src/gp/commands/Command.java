@@ -26,7 +26,7 @@ public abstract class Command {
 	  
 	  public abstract Command parse(String[] commandWords) throws CommandParseException;
 	  
-	  public boolean matchCommandName(String name){
+	  protected boolean matchCommandName(String name){
 		    return getShortcut().equalsIgnoreCase(name) || 
 		        getName().equalsIgnoreCase(name);
 	  }

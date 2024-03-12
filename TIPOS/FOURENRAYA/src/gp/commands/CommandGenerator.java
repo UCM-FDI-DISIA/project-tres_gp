@@ -10,8 +10,7 @@ public class CommandGenerator {
 	private static final List<Command> availableCommands = Arrays.asList(
 		new HelpCommand(),
 		new PlaceCommand(),
-		new ExitCommand(),
-		new ResetCommand()
+		new ExitCommand()
 	);
 	
 	public static Command parse(String[] commandWords) throws CommandParseException{	

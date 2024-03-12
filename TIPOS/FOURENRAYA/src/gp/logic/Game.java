@@ -13,6 +13,7 @@ public class Game {
 	private GameObjectContainer container;
 	private int turn = 1;
 	private boolean doExit = false;
+	private boolean someoneWin = false;
 	public Game() {
 		container = new GameObjectContainer();
 		currentCycle = 0;
@@ -25,8 +26,10 @@ public class Game {
 	}
 	
 	public void update() {
-		flip();
-		currentCycle++;
+		if (!someoneWin()) {
+			flip();
+			currentCycle++;
+		}
 	}
 	
 	private void flip() {
@@ -58,19 +61,20 @@ public class Game {
 
 	public void exit() {
 		doExit = true;
-		System.out.println(Messages.GAME_OVER);
 	}
+	
 	public boolean isFinished() {
-		return doExit || container.isFinished(turn);
+		return doExit || someoneWin;
+	}
+	
+	public boolean someoneWin() {
+		if (container.isFinished(turn)) someoneWin = true;
+		return someoneWin;
 	}
 
 	public int getTurn() {
 		return turn;
 	}
-	public void reset() {
-		container = new GameObjectContainer();
-		currentCycle = 0;
-		turn = 1;
-	}
+
 	
 }
