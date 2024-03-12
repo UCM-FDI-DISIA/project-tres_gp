@@ -6,22 +6,22 @@ import gp.view.Messages;
 public class HelpCommand extends NoParamsCommand {
 
 	@Override
-	protected String getName() {
+	public String getName() {
 		return Messages.COMMAND_HELP_NAME;
 	}
 
 	@Override
-	protected String getShortcut() {
+	public String getShortcut() {
 		return Messages.COMMAND_HELP_SHORTCUT;
 	}
 
 	@Override
-	protected String getDetails() {
+	public String getDetails() {
 		return Messages.COMMAND_HELP_DETAILS;
 	}
 
 	@Override
-	protected String getHelp() {
+	public String getHelp() {
 		return Messages.COMMAND_HELP_HELP;
 	}
 

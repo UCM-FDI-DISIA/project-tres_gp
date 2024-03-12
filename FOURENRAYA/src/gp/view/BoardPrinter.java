@@ -26,7 +26,7 @@ public class BoardPrinter extends GamePrinter {
 		super(game);
 	}
 		
-	protected String getInfo() {
+	public String getInfo() {
 		StringBuilder buffer = new StringBuilder();
 		/* @formatter:off */
 		buffer

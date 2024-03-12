@@ -14,22 +14,22 @@ public class PlaceCommand extends Command {
 	}
 
 	@Override
-	protected String getName() {
+	public String getName() {
 		return Messages.COMMAND_PLACE_NAME;
 	}
 
 	@Override
-	protected String getShortcut() {
+	public String getShortcut() {
 		return Messages.COMMAND_PLACE_SHORTCUT;
 	}
 
 	@Override
-	protected String getDetails() {
+	public String getDetails() {
 		return Messages.COMMAND_PLACE_DETAILS;
 	}
 
 	@Override
-	protected String getHelp() {
+	public String getHelp() {
 		return Messages.COMMAND_PLACE_HELP;
 	}
 

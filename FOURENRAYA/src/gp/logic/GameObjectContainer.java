@@ -84,7 +84,7 @@ public class GameObjectContainer {
 	}
 	
 	// Comprueba si desde una posicion cabe una longitud de fichas en una determinada posición
-	private boolean fitIn(int length , Direction dir, Position pos) {
+	public boolean fitIn(int length , Direction dir, Position pos) {
 		Position newPos = new Position(pos.getCol() + length * dir.getY(),
 				pos.getRow() + length * dir.getX());
 		return newPos.isOnBoard();
@@ -92,7 +92,7 @@ public class GameObjectContainer {
 	
 	// Comprueba si desde una posicion en una determianda dirección la siguiente ficha es del mismo
 		// turno que la anterior
-	private boolean checkConsecutiveTurns(int turn, int length, Direction dir, Position pos) {
+	public boolean checkConsecutiveTurns(int turn, int length, Direction dir, Position pos) {
 		boolean ok = true;
 	    int consecutiveCount = 0;
 		while(ok && (consecutiveCount <= length)) {
@@ -108,7 +108,7 @@ public class GameObjectContainer {
 	}
 	
 	// Agrega la solución encontrada a la lista de soluciones
-	private void win(Direction dir, Position pos) {
+	public void win(Direction dir, Position pos) {
 		int length = 4;
 		List<Position> positionsList = new ArrayList<Position>();
 		for (int i = 0; i < length; i++) {
@@ -120,7 +120,7 @@ public class GameObjectContainer {
 	}
 	
 	// Encuentra si existe una ficha en esa posicíon y devuelve su turno
-	int findConsecutiveTurn(Position pos) {
+	public int findConsecutiveTurn(Position pos) {
 		int turn = -1, i = 0;
 		boolean find = false;
 		while(!find && (i < objects.size())) {

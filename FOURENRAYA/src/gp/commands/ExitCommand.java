@@ -8,25 +8,25 @@ import gp.view.Messages;
 public class ExitCommand extends NoParamsCommand{
 
 	@Override
-	protected String getName() {
+	public String getName() {
 		
 		return Messages.COMMAND_EXIT_NAME;
 	}
 
 	@Override
-	protected String getShortcut() {
+	public String getShortcut() {
 		// TODO Auto-generated method stub
 		return Messages.COMMAND_EXIT_SHORTCUT;
 	}
 
 	@Override
-	protected String getDetails() {
+	public String getDetails() {
 		// TODO Auto-generated method stub
 		return Messages.COMMAND_EXIT_DETAILS;
 	}
 
 	@Override
-	protected String getHelp() {
+	public String getHelp() {
 		// TODO Auto-generated method stub
 		return Messages.COMMAND_EXIT_HELP;
 	}
