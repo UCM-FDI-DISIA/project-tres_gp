@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\Usuario\Documents\Alvaro\Carrera\2-Segundo\Segundo Cuatrimestre\Gestión de Proyectos Software\project-tres_gp\TIPOS\FOURENRAYA\.metadata\.plugins\org.eclipse.jdt.core
+1067094681.index
+1359730595.index
+1865797976.index
