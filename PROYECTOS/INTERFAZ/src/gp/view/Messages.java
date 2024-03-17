@@ -1,15 +1,15 @@
 package gp.view;
 
 public class Messages {
-	//Welcome
+	//Info
 	public static final String GAME_NAME = "Cuatro en Raya Fury";
 	public static final String CLASSIC = "Clásico";
 	public static final String WELCOME = String.format("%s %s%n", GAME_NAME, CLASSIC);
 	public static final String PROMPT = "Command > ";
 	public static final String LINE_SEPARATOR = System.lineSeparator();
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands: ";
-	public static final String PLAYER_1_WINS = "Player 1 wins!";
-	public static final String PLAYER_2_WINS = "Player 2 wins!";
+	public static final String PLAYER_WINS = "Player %s win!";
+	public static final String PLAYER_QUITS = "Player %s leaves the game";
 	public static final String DEBUG = "%n[DEBUG] Executing: %s%n";
 	public static final String NUMBER_OF_CYCLES = "Number of cycles:";
 	
@@ -54,6 +54,14 @@ public class Messages {
 	}
 	public static final String error(String message) {
 		return Messages.ERROR.formatted(message);
+	}
+	
+	public static final String win(int turn) {
+		return Messages.PLAYER_WINS.formatted(turn);
+	}
+	
+	public static final String exit(int turn) {
+		return Messages.PLAYER_QUITS.formatted(turn);
 	}
 
 }

@@ -1,8 +1,6 @@
 package gp;
 
 import java.util.Scanner;
-
-
 import gp.control.Controller;
 import gp.exceptions.CommandExecuteException;
 import gp.exceptions.CommandParseException;

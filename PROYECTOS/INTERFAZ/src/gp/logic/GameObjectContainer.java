@@ -1,7 +1,9 @@
 package gp.logic;
 
 import java.util.List;
+
 import gp.GameObjects.GameObject;
+import gp.exceptions.FullColumnException;
 import gp.view.Messages;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class GameObjectContainer {
 		objects.add(object);
 	}
 	
-	public int findRow(int col){
+	public int findRow(int col) throws FullColumnException{
         boolean find = false;
         int row = 5;
         while(!find &&  row >= 0) {
@@ -46,8 +48,8 @@ public class GameObjectContainer {
                 row--;
             }
         }
-        if(!find && row > 0) return Game.DIM_Y - 1;
-        else return -1;
+        if(!find) return Game.DIM_Y - 1;
+        else throw new FullColumnException(Messages.FULL_COLUMN_MESSAGE.formatted(col));
 
 
     }
@@ -63,19 +65,17 @@ public class GameObjectContainer {
 	public boolean isFinished(int turn) {
 		boolean isFinished = false;
 		int length = 3;
-		if (objects.size()>5) {
-			for (int i = 0; i < objects.size(); i++) {
-				
-				GameObject currentObject  = objects.get(i);
-				Position currentPosition = currentObject.getPosition();
-				
-				for(Direction dir : Direction.values()) {
-					if (fitIn(length, dir, currentPosition) &&
-							checkConsecutiveTurns(turn, length, dir, currentPosition)) {
-						isFinished = true;
-						win(dir, currentPosition);
-					}	
-				}
+		for (int i = 0; i < objects.size(); i++) {
+			
+			GameObject currentObject  = objects.get(i);
+			Position currentPosition = currentObject.getPosition();
+			
+			for(Direction dir : Direction.values()) {
+				if (fitIn(length, dir, currentPosition) &&
+						checkConsecutiveTurns(turn, length, dir, currentPosition)) {
+					isFinished = true;
+					win(dir, currentPosition);
+				}	
 			}
 		}
 		return isFinished;
