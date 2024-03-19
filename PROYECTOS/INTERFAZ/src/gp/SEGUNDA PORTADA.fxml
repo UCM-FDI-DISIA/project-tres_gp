@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gp.SelectModeController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -29,18 +29,6 @@
             <Image url="@SUPERFICHAS.png" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" opacity="0.0" prefHeight="201.0" prefWidth="299.0" GridPane.rowIndex="1" />
-      <Text fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPERFICHAS" textAlignment="CENTER" wrappingWidth="300.5367317199707" GridPane.rowIndex="1">
-         <font>
-            <Font name="Arial Bold Italic" size="41.0" />
-         </font>
-      </Text>
-      <Button mnemonicParsing="false" opacity="0.0" prefHeight="209.0" prefWidth="306.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Text fill="#ffcf00" strokeType="OUTSIDE" strokeWidth="0.0" text="POP - OUT" textAlignment="CENTER" wrappingWidth="300.5366516113281" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <font>
-            <Font name="Arial Bold Italic" size="41.0" />
-         </font>
-      </Text>
       <ImageView fitHeight="204.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@CLASICO.png" />
@@ -51,8 +39,16 @@
             <Image url="@5ENRAYA.png" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" opacity="0.0" prefHeight="219.0" prefWidth="368.0" text="Button" />
-      <Button mnemonicParsing="false" opacity="0.0" prefHeight="217.0" prefWidth="315.0" text="Button" GridPane.columnIndex="1" />
+      <Text fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPERFICHAS" textAlignment="CENTER" wrappingWidth="300.5367317199707" GridPane.rowIndex="1">
+         <font>
+            <Font name="Arial Bold Italic" size="41.0" />
+         </font>
+      </Text>
+      <Text fill="#ffcf00" strokeType="OUTSIDE" strokeWidth="0.0" text="POP - OUT" textAlignment="CENTER" wrappingWidth="300.5366516113281" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font name="Arial Bold Italic" size="41.0" />
+         </font>
+      </Text>
       <Text cache="true" fill="#ffcf00" strokeType="OUTSIDE" strokeWidth="0.0" text="CLÁSICO" textAlignment="CENTER" wrappingWidth="300.5367317199707">
          <font>
             <Font name="Arial Bold Italic" size="41.0" />
@@ -63,5 +59,9 @@
             <Font name="Calibri Bold Italic" size="41.0" />
          </font>
       </Text>
+      <Button fx:id="btnClasico" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="219.0" prefWidth="368.0" text="Button" />
+      <Button fx:id="btn5en" mnemonicParsing="false" onMouseClicked="#switchToTablero5en" opacity="0.0" prefHeight="217.0" prefWidth="315.0" text="Button" GridPane.columnIndex="1" />
+      <Button fx:id="btnSuper" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" opacity="0.0" prefHeight="200.0" prefWidth="306.0" GridPane.rowIndex="1" />
+      <Button fx:id="btnpop" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" opacity="0.0" prefHeight="209.0" prefWidth="306.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>

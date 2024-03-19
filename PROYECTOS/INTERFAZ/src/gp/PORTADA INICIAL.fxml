@@ -9,16 +9,16 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gp.SceneController">
    <children>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToScene2" onMouseClicked="#switchToScene2" opacity="0.0" prefHeight="403.0" prefWidth="604.0" text="JUGAR" textAlignment="CENTER" textFill="#db2c2c" />
-      <Text fill="#f5a707" strokeType="OUTSIDE" strokeWidth="0.0" text="PULSA PARA JUGAR" textAlignment="CENTER" wrappingWidth="600.5367002487183">
-         <font>
-            <Font name="Calibri Bold Italic" size="50.0" />
-         </font>
-      </Text>
       <ImageView fitHeight="403.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@PORTADA%204FURYROW.png" />
          </image>
       </ImageView>
+      <Text fill="#f5a707" strokeType="OUTSIDE" strokeWidth="0.0" text="PULSA PARA JUGAR" textAlignment="CENTER" wrappingWidth="600.5367002487183">
+         <font>
+            <Font name="Calibri Bold Italic" size="50.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnJugar" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#switchToScene2" opacity="0.0" prefHeight="403.0" prefWidth="604.0" text="JUGAR" textAlignment="CENTER" textFill="#db2c2c" />
    </children>
 </StackPane>
