@@ -2,7 +2,6 @@ package gp;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,25 +9,40 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import gp.exceptions.FullColumnException;
+import gp.logic.*;
 
 public class SelectModeController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	
-	@FXML
-    private Button btn5en;
+	private Game game;
+    @FXML
+    private Button btnFicha;
 
     @FXML
-    private Button btnClasico;
+    private Button btnFicha1;
 
     @FXML
-    private Button btnSuper;
+    private Button btnFicha2;
 
     @FXML
-    private Button btnpop;
-    
+    private Button btnFicha3;
+
+    @FXML
+    private Button btnFicha4;
+
+    @FXML
+    private Button btnFicha5;
+
+    @FXML
+    private Button btnFicha6;
+
+    @FXML
+    private GridPane gridPane;
+
     @FXML
     void switchToTableroNormal(MouseEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("TABLERO BÁSICO.fxml"));
@@ -37,6 +51,22 @@ public class SelectModeController {
 		stage.setScene(scene);
 		stage.show();
     }
+
+    @FXML
+    private void colocarFicha(MouseEvent event) throws FullColumnException {
+        //if (event.getSource() instanceof Button) {
+            int columna = GridPane.getColumnIndex((Node)event.getSource());
+            
+            try {
+                Parent ficha = FXMLLoader.load(getClass().getResource("FICHA JUGADOR 1.fxml"));
+                int fila = game.place(columna);
+                gridPane.add(ficha, columna, fila);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        //}
+    }
+    
     @FXML
     void switchToTablero5en(MouseEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("TABLERO 5 IN ROW.fxml"));

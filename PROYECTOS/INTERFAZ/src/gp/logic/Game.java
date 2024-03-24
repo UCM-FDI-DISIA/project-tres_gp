@@ -39,18 +39,13 @@ public class Game {
 			turn = 1;
 	}
 	
-	public void place(int col) throws OffWorldException, FullColumnException{
-		if(isOnBoard(col)) {
-			int row= findRow(col);
-			Position pos = new Position(col, row);
-			addObject(new Piece(this, pos));
-		}
-		else
-			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
+	public int place(int col) throws FullColumnException{
+		int row= findRow(col);
+		Position pos = new Position(col, row);
+		addObject(new Piece(this, pos));
+		return row;
 	}
-	public boolean isOnBoard(int col) {
-		return (col >= 0) && (col < Game.DIM_X );
-	}
+
 	public int findRow(int col) throws FullColumnException{
 		return container.findRow(col);		
 	}

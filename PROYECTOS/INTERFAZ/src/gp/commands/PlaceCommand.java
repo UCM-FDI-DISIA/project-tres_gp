@@ -41,7 +41,7 @@ public class PlaceCommand extends Command {
 			game.update();
 			return execution;
 		}
-		catch(OffWorldException | FullColumnException e){
+		catch(FullColumnException e){
 			throw new CommandExecuteException("",e);
 		}
 	}
