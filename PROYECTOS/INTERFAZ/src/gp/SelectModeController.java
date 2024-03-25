@@ -4,13 +4,17 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import gp.GameObjects.Piece;
 import gp.exceptions.FullColumnException;
 import gp.logic.*;
 import gp.view.Messages;
@@ -20,6 +24,9 @@ public class SelectModeController {
 	private Scene scene;
 	private Parent root;
 	private Game game;
+	@FXML
+	private Button btnVolver;
+	
     @FXML
     private Button btnFicha;
 
@@ -67,6 +74,16 @@ public class SelectModeController {
                 		"FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
                 int fila = game.place(columna);
                 gridPane.add(ficha, columna, fila);
+        		Position pos = new Position(columna, fila);
+        		game.addObject(new Piece(game, pos));
+        		if(game.someoneWin()) {
+        			System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+        			Parent alertRoot = FXMLLoader.load(getClass().getResource("VOLVER A INICIAL.fxml"));
+        			gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                    GridPane.setHalignment(alertRoot, HPos.CENTER);
+                    GridPane.setValignment(alertRoot, VPos.CENTER);
+        		}
+                game.update();
             } catch (IOException e) {
                 e.printStackTrace();
             }
