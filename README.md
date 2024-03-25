@@ -3,9 +3,16 @@
 
 **Descripción del Proyecto:**
 
-  **Objetivo:** Queremos diseñar el juego del 4 en raya llevando a cabo un trabajo constante y eficiente organizando las diferentes tareas en nuestro grupo de 5 personas, conformado por: Pablo Alonso Romero, Marina Triviño de las Heras, Óscar Marín Esteban, Rodrigo Jesús-Portanet Martínez, Álvaro Enol Alonso Ortega.
+  **Objetivo:** Queremos diseñar el juego del 4 en raya y modos auxiliares, llevando a cabo un trabajo constante y eficiente organizando las diferentes tareas en nuestro grupo de 5 personas, conformado por: Pablo Alonso Romero, Marina Triviño de las Heras, Óscar Marín Esteban, Rodrigo Jesús-Portanet Martínez, Álvaro Enol Alonso Ortega.
   
-  **Características:** Es un juego en el que dos jugadores se enfrentan para lograr poner 4 fichas del mismo color seguidas, ya sea en vertical, horizontal o diagonal, en un tablero de 7 columnas x 6 filas.
+  **Características:** Nuestro juego ofrece cuatro modos diferentes en los que poder jugar. Estos son; modo Clásico, modo Super Fihcas, modo Pop out y modo 5 en raya.
+          - _Modo Clásico:_ En este modo dos usuarios se enfrentaran en un tablero de 7 columnas x 6 filas. Con el objetivo de lograr, antes que su adversario, una línea de 4 fichas del mismo color en cualquier dirección.
+           - _Modo Super Fichas:_En este modo, basandonos en las reglas del modo Clásico, añadiremos unas _Super Fichas_. Al comienzo del juego, ambos usuarios deberán elegir dos _Super Fichas_ de las cuatro opciones que ofrecemos, ya sean repetidas o diferentes. Estas fichas podrán usarse durante el juego con el objetivo de generar una ventaja para sí mismo o ya sea una desventaja para el adversario. Las _Super Fichas_ que ofrecemos son:
+                     -_Bomba_: Elimina todas las fichas adyancentes a él. Tras explotar la bomba se convertirá en una ficha normal del color del usuario que la utilizase. 
+                     -_Yunque_: Elimina todas las fichas de la columna en la que se coloque. Tras su uso, también se convertira en una dicha del color del usuario que la utilizó.
+                     -_Flecha:_
+                     -_Hielo_:
+
 
   **Modos de juego:** Los diferentes modos de juego que habrá son, 1vs1 entre jugadores, 1vs1 entre máquina y máquina y 1vs1 entre jugador y máquina.
 
