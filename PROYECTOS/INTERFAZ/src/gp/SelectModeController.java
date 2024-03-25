@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import gp.exceptions.FullColumnException;
 import gp.logic.*;
+import gp.view.Messages;
 
 public class SelectModeController {
 	private Stage stage;
@@ -42,6 +43,10 @@ public class SelectModeController {
 
     @FXML
     private GridPane gridPane;
+    
+    public SelectModeController() {
+    	this.game = new Game();
+    }
 
     @FXML
     void switchToTableroNormal(MouseEvent event) throws IOException {
@@ -58,7 +63,8 @@ public class SelectModeController {
             int columna = GridPane.getColumnIndex((Node)event.getSource());
             
             try {
-                Parent ficha = FXMLLoader.load(getClass().getResource("FICHA JUGADOR 1.fxml"));
+                Parent ficha = FXMLLoader.load(getClass().getResource(
+                		"FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
                 int fila = game.place(columna);
                 gridPane.add(ficha, columna, fila);
             } catch (IOException e) {
