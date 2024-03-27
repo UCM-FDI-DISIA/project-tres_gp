@@ -79,6 +79,26 @@ public class GameObjectContainer {
 		makePiecesFall();
 	}
 	
+	public void arrow(Position pos) {
+		for (int i = 0; i <= pos.getCol(); i++) {
+			Position newPos = new Position(i, pos.getRow());
+			GameObject currentObject = findObject(newPos);
+			if (currentObject != null) 
+	            movePieceLeft(currentObject);
+		}
+		GameObject object = findObject(pos);
+		object.die();
+		makePiecesFall();
+	}
+		
+		private void movePieceLeft(GameObject obj) {
+		    Position currentPos = obj.getPosition();
+		    Position newPos = new Position(currentPos.getCol() - 1, currentPos.getRow());
+		    if (newPos.getCol() < 0)
+		    	objects.remove(obj);
+		    else obj.getPosition().setCol(newPos.getCol());
+		}
+	
 	private void deletePiece(Position pos) {
 		GameObject obj = findObject(pos);
 		if (obj != null)

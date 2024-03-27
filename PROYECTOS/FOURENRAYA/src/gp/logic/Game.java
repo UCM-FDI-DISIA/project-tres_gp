@@ -1,6 +1,7 @@
 package gp.logic;
 
 import gp.GameObjects.Anvil;
+import gp.GameObjects.Arrow;
 import gp.GameObjects.Bomb;
 import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
@@ -68,6 +69,17 @@ public class Game {
 			Position pos = new Position(col, row);
 			addObject(new Anvil(this, pos));
 			container.anvil(pos);
+		}
+		else
+			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
+	}
+	
+	public void arrow(int col)throws OffWorldException, FullColumnException {
+		if(isOnBoard(col)) {
+			int row= findRow(col);
+			Position pos = new Position(col, row);
+			addObject(new Arrow(this, pos));
+			container.arrow(pos);
 		}
 		else
 			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));

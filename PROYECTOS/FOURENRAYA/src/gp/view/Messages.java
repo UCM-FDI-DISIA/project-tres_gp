@@ -47,6 +47,11 @@ public class Messages {
 	public static final String COMMAND_ANVIL_SHORTCUT = "a";
 	public static final String COMMAND_ANVIL_DETAILS = "[a]nvil col";
 	public static final String COMMAND_ANVIL_HELP = "remove all pieces of the column";
+	
+	public static final String COMMAND_ARROW_NAME = "arrow";
+	public static final String COMMAND_ARROW_SHORTCUT = "w";
+	public static final String COMMAND_ARROW_DETAILS = "arro[w] col";
+	public static final String COMMAND_ARROW_HELP = "move one row to the left";
 		
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";

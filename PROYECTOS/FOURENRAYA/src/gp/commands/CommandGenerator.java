@@ -12,7 +12,8 @@ public class CommandGenerator {
 		new PlaceCommand(),
 		new ExitCommand(),
 		new BombCommand(),
-		new AnvilCommand()
+		new AnvilCommand(),
+		new ArrowCommand()
 	);
 	
 	public static Command parse(String[] commandWords) throws CommandParseException{	
