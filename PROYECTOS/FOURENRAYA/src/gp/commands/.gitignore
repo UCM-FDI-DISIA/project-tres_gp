@@ -4,3 +4,5 @@
 /HelpCommand.class
 /NoParamsCommand.class
 /PlaceCommand.class
+/CommandBomb.class
+/BombCommand.class

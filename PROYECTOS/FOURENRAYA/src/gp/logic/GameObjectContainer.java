@@ -54,6 +54,61 @@ public class GameObjectContainer {
 
     }
 	
+	public void bomb(Position pos) {
+		for(Direction dir : Direction.values()) {
+			if (fitIn(1, dir, pos)) {
+				Position newPos = new Position(pos.getCol() + 1 * dir.getY(),
+						pos.getRow() + 1 * dir.getX());
+				deletePiece(newPos);
+			}
+		}
+		
+		GameObject object = findObject(pos);
+		object.die();
+		makePiecesFall();
+	}
+	
+	private void deletePiece(Position pos) {
+		GameObject obj = findObject(pos);
+		if (obj != null)
+			objects.remove(obj);
+	}
+	
+	
+	private GameObject findObject(Position pos) {
+		for (int i = 0; i < objects.size(); i++) {
+			GameObject currentObject  = objects.get(i);
+			if (pos.equals(currentObject.getPosition())) {
+				return currentObject;
+			}
+		}
+		return null;
+	}
+	
+	private void makePiecesFall() {
+	    for (int col = 0; col < Game.DIM_X; col++) { 
+	        for (int row = Game.DIM_Y - 1; row >= 0; row--) { 
+	            Position currentPos = new Position(col, row);
+	            GameObject currentObject = findObject(currentPos);
+	            if (currentObject != null) {
+	                int fallDistance = 1;
+	                while (row + fallDistance < Game.DIM_Y && findObject(new Position(col, row + fallDistance)) == null) {
+	                    fallDistance++;
+	                }
+	                if (fallDistance > 1) {
+	                    Position newPos = new Position(col, row + fallDistance - 1);
+	                    movePiece(currentObject, newPos);
+	                }
+	            }
+	        }
+	    }
+	}
+
+	private void movePiece(GameObject obj, Position newPos) {
+	    obj.getPosition().setCol(newPos.getCol());
+	    obj.getPosition().setRow(newPos.getRow());
+	}
+	
 	// Comprueba si existe un ganador.
 	// Recorre todos los objetos del contenedor, 
 	// Por cada uno, comprueba en cada direccion dos condiciones:
@@ -81,7 +136,7 @@ public class GameObjectContainer {
 		return isFinished;
 	}
 	
-	// Comprueba si desde una posicion cabe una longitud de fichas en una determinada posición
+	// Comprueba si desde una posicion cabe una longitud de fichas en una determinada dirección
 	private boolean fitIn(int length , Direction dir, Position pos) {
 		Position newPos = new Position(pos.getCol() + length * dir.getY(),
 				pos.getRow() + length * dir.getX());
@@ -118,7 +173,7 @@ public class GameObjectContainer {
 	}
 	
 	// Encuentra si existe una ficha en esa posicíon y devuelve su turno
-	int findConsecutiveTurn(Position pos) {
+	private int findConsecutiveTurn(Position pos) {
 		int turn = -1, i = 0;
 		boolean find = false;
 		while(!find && (i < objects.size())) {
@@ -130,6 +185,10 @@ public class GameObjectContainer {
 			else i++;
 		}
 		return turn;
+	}
+	
+	public void remove(GameObject object) {
+		objects.remove(object);
 	}
 	
 }

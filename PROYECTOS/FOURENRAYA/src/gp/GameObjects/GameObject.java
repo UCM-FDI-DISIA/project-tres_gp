@@ -23,6 +23,8 @@ public abstract class GameObject {
 		return this.getPosition().equals(pos);
 	}
 	
+	public void die() {};
+	
 	public int getTurn() {return turn;}
 	
 	protected abstract String getSymbol();

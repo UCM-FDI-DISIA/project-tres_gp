@@ -16,7 +16,10 @@ public class Messages {
 	//GameObject
 	public static final String FICHA1 = "X";
 	public static final String FICHA2 = "O";
-		
+	public static final String BOMB = "*";
+	public static final String ANVIL = "+";
+	public static final String ARROW = "➤";
+	public static final String ICE = "❏";
 		
 	//Commands
 	
@@ -34,6 +37,11 @@ public class Messages {
 	public static final String COMMAND_PLACE_SHORTCUT = "p";
 	public static final String COMMAND_PLACE_DETAILS = "[p]lace col";
 	public static final String COMMAND_PLACE_HELP = "places the piece in the indicated column";
+	
+	public static final String COMMAND_BOMB_NAME = "bomb";
+	public static final String COMMAND_BOMB_SHORTCUT = "b";
+	public static final String COMMAND_BOMB_DETAILS = "[b]omb col";
+	public static final String COMMAND_BOMB_HELP = "remove all adjacent pieces";
 		
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";

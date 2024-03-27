@@ -1,5 +1,6 @@
 package gp.logic;
 
+import gp.GameObjects.Bomb;
 import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
 import gp.exceptions.FullColumnException;
@@ -48,6 +49,19 @@ public class Game {
 		else
 			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
 	}
+	
+	public void bomb(int col)throws OffWorldException, FullColumnException {
+		if(isOnBoard(col)) {
+			int row= findRow(col);
+			Position pos = new Position(col, row);
+			addObject(new Bomb(this, pos));
+			container.bomb(pos);
+			
+		}
+		else
+			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
+	}
+	
 	public boolean isOnBoard(int col) {
 		return (col >= 0) && (col < Game.DIM_X );
 	}
@@ -57,6 +71,10 @@ public class Game {
 	public void addObject(GameObject object) {
 		container.add(object);
 		
+	}
+	
+	public void remove(GameObject object) {
+		container.remove(object);
 	}
 
 	public void exit() {
@@ -75,6 +93,7 @@ public class Game {
 	public int getTurn() {
 		return turn;
 	}
+
 
 	
 }
