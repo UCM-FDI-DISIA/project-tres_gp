@@ -68,12 +68,22 @@ public class GameObjectContainer {
 		makePiecesFall();
 	}
 	
+	public void anvil(Position pos) {
+		for (int i = pos.getRow() + 1; i < Game.DIM_Y; i++) {
+			Position newPos = new Position(pos.getCol(), i);
+			GameObject currentObject = findObject(newPos);
+			objects.remove(currentObject);
+		}
+		GameObject object = findObject(pos);
+		object.die();
+		makePiecesFall();
+	}
+	
 	private void deletePiece(Position pos) {
 		GameObject obj = findObject(pos);
 		if (obj != null)
 			objects.remove(obj);
 	}
-	
 	
 	private GameObject findObject(Position pos) {
 		for (int i = 0; i < objects.size(); i++) {

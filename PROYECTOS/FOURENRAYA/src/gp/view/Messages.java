@@ -42,6 +42,11 @@ public class Messages {
 	public static final String COMMAND_BOMB_SHORTCUT = "b";
 	public static final String COMMAND_BOMB_DETAILS = "[b]omb col";
 	public static final String COMMAND_BOMB_HELP = "remove all adjacent pieces";
+	
+	public static final String COMMAND_ANVIL_NAME = "anvil";
+	public static final String COMMAND_ANVIL_SHORTCUT = "a";
+	public static final String COMMAND_ANVIL_DETAILS = "[a]nvil col";
+	public static final String COMMAND_ANVIL_HELP = "remove all pieces of the column";
 		
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";
