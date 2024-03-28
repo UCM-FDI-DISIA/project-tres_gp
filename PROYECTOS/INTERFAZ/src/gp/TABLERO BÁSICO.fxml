@@ -72,37 +72,37 @@
       <Ellipse fill="DODGERBLUE" radiusX="42.0" radiusY="34.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
       <VBox prefHeight="434.0" prefWidth="86.0" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="0" GridPane.rowIndex="0" opacity="0.0" prefHeight="399.0" prefWidth="86.0" text="Button" />
+            <Button fx:id="btnFicha" mnemonicParsing="false" onMouseClicked="#colocarFicha" opacity="0.0" prefHeight="399.0" prefWidth="86.0" styleClass="button-invisible" stylesheets="@style%20tablero.css" text="Button" GridPane.columnIndex="0" GridPane.rowIndex="0" />
          </children>
       </VBox>
       <VBox prefHeight="434.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha1" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="1" GridPane.rowIndex="0" opacity="0.0" prefHeight="399.0" prefWidth="86.0" text="Button" />
+            <Button fx:id="btnFicha1" mnemonicParsing="false" onMouseClicked="#colocarFicha" opacity="0.0" prefHeight="399.0" prefWidth="86.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="0" />
          </children>
       </VBox>
       <VBox prefHeight="434.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha2" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="2" GridPane.rowIndex="0" opacity="0.0" prefHeight="399.0" prefWidth="86.0" text="Button" />
+            <Button fx:id="btnFicha2" mnemonicParsing="false" onMouseClicked="#colocarFicha" opacity="0.0" prefHeight="399.0" prefWidth="86.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="0" />
          </children>
       </VBox>
       <VBox opacity="0.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha3" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="3" GridPane.rowIndex="0" prefHeight="400.0" prefWidth="86.0" text="Button" />
+            <Button fx:id="btnFicha3" mnemonicParsing="false" onMouseClicked="#colocarFicha" prefHeight="400.0" prefWidth="86.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="0" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha4" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="4" GridPane.rowIndex="0" opacity="0.0" prefHeight="399.0" prefWidth="103.0" text="Button" />
+            <Button fx:id="btnFicha4" mnemonicParsing="false" onMouseClicked="#colocarFicha" opacity="0.0" prefHeight="399.0" prefWidth="103.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="0" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha5" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="5" GridPane.rowIndex="0" opacity="0.0" prefHeight="400.0" prefWidth="109.0" text="Button" />
+            <Button fx:id="btnFicha5" mnemonicParsing="false" onMouseClicked="#colocarFicha" opacity="0.0" prefHeight="400.0" prefWidth="109.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="0" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowSpan="2147483647">
          <children>
-            <Button fx:id="btnFicha6" mnemonicParsing="false" onMouseClicked="#colocarFicha" GridPane.columnIndex="6" GridPane.rowIndex="0" opacity="0.0" prefHeight="398.0" prefWidth="88.0" text="Button" />
+            <Button fx:id="btnFicha6" mnemonicParsing="false" onMouseClicked="#colocarFicha" opacity="0.0" prefHeight="398.0" prefWidth="88.0" text="Button" GridPane.columnIndex="6" GridPane.rowIndex="0" />
          </children>
       </VBox>
    </children>
