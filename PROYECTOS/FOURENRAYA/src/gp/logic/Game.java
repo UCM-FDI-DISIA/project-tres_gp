@@ -4,8 +4,10 @@ import gp.GameObjects.Anvil;
 import gp.GameObjects.Arrow;
 import gp.GameObjects.Bomb;
 import gp.GameObjects.GameObject;
+import gp.GameObjects.Ice;
 import gp.GameObjects.Piece;
 import gp.exceptions.FullColumnException;
+import gp.exceptions.InvalidWinException;
 import gp.exceptions.OffWorldException;
 import gp.view.Messages;
 
@@ -84,6 +86,23 @@ public class Game {
 		else
 			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
 	}
+	
+	public void ice(int col)throws OffWorldException, FullColumnException, InvalidWinException {
+		if(isOnBoard(col)) {
+			int row= findRow(col);
+			Position pos = new Position(col, row);
+			addObject(new Ice(this, pos));
+			if (!someoneWin()) {
+				currentCycle++;
+			}
+			// Esta mal
+			else throw new InvalidWinException(Messages.NO_WIN_MESSAGE);
+			container.ice(pos);
+		}
+		else
+			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
+	}
+	
 	
 	public boolean isOnBoard(int col) {
 		return (col >= 0) && (col < Game.DIM_X );

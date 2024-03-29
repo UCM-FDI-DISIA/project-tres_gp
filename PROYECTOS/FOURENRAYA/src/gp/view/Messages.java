@@ -52,6 +52,11 @@ public class Messages {
 	public static final String COMMAND_ARROW_SHORTCUT = "w";
 	public static final String COMMAND_ARROW_DETAILS = "arro[w] col";
 	public static final String COMMAND_ARROW_HELP = "move one row to the left";
+	
+	public static final String COMMAND_ICE_NAME = "ice";
+	public static final String COMMAND_ICE_SHORTCUT = "i";
+	public static final String COMMAND_ICE_DETAILS = "[i]ce col";
+	public static final String COMMAND_ICE_HELP = "freeze your opponent's turn";
 		
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";
@@ -63,6 +68,7 @@ public class Messages {
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
 	public static final String UNKNOWN_COMMAND = "Unknown command";
 	public static final String FULL_COLUMN_MESSAGE = "Column %s is full";
+	public static final String NO_WIN_MESSAGE= "you cannot use this super piece to win";
 	public static final String GAME_OVER = "Game Over";
 	public static final String ERROR = "[ERROR] Error: %s%n";
 

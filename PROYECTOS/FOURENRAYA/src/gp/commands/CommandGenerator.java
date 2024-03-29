@@ -13,7 +13,8 @@ public class CommandGenerator {
 		new ExitCommand(),
 		new BombCommand(),
 		new AnvilCommand(),
-		new ArrowCommand()
+		new ArrowCommand(),
+		new IceCommand()
 	);
 	
 	public static Command parse(String[] commandWords) throws CommandParseException{	

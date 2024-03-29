@@ -90,14 +90,19 @@ public class GameObjectContainer {
 		object.die();
 		makePiecesFall();
 	}
+	
+	public void ice(Position pos) {
+		GameObject object = findObject(pos);
+		object.die();
+	}
 		
-		private void movePieceLeft(GameObject obj) {
-		    Position currentPos = obj.getPosition();
-		    Position newPos = new Position(currentPos.getCol() - 1, currentPos.getRow());
-		    if (newPos.getCol() < 0)
-		    	objects.remove(obj);
-		    else obj.getPosition().setCol(newPos.getCol());
-		}
+	private void movePieceLeft(GameObject obj) {
+	    Position currentPos = obj.getPosition();
+	    Position newPos = new Position(currentPos.getCol() - 1, currentPos.getRow());
+	    if (newPos.getCol() < 0)
+	    	objects.remove(obj);
+	    else obj.getPosition().setCol(newPos.getCol());
+	}
 	
 	private void deletePiece(Position pos) {
 		GameObject obj = findObject(pos);
