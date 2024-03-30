@@ -59,9 +59,9 @@
             <Font name="Calibri Bold Italic" size="41.0" />
          </font>
       </Text>
-      <Button fx:id="btnClasico" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="219.0" prefWidth="368.0" text="Button" />
-      <Button fx:id="btn5en" mnemonicParsing="false" onMouseClicked="#switchToTablero5en" opacity="0.0" prefHeight="217.0" prefWidth="315.0" text="Button" GridPane.columnIndex="1" />
-      <Button fx:id="btnSuper" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" opacity="0.0" prefHeight="200.0" prefWidth="306.0" GridPane.rowIndex="1" />
-      <Button fx:id="btnpop" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" opacity="0.0" prefHeight="209.0" prefWidth="306.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="btnClasico" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="219.0" prefWidth="368.0" text="   " />
+      <Button fx:id="btn5en" mnemonicParsing="false" onMouseClicked="#switchToTablero5en" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="217.0" prefWidth="315.0" text="  " GridPane.columnIndex="1" />
+      <Button fx:id="btnSuper" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="200.0" prefWidth="306.0" GridPane.rowIndex="1" />
+      <Button fx:id="btnpop" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="209.0" prefWidth="306.0" text="   " GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>
