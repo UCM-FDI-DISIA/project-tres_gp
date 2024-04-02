@@ -5,7 +5,7 @@
 
   **Objetivo:** Queremos diseñar el juego del 4 en raya y modos auxiliares, llevando a cabo un trabajo constante y eficiente organizando las diferentes tareas en nuestro grupo de 5 personas, conformado por: Pablo Alonso Romero, Marina Triviño de las Heras, Óscar Marín Esteban, Rodrigo Jesús-Portanet Martínez, Álvaro Enol Alonso Ortega.
   
-  **Características:** Nuestro juego ofrece cuatro modos diferentes en los que poder jugar. Estos son; modo Clásico, modo Super Fihcas, modo Pop out y modo 5 en raya.
+  **Características:** Nuestro juego ofrece cuatro modos diferentes en los que poder jugar. Estos son: modo Clásico, modo Super Fihcas, modo Pop out y modo 5 en raya.
   
           - Modo Clásico: En este modo dos usuarios se enfrentaran en un tablero de 7 columnas x 6 filas. 
           Con el objetivo de lograr, antes que su adversario, una línea de 4 fichas del mismo color en cualquier dirección.
