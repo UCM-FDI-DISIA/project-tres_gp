@@ -2,9 +2,6 @@ package gp.logic;
 
 import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
-import gp.exceptions.FullColumnException;
-import gp.exceptions.OffWorldException;
-import gp.view.Messages;
 
 public class Game {
 	public static final int DIM_X = 7;
@@ -39,14 +36,14 @@ public class Game {
 			turn = 1;
 	}
 	
-	public int place(int col) throws FullColumnException{
+	public int place(int col){
 		int row= findRow(col);
 		Position pos = new Position(col, row);
 		addObject(new Piece(this, pos));
 		return row;
 	}
 
-	public int findRow(int col) throws FullColumnException{
+	public int findRow(int col){
 		return container.findRow(col);		
 	}
 	public void addObject(GameObject object) {

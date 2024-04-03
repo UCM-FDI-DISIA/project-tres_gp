@@ -21,22 +21,22 @@
    <children>
       <ImageView fitHeight="201.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <image>
-            <Image url="@POP-OUT.png" />
+            <Image url="@popOut/POP-OUT.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="205.0" fitWidth="301.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
          <image>
-            <Image url="@SUPERFICHAS.png" />
+            <Image url="@superfichas/SUPERFICHAS.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="204.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@CLASICO.png" />
+            <Image url="@clasico/CLASICO.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
          <image>
-            <Image url="@5ENRAYA.png" />
+            <Image url="@cincoenRaya/5ENRAYA.png" />
          </image>
       </ImageView>
       <Text fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPERFICHAS" textAlignment="CENTER" wrappingWidth="300.5367317199707" GridPane.rowIndex="1">

@@ -1,9 +1,6 @@
 package gp;
 
-import gp.control.Controller;
-import gp.exceptions.CommandParseException;
 import gp.logic.Game;
-import gp.view.Messages;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

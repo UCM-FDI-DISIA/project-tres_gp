@@ -3,8 +3,6 @@ package gp.logic;
 import java.util.List;
 
 import gp.GameObjects.GameObject;
-import gp.exceptions.FullColumnException;
-import gp.view.Messages;
 
 import java.util.ArrayList;
 
@@ -31,7 +29,7 @@ public class GameObjectContainer {
 		objects.add(object);
 	}
 	
-	public int findRow(int col) throws FullColumnException{
+	public int findRow(int col){
         boolean find = false;
         int row = 5;
         while(!find &&  row >= 0) {
@@ -49,7 +47,7 @@ public class GameObjectContainer {
             }
         }
         if(!find) return Game.DIM_Y - 1;
-        else throw new FullColumnException(Messages.FULL_COLUMN_MESSAGE.formatted(col));
+        else return -1;
 
 
     }

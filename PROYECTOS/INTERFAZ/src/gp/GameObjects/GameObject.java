@@ -25,7 +25,4 @@ public abstract class GameObject {
 	
 	public int getTurn() {return turn;}
 	
-	protected abstract String getSymbol();
-	public abstract String toString();
-	
 }
