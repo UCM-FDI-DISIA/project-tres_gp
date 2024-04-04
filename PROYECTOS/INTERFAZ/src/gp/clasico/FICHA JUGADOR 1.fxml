@@ -2,12 +2,10 @@
 
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="84.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="64.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <!-- Solo necesitas el círculo -->
-        <Ellipse fill="#ff2121" layoutX="42.0" layoutY="34.0" radiusX="42.0" radiusY="34.0" stroke="BLACK" strokeType="INSIDE" />
+        <Ellipse fill="#ff2121" layoutX="32.0" layoutY="34.0" radiusX="31.0" radiusY="33.0" stroke="BLACK" strokeType="INSIDE" />
     </children>
 </Pane>
-

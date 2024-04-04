@@ -37,7 +37,7 @@ public class SelectModeController {
     
     @FXML
     void switchToTableroNormal(MouseEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO BÁSICO.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO MEJOR DISENO.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -59,7 +59,7 @@ public class SelectModeController {
     }
     @FXML
     void switchToTablero5en(MouseEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("TABLERO 5 IN ROW.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/gp/cincoenRaya/TABLERO 5 IN ROW.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
