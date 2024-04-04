@@ -1,5 +1,22 @@
 Estructura del Juego
 
+Implementamos nuestra interfaz de la siguiente forma:
+
+	- Tenemos un paquete por cada modo de juego (Clásico, 5enRaya, Superfichas, PopOut).
+	
+	- En cada paquete hay un controlador que va seleccionando las portadas una a una, es decir, primero la de iniciar
+	juego, luego la de seleccionar el modo de juego y por último ya nuestro tablero para el modo de juego que hayamos 
+	elegido.
+
+	- En el modo de juego Superfichas, a cada lado del tablero aparecen las diferentes fichas que los jugadores pueden
+	utilizar a lo largo de la partida.
+
+	
+
+
+
+Estructura del Juego
+
 
 Implementamos nuestro juego de la siguiente forma:
 
