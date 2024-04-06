@@ -15,7 +15,8 @@ public class CommandGenerator {
 		new AnvilCommand(),
 		new ArrowCommand(),
 		new IceCommand(),
-		new FiveInRowCommand()
+		new FiveInRowCommand(),
+		new PopOutCommand()
 	);
 	
 	public static Command parse(String[] commandWords) throws CommandParseException{	

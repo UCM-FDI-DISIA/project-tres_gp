@@ -9,6 +9,7 @@ import gp.GameObjects.GameObject;
 import gp.GameObjects.Ice;
 import gp.GameObjects.Piece;
 import gp.exceptions.CantChangeModeException;
+import gp.exceptions.EmptyColumnException;
 import gp.exceptions.FullColumnException;
 import gp.exceptions.InvalidWinException;
 import gp.exceptions.OffWorldException;
@@ -65,7 +66,15 @@ public class Game {
 		}
 	}
 	
-	public static int generateRandomNumber(int min, int max) {
+	public void popOut(int col) throws OffWorldException, EmptyColumnException {
+		if(isOnBoard(col)) {
+			container.popOut(col);
+		}
+		else
+			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));
+	}
+	
+	private int generateRandomNumber(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }

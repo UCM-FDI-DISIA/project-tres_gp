@@ -3,6 +3,7 @@ package gp.logic;
 import java.util.List;
 
 import gp.GameObjects.GameObject;
+import gp.exceptions.EmptyColumnException;
 import gp.exceptions.FullColumnException;
 import gp.view.Messages;
 
@@ -224,6 +225,15 @@ public class GameObjectContainer {
 	
 	public void remove(GameObject object) {
 		objects.remove(object);
+	}
+
+	public void popOut(int col) throws EmptyColumnException {
+		GameObject object = findObject(new Position(col,Game.DIM_Y - 1));
+		if (object != null) {
+			remove(object);
+			makePiecesFall();
+		}
+		else throw new EmptyColumnException(Messages.EMPTY_COLUMN_MESSAGE);
 	}
 	
 	

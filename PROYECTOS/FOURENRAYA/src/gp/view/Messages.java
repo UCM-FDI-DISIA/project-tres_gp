@@ -68,6 +68,12 @@ public class Messages {
 	public static final String COMMAND_5ROW_DETAILS = "[f]ive in row";
 	public static final String COMMAND_5ROW_HELP = "change to 5 in Row Mode";
 	
+	public static final String COMMAND_POPOUT_NAME = "popout";
+	public static final String COMMAND_POPOUT_SHORTCUT = "o";
+	public static final String COMMAND_POPOUT_DETAILS = "pop [o]ut";
+	public static final String COMMAND_POPOUT_HELP = "change to Pop Out Mode";
+
+	
 	public static final String POSITION = "(%s, %s)";
 	public static final String OFF_WORLD_MESSAGE = "Column %s is off board";
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
@@ -77,6 +83,7 @@ public class Messages {
 	public static final String GAME_OVER = "Game Over";
 	public static final String ERROR = "[ERROR] Error: %s%n";
 	public static final String CANTCHANGEMODE = "You cannot change modes because you are already playing a game";
+	public static final String EMPTY_COLUMN_MESSAGE = "[Column %s is empty";
 
 
 	
