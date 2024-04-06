@@ -11,6 +11,7 @@ public class CommandGenerator {
 		new HelpCommand(),
 		new PlaceCommand(),
 		new ExitCommand(),
+		new ResetCommand(),
 		new BombCommand(),
 		new AnvilCommand(),
 		new ArrowCommand(),

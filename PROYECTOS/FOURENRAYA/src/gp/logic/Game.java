@@ -177,6 +177,11 @@ public class Game {
 	public int getTurn() {
 		return turn;
 	}
+	
+	public void reset() {
+		currentCycle = 0;
+		container.reset();
+	}
 
 
 	

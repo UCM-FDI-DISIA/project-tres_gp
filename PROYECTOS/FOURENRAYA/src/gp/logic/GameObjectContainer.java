@@ -235,6 +235,14 @@ public class GameObjectContainer {
 		}
 		else throw new EmptyColumnException(Messages.EMPTY_COLUMN_MESSAGE);
 	}
+
+	public void reset() {
+		int size = objects.size();
+		for (int i = 0; i < size; i++) {
+			GameObject currentObject  = objects.get(0);
+			remove(currentObject);
+		}
+	}
 	
 	
 }
