@@ -45,17 +45,23 @@ public class Game {
 			DIM_X = 9;
 			int random = generateRandomNumber(1,2);
 			if (random == 1) {
-				placeRow(Messages.FICHA1, Messages.FICHA2);
+				placeRow(1,2);
 			}
-			else placeRow(Messages.FICHA1, Messages.FICHA2);
+			else placeRow(2,1);
 		}
 		else throw new CantChangeModeException(Messages.CANTCHANGEMODE);
 	}
 	
-	public void placeRow(String first, String second) {
+	public void placeRow(int first, int second) {
 		for (int i = DIM_Y - 1; i >= 0; i--) {
-			addObject(new Piece(this, new Position(0, i)));
-			addObject(new Piece(this, new Position(DIM_X - 1, i)));
+			if (i % 2 == 0) {
+				addObject(new Piece(this, new Position(0, i), first));
+				addObject(new Piece(this, new Position(DIM_X - 1, i), second));
+			}
+			else {
+				addObject(new Piece(this, new Position(0, i), second));
+				addObject(new Piece(this, new Position(DIM_X - 1, i), first));
+			}
 		}
 	}
 	

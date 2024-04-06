@@ -15,6 +15,12 @@ public abstract class GameObject {
 		turn = game.getTurn();
 	}
 	
+	public GameObject(Game game, Position pos, int turn) {	
+		this.pos = pos;
+		this.game = game;
+		this.turn = turn;
+	}
+	
 	public GameObject() {}
 	
 	public Position getPosition() {return pos;}
