@@ -23,7 +23,7 @@
             - Modo Pop Out: En este modo, en cada turno el jugador decidirá si tirar una ficha suya que esté en la última fila, o si colocar una ficha nueva.
  
             - Modo 5 en Raya: En este modo, no solo se añade una ficha en línea a la condición de victoria, sino que también se añaden dos columnas, una a cada lado, llenas de fichas de   
-            colores alternativos, las cuales puedes usar para ayudarte a formar las 5 en raya.
+            colores alternativos, las cuales puedes usar para ayudarte a formar las 5 en raya, los cuales ya están colocadas al principio del juego.
             
    ![image](https://github.com/UCM-FDI-DISIA/project-tres_gp/assets/127221222/784405cf-6f32-4691-bef2-d2425fc31fe1)
 
