@@ -1,18 +1,21 @@
 package gp.logic;
 
+import java.util.Random;
+
 import gp.GameObjects.Anvil;
 import gp.GameObjects.Arrow;
 import gp.GameObjects.Bomb;
 import gp.GameObjects.GameObject;
 import gp.GameObjects.Ice;
 import gp.GameObjects.Piece;
+import gp.exceptions.CantChangeModeException;
 import gp.exceptions.FullColumnException;
 import gp.exceptions.InvalidWinException;
 import gp.exceptions.OffWorldException;
 import gp.view.Messages;
 
 public class Game {
-	public static final int DIM_X = 7;
+	public static int DIM_X = 7;
 	public static final int DIM_Y = 6;
 	private int currentCycle;
 	private GameObjectContainer container;
@@ -36,6 +39,30 @@ public class Game {
 			currentCycle++;
 		}
 	}
+	
+	public void fiveInRow () throws CantChangeModeException{
+		if (currentCycle == 0) {
+			DIM_X = 9;
+			int random = generateRandomNumber(1,2);
+			if (random == 1) {
+				placeRow(Messages.FICHA1, Messages.FICHA2);
+			}
+			else placeRow(Messages.FICHA1, Messages.FICHA2);
+		}
+		else throw new CantChangeModeException(Messages.CANTCHANGEMODE);
+	}
+	
+	public void placeRow(String first, String second) {
+		for (int i = DIM_Y - 1; i >= 0; i--) {
+			addObject(new Piece(this, new Position(0, i)));
+			addObject(new Piece(this, new Position(DIM_X - 1, i)));
+		}
+	}
+	
+	public static int generateRandomNumber(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
+    }
 	
 	private void flip() {
 		if(turn ==1)

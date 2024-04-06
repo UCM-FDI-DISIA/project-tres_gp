@@ -60,8 +60,13 @@ public class Messages {
 		
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";
-	public static final String COMMAND_RESET_DETAILS = "[r]eset [filename]";
+	public static final String COMMAND_RESET_DETAILS = "[r]eset";
 	public static final String COMMAND_RESET_HELP = "resets the game using the initial configuration in file filename. If no file is given the standard configuration is used";
+	
+	public static final String COMMAND_5ROW_NAME = "fiveinrow";
+	public static final String COMMAND_5ROW_SHORTCUT = "f";
+	public static final String COMMAND_5ROW_DETAILS = "[f]ive in row";
+	public static final String COMMAND_5ROW_HELP = "change to 5 in Row Mode";
 	
 	public static final String POSITION = "(%s, %s)";
 	public static final String OFF_WORLD_MESSAGE = "Column %s is off board";
@@ -71,6 +76,8 @@ public class Messages {
 	public static final String NO_WIN_MESSAGE= "you cannot use this super piece to win";
 	public static final String GAME_OVER = "Game Over";
 	public static final String ERROR = "[ERROR] Error: %s%n";
+	public static final String CANTCHANGEMODE = "You cannot change modes because you are already playing a game";
+
 
 	
 	public static final String debug(String message) {

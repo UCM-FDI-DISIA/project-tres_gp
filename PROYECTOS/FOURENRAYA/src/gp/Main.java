@@ -2,10 +2,7 @@ package gp;
 
 import java.util.Scanner;
 import gp.control.Controller;
-import gp.exceptions.CommandExecuteException;
-import gp.exceptions.CommandParseException;
 import gp.logic.Game;
-import gp.logic.GameObjectContainer;
 import gp.view.Messages;
 import static gp.view.Messages.error;
 
@@ -15,7 +12,6 @@ public class Main {
 		Game game = new Game();
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller(game, scanner);
-        
         System.out.println(Messages.WELCOME);
         try {
 			controller.run();
@@ -25,5 +21,5 @@ public class Main {
 		}
         System.out.println(Messages.PROMPT);
 	}
-
+	
 }

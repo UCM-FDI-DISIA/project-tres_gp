@@ -19,7 +19,7 @@ public class BoardPrinter extends GamePrinter {
 
 	private static final String CELL_BORDER = repeat(CELL_BORDER_CHAR, CELL_SIZE+1);
 
-	private static final String ROW_BORDER = SPACE + repeat(CELL_BORDER, Game.DIM_X) + NEW_LINE;
+	//private static final String ROW_BORDER = SPACE + repeat(CELL_BORDER, Game.DIM_X) + NEW_LINE;
 	
 	
 	public BoardPrinter(Game game) {
@@ -44,7 +44,7 @@ public class BoardPrinter extends GamePrinter {
 		str.append(getInfo());
 
 		// Paint game board
-		str.append(ROW_BORDER);
+		str.append(SPACE + repeat(CELL_BORDER, Game.DIM_X) + NEW_LINE);
 
 		for (int row = 0; row < Game.DIM_Y; row++) {
 			str.append(VERTICAL_DELIMITER);
@@ -53,7 +53,7 @@ public class BoardPrinter extends GamePrinter {
 				str.append(VERTICAL_DELIMITER);
 			}
 			str.append(NEW_LINE);
-			str.append(ROW_BORDER);
+			str.append(SPACE + repeat(CELL_BORDER, Game.DIM_X) + NEW_LINE);
 		}
 
 		return str.toString();

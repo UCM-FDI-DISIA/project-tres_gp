@@ -34,10 +34,11 @@ public class Controller {
 	}
 
 	public void run()  throws CommandParseException, CommandExecuteException{
-
+	
 		printGame();
 
 		while (!game.isFinished()) {
+			
 			String[] parameters = prompt();
 			try {
 				Command command = CommandGenerator.parse(parameters);
@@ -75,5 +76,7 @@ public class Controller {
 	public void printEndMessage() {
 		System.out.println(printer.endMessage());
 	}
+	
+	
 
 }
