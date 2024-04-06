@@ -45,7 +45,7 @@
    hacer el juego algo más entretenido pudiendo diseñar, por ejemplo, varios tableros, fichas y pantallas para cada nivel. 
    
    ### *Entrega Final* 
-   Esperamos terminar el proyecto con una versión del juego 1vs1 entre jugadores, 1vs1 entre máquina y máquina y 1vs1 entre jugador y máquina.
+   Esperamos terminar el proyecto con una versión del juego 1vs1 entre jugadores, 1vs1 entre máquina y máquina y 1vs1 entre jugador y máquina para el Modo Clásico, y haber implementado el resto de modos correctamente.
 
 # **Descarga del proyecto** 
   El proyecto está separado en distintos tags y releases según las entregas, podrás descargar cada versión yendo a [releases](https://github.com/UCM-FDI-DISIA/project-tres_gp/releases), o 
