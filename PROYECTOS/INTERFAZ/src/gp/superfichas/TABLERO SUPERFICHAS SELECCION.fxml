@@ -49,7 +49,7 @@
                   <Image url="@FLECHA.png" />
                </image>
             </ImageView>
-            <Button layoutX="34.0" layoutY="108.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
+            <Button fx:id="btnBomba2" layoutX="34.0" layoutY="108.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
             <Button layoutX="34.0" layoutY="175.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
             <Button layoutX="34.0" layoutY="243.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
             <Button layoutX="34.0" layoutY="310.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
@@ -87,21 +87,25 @@
                   <Image url="@FLECHA.png" />
                </image>
             </ImageView>
-            <Button layoutX="22.0" layoutY="108.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
-            <Button layoutX="23.0" layoutY="175.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
-            <Button layoutX="23.0" layoutY="243.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
-            <Button layoutX="22.0" layoutY="310.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="56.0" text="Button" />
+            <Button fx:id="btnBomba1" layoutX="20.0" layoutY="107.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="59.0" stylesheets="@boton-diseño-fichas.css" text="   " textFill="RED" />
+            <Button fx:id="btnHielo1" layoutX="23.0" layoutY="175.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="   " />
+            <Button fx:id="btnYunque1" layoutX="23.0" layoutY="243.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="  " />
+            <Button fx:id="btnFlecha1" layoutX="22.0" layoutY="310.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="   " />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <MenuButton ellipsisString="" layoutX="4.0" layoutY="1.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="601.0" style="-fx-border-color: black;" text="Menú">
+            <MenuButton fx:id="menuButton" ellipsisString="" layoutX="4.0" layoutY="1.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="601.0" style="-fx-border-color: black;" text="Menú">
               <items>
                 <MenuItem mnemonicParsing="false" text="Guardar" />
                 <MenuItem mnemonicParsing="false" text="Reiniciar Partida" />
-                  <MenuItem mnemonicParsing="false" onAction="#switchToScene2" text="Salir" />
+                  <MenuItem fx:id="btnVolver" mnemonicParsing="false" onAction="#switchToScene2" text="Salir" />
               </items>
                <font>
                   <Font name="MV Boli" size="20.0" />
                </font>
             </MenuButton>
+            <Button layoutX="526.0" layoutY="107.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="59.0" stylesheets="@boton-diseño-fichas.css" text="   " />
+            <Button fx:id="btnHielo2" layoutX="532.0" layoutY="175.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="59.0" stylesheets="@boton-diseño-fichas.css" text="   " />
+            <Button fx:id="btnYunque2" layoutX="532.0" layoutY="243.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="59.0" stylesheets="@boton-diseño-fichas.css" text="   " />
+            <Button fx:id="btnFlecha2" layoutX="526.0" layoutY="309.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="59.0" stylesheets="@boton-diseño-fichas.css" text="   " />
          </children>
       </AnchorPane>
       <GridPane layoutX="95.0" layoutY="-5.0" prefHeight="407.0" prefWidth="407.0">
