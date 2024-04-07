@@ -73,5 +73,12 @@ public class SelectModeController {
 		stage.setScene(scene);
 		stage.show();
     }
-    
+    @FXML
+    void switchToTableroPopOut(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/popOut/TABLERO POP-OUT.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
 }

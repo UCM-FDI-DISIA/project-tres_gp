@@ -1,5 +1,6 @@
 package gp.logic;
 
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -9,6 +10,9 @@ import gp.GameObjects.Bomb;
 import gp.GameObjects.GameObject;
 import gp.GameObjects.Ice;
 import gp.GameObjects.Piece;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.GridPane;
 
 public class Game {
 	public static int DIM_X = 7;
@@ -36,26 +40,50 @@ public class Game {
 		}
 	}
 	
-	public void fiveInRow (){
+	public void fiveInRow (GridPane gridPane){
 		if (currentCycle == 0) {
 			DIM_X = 9;
 			int random = generateRandomNumber(1,2);
 			if (random == 1) {
-				placeRow(1,2);
+				placeRow(1,2, gridPane);
 			}
-			else placeRow(2,1);
+			else placeRow(2,1, gridPane);
 		}
 	}
 	
-	public void placeRow(int first, int second) {
-		for (int i = DIM_Y - 1; i >= 0; i--) {
-			if (i % 2 == 0) {
-				addObject(new Piece(this, new Position(0, i), first));
-				addObject(new Piece(this, new Position(DIM_X - 1, i), second));
-			}
-			else {
-				addObject(new Piece(this, new Position(0, i), second));
-				addObject(new Piece(this, new Position(DIM_X - 1, i), first));
+	public void placeRow(int first, int second, GridPane gridPane) {
+		for(int j = 0; j<2;j++) {
+			for (int i = DIM_Y - 1; i >= 0; i--) {
+	            Parent ficha;
+				if (i % 2 == 0) {
+	
+					try {
+						ficha = FXMLLoader.load(getClass().getResource(
+								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
+		                gridPane.add(ficha, 0 + j, i);
+						ficha = FXMLLoader.load(getClass().getResource(
+								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
+		                gridPane.add(ficha, DIM_X + j, i);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					addObject(new Piece(this, new Position(0, i), first));
+					addObject(new Piece(this, new Position(DIM_X, i), second));
+				}
+				else {
+					try {
+						ficha = FXMLLoader.load(getClass().getResource(
+								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
+		                gridPane.add(ficha, 0 + j, i);
+						ficha = FXMLLoader.load(getClass().getResource(
+								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
+		                gridPane.add(ficha, DIM_X + j, i);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}                
+					addObject(new Piece(this, new Position(0, i), second));
+					addObject(new Piece(this, new Position(DIM_X - 1, i), first));
+				}
 			}
 		}
 	}
