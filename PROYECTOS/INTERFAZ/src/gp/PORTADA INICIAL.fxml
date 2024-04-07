@@ -19,6 +19,11 @@
             <Font name="Calibri Bold Italic" size="50.0" />
          </font>
       </Text>
-      <Button fx:id="btnJugar" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#switchToScene2" opacity="0.0" prefHeight="403.0" prefWidth="604.0" text="JUGAR" textAlignment="CENTER" textFill="#db2c2c" />
+      <ImageView fitHeight="400.0" fitWidth="601.0">
+         <image>
+            <Image url="@../../../../../Users/matri/Downloads/PORTADA%204FURYROW%20(1).png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnJugar" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#switchToScene2" opacity="0.0" prefHeight="400.0" prefWidth="612.0" text="JUGAR" textAlignment="CENTER" textFill="#db2c2c" />
    </children>
 </StackPane>
