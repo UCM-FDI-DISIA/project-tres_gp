@@ -26,7 +26,10 @@ public class SuperfichaController {
 	private Scene scene;
 	private Parent root;
 	private Game game;
-
+	private boolean Bomb;
+	private boolean Anvil;
+	private boolean Arrow;
+	private boolean Ice;
     @FXML
     private Button btnBomba1;
 
@@ -93,6 +96,26 @@ public class SuperfichaController {
 	    int columna = (columnaInteger != null) ? columnaInteger : 0;
 
 	    try {
+	    	if(Bomb == true) {
+	    		game.bomb(columna);
+	    		//Algo así en todas
+	    		Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA BOMBA J%s.fxml".formatted(game.getTurn())));
+	    		//gridPane.add(ficha, columna, fila);
+	    		Bomb = false;
+	    	}
+	    	else if(Arrow == true) {
+	    		game.arrow(columna);
+	    		Arrow = false;
+	    	}
+	    	else if(Anvil == true) {
+	    		game.anvil(columna);
+	    		Anvil = false;
+	    	}
+	    	else if(Ice ==true) {
+	    		game.ice(columna);
+	    		Ice = false;
+	    		
+	    	}
 	        // Cargamos la ficha
 	        Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
 	        int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
@@ -111,6 +134,7 @@ public class SuperfichaController {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	    
     }
     
     @FXML
@@ -139,6 +163,35 @@ public class SuperfichaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    void bombButton() {
+    	Bomb = true;
+    	Anvil = false;
+    	Arrow = false;
+    	Ice = false;
+    }
+    @FXML
+    void anvilButton() {
+    	Bomb = false;
+    	Anvil = true;
+    	Arrow = false;
+    	Ice = false;
+    }
+    @FXML
+    void iceButton() {
+    	Bomb = false;
+    	Anvil = false;
+    	Arrow = false;
+    	Ice = true;
+    }
+    @FXML
+    void arrowButton() {
+    	Bomb = false;
+    	Anvil = false;
+    	Arrow = true;
+    	Ice = false;
     }
 
 }
