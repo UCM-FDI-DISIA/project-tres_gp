@@ -25,6 +25,9 @@ public class selectFive {
 	@FXML
 	private Button btnVolver;
 	
+	@FXML
+	private Button btnEmpieza;
+	
     @FXML
     private Button btnFicha;
 
@@ -45,6 +48,18 @@ public class selectFive {
 
     @FXML
     private Button btnFicha6;
+    
+    @FXML
+    private Button btnFicha7;
+
+    @FXML
+    private Button btnFicha8;
+    
+    @FXML
+    private Button btnFicha9;
+    
+    @FXML
+    private Button btnFicha10;
 
     @FXML
     private GridPane gridPane;
@@ -55,11 +70,13 @@ public class selectFive {
     @FXML
     private void colocarFicha(MouseEvent event){
         //if (event.getSource() instanceof Button) {
-            int columna = GridPane.getColumnIndex((Node)event.getSource());
+    		Node obt = (Node)event.getSource();
+    		obt = obt.getParent();
+            int columna = GridPane.getColumnIndex(obt);
             
             try {
                 Parent ficha = FXMLLoader.load(getClass().getResource(
-                		"FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+                		"FICHA J%s 5 IN ROW.fxml".formatted(game.getTurn())));
                 int fila = game.place(columna);
                 gridPane.add(ficha, columna, fila);
         		Position pos = new Position(columna, fila);
@@ -77,4 +94,26 @@ public class selectFive {
             }
         //}
     }
+    @FXML
+    private void configurarTablero(MouseEvent event) {
+    	Node source = (Node) event.getSource();
+    	source = source.getParent();
+    	GridPane gridPane = (GridPane) source.getParent();
+    	game.fiveInRow(gridPane);
+    	gridPane.getChildren().remove(source);
+    }
+    @FXML
+    void onMouseEntered(MouseEvent event) {
+        // Código para el efecto al entrar con el mouse
+        Button button = (Button) event.getSource();
+        button.setOpacity(0.45); // Cambiar la opacidad para simular una luz encendida
+    }
+
+    @FXML
+    void onMouseExited(MouseEvent event) {
+        // Código para revertir el efecto al salir con el mouse
+        Button button = (Button) event.getSource();
+        button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
+    }
+    
 }
