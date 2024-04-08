@@ -37,7 +37,7 @@ public class SelectModeController {
     
     @FXML
     void switchToTableroNormal(MouseEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO MEJOR DISENO.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO CLASSIC.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

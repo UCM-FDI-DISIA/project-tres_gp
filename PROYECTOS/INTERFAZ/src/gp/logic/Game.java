@@ -115,6 +115,13 @@ public class Game {
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Bomb(this, pos));
+			try {
+				Parent ficha = FXMLLoader.load(getClass().getResource("/gp/superfichas/FICHA BOMBA J%s.fxml".formatted(getTurn())));
+				gridPane.add(ficha, col, row);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			container.bomb(pos, gridPane);
 	}
 	
@@ -122,12 +129,26 @@ public class Game {
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Anvil(this, pos));
+			try {
+				Parent ficha = FXMLLoader.load(getClass().getResource("/gp/superfichas/FICHA YUNQUE J%s.fxml".formatted(getTurn())));
+				gridPane.add(ficha, col, row);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			container.anvil(pos, gridPane);
 	}
 	
 	public void arrow(int col, GridPane gridPane){
 			int row= findRow(col);
 			Position pos = new Position(col, row);
+			try {
+				Parent ficha = FXMLLoader.load(getClass().getResource("/gp/superfichas/FICHA FLECHA J%s.fxml".formatted(getTurn())));
+				gridPane.add(ficha, col, row);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			addObject(new Arrow(this, pos));
 			container.arrow(pos, gridPane);
 	}
@@ -136,6 +157,13 @@ public class Game {
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Ice(this, pos));
+			try {
+				Parent ficha = FXMLLoader.load(getClass().getResource("/gp/superfichas/FICHA HIELO J%s.fxml".formatted(getTurn())));
+				gridPane.add(ficha, col, row);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (!someoneWin()) {
 				currentCycle++;
 			}
