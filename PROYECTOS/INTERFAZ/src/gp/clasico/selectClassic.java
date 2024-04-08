@@ -5,6 +5,7 @@ import java.io.IOException;
 import gp.GameObjects.Piece;
 import gp.logic.Game;
 import gp.logic.Position;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
@@ -13,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -23,8 +26,11 @@ public class selectClassic {
 	private Parent root;
 	private Game game;
 	@FXML
-	private Button btnVolver;
+	private MenuItem btnVolver;
 
+	@FXML
+	private Button btnSalirGana;
+	
 	@FXML
 	private Button btnFicha;
 
@@ -49,6 +55,9 @@ public class selectClassic {
 	@FXML
 	private GridPane gridPane;
 
+    @FXML
+    private MenuButton menuButton;
+
 	public selectClassic() {
 		this.game = new Game();
 	}
@@ -66,7 +75,7 @@ public class selectClassic {
 
 	    try {
 	        // Cargamos la ficha
-	        Parent ficha = FXMLLoader.load(getClass().getResource("FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+	        Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
 	        int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
 	        gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
 	        Position pos = new Position(columna, fila);
@@ -74,12 +83,13 @@ public class selectClassic {
 	        if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
 	            System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
 	            // Mostrar una alerta o pantalla de victoria
-	            Parent alertRoot = FXMLLoader.load(getClass().getResource("VOLVER A INICIAL.fxml"));
+	            Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
 	            gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
 	            GridPane.setHalignment(alertRoot, HPos.CENTER);
 	            GridPane.setValignment(alertRoot, VPos.CENTER);
 	        }
-	        game.update(); // Actualiza el estado del juego
+	        else
+	        	game.update(); // Actualiza el estado del juego
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -95,6 +105,14 @@ public class selectClassic {
 		stage.show();
 	}
 
+	@FXML
+	void switchToScene2Menu(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 	@FXML
 	void onMouseEntered(MouseEvent event) {
 		// Código para el efecto al entrar con el mouse
