@@ -98,9 +98,6 @@ public class SuperfichaController {
 	    try {
 	    	if(Bomb == true) {
 	    		game.bomb(columna, gridPane);
-	    		//Algo así en todas
-	    		Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA BOMBA J%s.fxml".formatted(game.getTurn())));
-	    		//gridPane.add(ficha, columna, fila);
 	    		Bomb = false;
 	    	}
 	    	else if(Arrow == true) {
@@ -116,13 +113,15 @@ public class SuperfichaController {
 	    		Ice = false;
 	    		
 	    	}
-	        // Cargamos la ficha
-	        Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
-	        int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
-	        gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-	        Position pos = new Position(columna, fila);
-	        game.addObject(new Piece(game, pos));
-	        if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+	    	else {
+		        // Cargamos la ficha
+		        Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+		        int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+		        gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+		        Position pos = new Position(columna, fila);
+		        game.addObject(new Piece(game, pos));
+	    	}
+	    	if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
 	            System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
 	            // Mostrar una alerta o pantalla de victoria
 	            Parent alertRoot = FXMLLoader.load(getClass().getResource("VOLVER A INICIAL.fxml"));
@@ -130,7 +129,7 @@ public class SuperfichaController {
 	            GridPane.setHalignment(alertRoot, HPos.CENTER);
 	            GridPane.setValignment(alertRoot, VPos.CENTER);
 	        }
-	        game.update(); // Actualiza el estado del juego
+	    	game.update(); // Actualiza el estado del juego
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -166,28 +165,28 @@ public class SuperfichaController {
     }
     
     @FXML
-    void bombButton() {
+    void bombButton(MouseEvent event) {
     	Bomb = true;
     	Anvil = false;
     	Arrow = false;
     	Ice = false;
     }
     @FXML
-    void anvilButton() {
+    void anvilButton(MouseEvent event) {
     	Bomb = false;
     	Anvil = true;
     	Arrow = false;
     	Ice = false;
     }
     @FXML
-    void iceButton() {
+    void iceButton(MouseEvent event) {
     	Bomb = false;
     	Anvil = false;
     	Arrow = false;
     	Ice = true;
     }
     @FXML
-    void arrowButton() {
+    void arrowButton(MouseEvent event) {
     	Bomb = false;
     	Anvil = false;
     	Arrow = true;

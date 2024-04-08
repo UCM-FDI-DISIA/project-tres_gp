@@ -102,7 +102,7 @@
                   <Font name="MV Boli" size="20.0" />
                </font>
             </MenuButton>
-            <Button layoutX="529.0" layoutY="107.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseClicked="#bombButton" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="   " />
+            <Button fx:id="btnBomba2" layoutX="529.0" layoutY="107.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseClicked="#bombButton" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="   " />
             <Button fx:id="btnHielo2" layoutX="527.0" layoutY="176.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseClicked="#iceButton" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="59.0" stylesheets="@boton-diseño-fichas.css" text="   " />
             <Button fx:id="btnYunque2" layoutX="530.0" layoutY="243.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseClicked="#anvilButton" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="   " />
             <Button fx:id="btnFlecha2" layoutX="529.0" layoutY="309.0" maxHeight="60.0" maxWidth="59.0" mnemonicParsing="false" onMouseClicked="#arrowButton" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="60.0" prefWidth="56.0" stylesheets="@boton-diseño-fichas.css" text="   " />
