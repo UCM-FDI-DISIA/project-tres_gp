@@ -97,22 +97,22 @@ public class SuperfichaController {
 
 	    try {
 	    	if(Bomb == true) {
-	    		game.bomb(columna);
+	    		game.bomb(columna, gridPane);
 	    		//Algo así en todas
 	    		Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA BOMBA J%s.fxml".formatted(game.getTurn())));
 	    		//gridPane.add(ficha, columna, fila);
 	    		Bomb = false;
 	    	}
 	    	else if(Arrow == true) {
-	    		game.arrow(columna);
+	    		game.arrow(columna, gridPane);
 	    		Arrow = false;
 	    	}
 	    	else if(Anvil == true) {
-	    		game.anvil(columna);
+	    		game.anvil(columna, gridPane);
 	    		Anvil = false;
 	    	}
 	    	else if(Ice ==true) {
-	    		game.ice(columna);
+	    		game.ice(columna, gridPane);
 	    		Ice = false;
 	    		
 	    	}

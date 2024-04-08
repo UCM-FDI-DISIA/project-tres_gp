@@ -88,10 +88,8 @@ public class Game {
 		}
 	}
 	
-	public void popOut(int col){
-		if(isOnBoard(col)) {
-			container.popOut(col);
-		}
+	public void popOut(int col, GridPane gridPane){
+		container.popOut(col, gridPane);
 	}
 	
 	private int generateRandomNumber(int min, int max) {
@@ -113,35 +111,35 @@ public class Game {
 			return row;
 	}
 	
-	public void bomb(int col){
+	public void bomb(int col, GridPane gridPane){
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Bomb(this, pos));
-			container.bomb(pos);
+			container.bomb(pos, gridPane);
 	}
 	
-	public void anvil(int col){
+	public void anvil(int col, GridPane gridPane){
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Anvil(this, pos));
-			container.anvil(pos);
+			container.anvil(pos, gridPane);
 	}
 	
-	public void arrow(int col){
+	public void arrow(int col, GridPane gridPane){
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Arrow(this, pos));
-			container.arrow(pos);
+			container.arrow(pos, gridPane);
 	}
 	
-	public void ice(int col){
+	public void ice(int col, GridPane gridPane){
 			int row= findRow(col);
 			Position pos = new Position(col, row);
 			addObject(new Ice(this, pos));
 			if (!someoneWin()) {
 				currentCycle++;
 			}
-			container.ice(pos);
+			container.ice(pos, gridPane);
 
 	}
 	
@@ -178,9 +176,9 @@ public class Game {
 		return turn;
 	}
 	
-	public void reset() {
+	public void reset(GridPane gridPane) {
 		currentCycle = 0;
-		container.reset();
+		container.reset(gridPane);
 	}
 
 
