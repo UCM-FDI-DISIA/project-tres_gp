@@ -181,7 +181,7 @@ public class Game {
 	
 	public void reset() {
 		currentCycle = 0;
-		container.reset();
+		container.reset(DIM_X);
 	}
 
 

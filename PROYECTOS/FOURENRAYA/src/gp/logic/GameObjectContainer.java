@@ -240,11 +240,19 @@ public class GameObjectContainer {
 		else throw new EmptyColumnException(Messages.EMPTY_COLUMN_MESSAGE);
 	}
 
-	public void reset() {
+	public void reset(int dim) {
 		int size = objects.size();
-		for (int i = 0; i < size; i++) {
-			GameObject currentObject  = objects.get(0);
-			remove(currentObject);
+		if (dim == 7) {
+			for (int i = 0; i < size; i++) {
+				GameObject currentObject  = objects.get(0);
+				remove(currentObject);
+			}
+		}
+		else {
+			for (int i = 12; i < size; i++) {
+				GameObject currentObject  = objects.get(12);
+				remove(currentObject);
+			}
 		}
 	}
 	
