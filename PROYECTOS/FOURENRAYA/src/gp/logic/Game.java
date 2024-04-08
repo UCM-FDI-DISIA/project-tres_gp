@@ -13,6 +13,7 @@ import gp.exceptions.EmptyColumnException;
 import gp.exceptions.FullColumnException;
 import gp.exceptions.InvalidWinException;
 import gp.exceptions.OffWorldException;
+import gp.exceptions.OpponentPieceException;
 import gp.view.Messages;
 
 public class Game {
@@ -66,9 +67,9 @@ public class Game {
 		}
 	}
 	
-	public void popOut(int col) throws OffWorldException, EmptyColumnException {
+	public void popOut(int col) throws OffWorldException, EmptyColumnException, OpponentPieceException {
 		if(isOnBoard(col)) {
-			container.popOut(col);
+			container.popOut(col, turn);
 		}
 		else
 			throw new OffWorldException(Messages.OFF_WORLD_MESSAGE.formatted(col));

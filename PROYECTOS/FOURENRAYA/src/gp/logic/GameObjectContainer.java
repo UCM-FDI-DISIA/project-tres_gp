@@ -5,6 +5,7 @@ import java.util.List;
 import gp.GameObjects.GameObject;
 import gp.exceptions.EmptyColumnException;
 import gp.exceptions.FullColumnException;
+import gp.exceptions.OpponentPieceException;
 import gp.view.Messages;
 
 import java.util.ArrayList;
@@ -227,11 +228,14 @@ public class GameObjectContainer {
 		objects.remove(object);
 	}
 
-	public void popOut(int col) throws EmptyColumnException {
+	public void popOut(int col, int turn) throws EmptyColumnException, OpponentPieceException {
 		GameObject object = findObject(new Position(col,Game.DIM_Y - 1));
 		if (object != null) {
-			remove(object);
-			makePiecesFall();
+			if(object.getTurn() == turn) {
+				remove(object);
+				makePiecesFall();
+			}
+			else throw new OpponentPieceException(Messages.OPPONENT_PIECE_MESSAGE);
 		}
 		else throw new EmptyColumnException(Messages.EMPTY_COLUMN_MESSAGE);
 	}

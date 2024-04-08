@@ -5,6 +5,7 @@ import gp.exceptions.CommandParseException;
 import gp.exceptions.EmptyColumnException;
 import gp.exceptions.FullColumnException;
 import gp.exceptions.OffWorldException;
+import gp.exceptions.OpponentPieceException;
 import gp.logic.Game;
 import gp.view.Messages;
 
@@ -42,7 +43,7 @@ public class PopOutCommand extends Command {
 			game.update();
 			return execution;
 		}
-		catch(OffWorldException | EmptyColumnException e){
+		catch(OffWorldException | EmptyColumnException | OpponentPieceException e){
 			throw new CommandExecuteException("",e);
 		}
 	}

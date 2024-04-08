@@ -84,7 +84,7 @@ public class Messages {
 	public static final String ERROR = "[ERROR] Error: %s%n";
 	public static final String CANTCHANGEMODE = "You cannot change modes because you are already playing a game";
 	public static final String EMPTY_COLUMN_MESSAGE = "[Column %s is empty";
-
+	public static final String OPPONENT_PIECE_MESSAGE = "This piece belongs to your opponent, you cannot pop out it";
 
 	
 	public static final String debug(String message) {
