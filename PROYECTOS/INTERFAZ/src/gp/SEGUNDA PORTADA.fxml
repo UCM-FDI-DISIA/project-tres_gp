@@ -6,8 +6,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gp.SelectModeController">
    <columnConstraints>
@@ -21,44 +19,24 @@
    <children>
       <ImageView fitHeight="201.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <image>
-            <Image url="@popOut/POP-OUT.png" />
+            <Image url="@popOut/POP-OUT%20CON%20LETRAS.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="205.0" fitWidth="301.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
          <image>
-            <Image url="@superfichas/SUPERFICHAS.png" />
+            <Image url="@superfichas/SUPERFICHAS%20CON%20LETRAS.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="204.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@clasico/CLASICO.png" />
+            <Image url="@clasico/CLASICO%20CON%20LETRAS.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
          <image>
-            <Image url="@cincoenRaya/5ENRAYA.png" />
+            <Image url="@cincoenRaya/5ENRAYA%20CON%20LETRAS.png" />
          </image>
       </ImageView>
-      <Text fill="RED" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPERFICHAS" textAlignment="CENTER" wrappingWidth="300.5367317199707" GridPane.rowIndex="1">
-         <font>
-            <Font name="Arial Bold Italic" size="41.0" />
-         </font>
-      </Text>
-      <Text fill="#ffcf00" strokeType="OUTSIDE" strokeWidth="0.0" text="POP - OUT" textAlignment="CENTER" wrappingWidth="300.5366516113281" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <font>
-            <Font name="Arial Bold Italic" size="41.0" />
-         </font>
-      </Text>
-      <Text cache="true" fill="#ffcf00" strokeType="OUTSIDE" strokeWidth="0.0" text="CLÁSICO" textAlignment="CENTER" wrappingWidth="300.5367317199707">
-         <font>
-            <Font name="Arial Bold Italic" size="41.0" />
-         </font>
-      </Text>
-      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="5 EN RAYA" textAlignment="CENTER" wrappingWidth="301.33673095703125" GridPane.columnIndex="1">
-         <font>
-            <Font name="Calibri Bold Italic" size="41.0" />
-         </font>
-      </Text>
       <Button fx:id="btnClasico" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="219.0" prefWidth="368.0" text="   " />
       <Button fx:id="btn5en" mnemonicParsing="false" onMouseClicked="#switchToTablero5en" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="217.0" prefWidth="315.0" text="  " GridPane.columnIndex="1" />
       <Button fx:id="btnSuper" mnemonicParsing="false" onMouseClicked="#switchToTableroSuperFichas" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="200.0" prefWidth="306.0" GridPane.rowIndex="1" />

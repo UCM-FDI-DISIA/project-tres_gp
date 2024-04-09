@@ -5,6 +5,7 @@ import java.io.IOException;
 import gp.GameObjects.Piece;
 import gp.logic.Game;
 import gp.logic.Position;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
@@ -13,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,18 +25,13 @@ public class selectFive {
 	private Scene scene;
 	private Parent root;
 	private Game game;
-	@FXML
-	private Button btnVolver;
 	
-	@FXML
-	private Button btnEmpieza;
 	
+    @FXML
+    private Button btnEmpieza;
+    
     @FXML
     private Button btnFicha;
-
-    @FXML
-    private Button btnFicha1;
-
     @FXML
     private Button btnFicha2;
 
@@ -48,21 +46,21 @@ public class selectFive {
 
     @FXML
     private Button btnFicha6;
-    
+
     @FXML
     private Button btnFicha7;
 
     @FXML
     private Button btnFicha8;
-    
+
     @FXML
-    private Button btnFicha9;
-    
-    @FXML
-    private Button btnFicha10;
+    private MenuItem btnVolver;
 
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    private MenuButton menuButton;
     
     public selectFive() {
     	this.game = new Game();
@@ -78,7 +76,7 @@ public class selectFive {
                 Parent ficha = FXMLLoader.load(getClass().getResource(
                 		"FICHA J%s 5 IN ROW.fxml".formatted(game.getTurn())));
                 int fila = game.place(columna);
-                gridPane.add(ficha, columna, fila);
+                gridPane.add(ficha, columna, fila + 2);
         		Position pos = new Position(columna, fila);
         		game.addObject(new Piece(game, pos));
         		if(game.someoneWin()) {
@@ -96,11 +94,7 @@ public class selectFive {
     }
     @FXML
     private void configurarTablero(MouseEvent event) {
-    	Node source = (Node) event.getSource();
-    	source = source.getParent();
-    	GridPane gridPane = (GridPane) source.getParent();
     	game.fiveInRow(gridPane);
-    	gridPane.getChildren().remove(source);
     }
     @FXML
     void onMouseEntered(MouseEvent event) {
@@ -116,4 +110,24 @@ public class selectFive {
         button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
     }
     
+	@FXML
+	void switchToScene2(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	@FXML
+	void switchToScene2Menu(ActionEvent event) throws IOException {
+	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+	    Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+	    Scene scene = parent.getScene(); // Obtener la escena
+	    Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+	    root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
+	    stage.setScene(new Scene(root));
+	    stage.show();
+	}
+
 }

@@ -107,11 +107,13 @@ public class selectClassic {
 
 	@FXML
 	void switchToScene2Menu(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+	    Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+	    Scene scene = parent.getScene(); // Obtener la escena
+	    Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+	    root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
+	    stage.setScene(new Scene(root));
+	    stage.show();
 	}
 	@FXML
 	void onMouseEntered(MouseEvent event) {

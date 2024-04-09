@@ -1,6 +1,7 @@
 package gp.logic;
 
 import java.io.IOException;
+
 import java.util.Random;
 
 
@@ -53,7 +54,6 @@ public class Game {
 	}
 	
 	public void placeRow(int first, int second, GridPane gridPane) {
-		for(int j = 0; j<2;j++) {
 			for (int i = DIM_Y - 1; i >= 0; i--) {
 	            Parent ficha;
 				if (i % 2 == 0) {
@@ -61,10 +61,10 @@ public class Game {
 					try {
 						ficha = FXMLLoader.load(getClass().getResource(
 								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
-		                gridPane.add(ficha, 0 + j, i);
+		                gridPane.add(ficha, 1, i + 2);
 						ficha = FXMLLoader.load(getClass().getResource(
 								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
-		                gridPane.add(ficha, DIM_X + j, i);
+		                gridPane.add(ficha, DIM_X + 2, i + 2);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -75,10 +75,10 @@ public class Game {
 					try {
 						ficha = FXMLLoader.load(getClass().getResource(
 								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
-		                gridPane.add(ficha, 0 + j, i);
+		                gridPane.add(ficha, 1, i + 2);
 						ficha = FXMLLoader.load(getClass().getResource(
 								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
-		                gridPane.add(ficha, DIM_X + j, i);
+		                gridPane.add(ficha, DIM_X + 2, i + 2);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}                
@@ -86,7 +86,6 @@ public class Game {
 					addObject(new Piece(this, new Position(DIM_X - 1, i), first));
 				}
 			}
-		}
 	}
 	
 	public void popOut(int col, GridPane gridPane){
