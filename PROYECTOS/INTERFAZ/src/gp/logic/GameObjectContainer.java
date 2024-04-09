@@ -131,9 +131,9 @@ public class GameObjectContainer {
 	            GameObject currentObject = findObject(currentPos);
 	            Position nextPos = new Position(col, row-1);
 	            GameObject nextObject = findObject(nextPos);
-	            if (currentObject != null && nextObject == null) {
+	            if (currentObject == null && nextObject != null) {
 	                movePiece(nextObject, currentPos); // Asume que esto actualiza la posición en tu modelo de datos
-	                movePieceInGridPane(gridPane, col, nextObject.getPosition().getRow(), currentObject.getPosition().getRow());
+	                movePieceInGridPane(gridPane, col, nextObject.getPosition().getRow(), nextObject.getPosition().getRow()+1);
 	            }
 	        }
 	    }
