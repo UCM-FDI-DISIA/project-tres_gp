@@ -37,7 +37,7 @@
             <MenuButton fx:id="menuButton" ellipsisString="" layoutX="4.0" layoutY="1.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="601.0" style="-fx-border-color: black;" text="Menú">
               <items>
                 <MenuItem mnemonicParsing="false" text="Guardar" />
-                <MenuItem fx:id="btnReset" mnemonicParsing="false" onAction="#reset" text="Reiniciar Partida" />
+                <MenuItem fx:id="btnReset" mnemonicParsing="false" onAction="#switchToTableroPopOut" text="Reiniciar Partida" />
                   <MenuItem fx:id="btnVolver" mnemonicParsing="false" onAction="#switchToScene2" text="Salir" />
               </items>
                <font>

@@ -27,7 +27,10 @@ public class selectClassic {
 	private Game game;
 	@FXML
 	private MenuItem btnVolver;
-
+	
+	@FXML
+	private MenuItem btnRestart;
+	
 	@FXML
 	private Button btnSalirGana;
 	
@@ -115,6 +118,18 @@ public class selectClassic {
 	    stage.setScene(new Scene(root));
 	    stage.show();
 	}
+	
+    @FXML
+    void switchToTableroNormal(ActionEvent event) throws IOException {
+	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+	    Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+	    Scene scene = parent.getScene(); // Obtener la escena
+	    Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+	    root = FXMLLoader.load(getClass().getResource("TABLERO CLASSIC.fxml"));
+	    stage.setScene(new Scene(root));
+	    stage.show();
+    }
+    
 	@FXML
 	void onMouseEntered(MouseEvent event) {
 		// Código para el efecto al entrar con el mouse

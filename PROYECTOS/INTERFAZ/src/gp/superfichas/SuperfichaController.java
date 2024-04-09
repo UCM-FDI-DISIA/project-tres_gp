@@ -71,6 +71,9 @@ public class SuperfichaController {
 
     @FXML
     private MenuItem btnVolver;
+    
+    @FXML
+    private MenuItem btnReset;
 
     @FXML
     private Button btnYunque1;
@@ -162,6 +165,17 @@ public class SuperfichaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    void switchToTableroSuperFichas(ActionEvent event) throws IOException {
+	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+	    Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+	    Scene scene = parent.getScene(); // Obtener la escena
+	    Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+	    root = FXMLLoader.load(getClass().getResource("TABLERO SUPERFICHAS SELECCION.fxml"));
+	    stage.setScene(new Scene(root));
+	    stage.show();
     }
     
     @FXML

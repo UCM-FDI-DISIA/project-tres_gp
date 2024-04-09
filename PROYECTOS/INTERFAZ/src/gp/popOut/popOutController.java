@@ -122,7 +122,17 @@ public class popOutController {
         }
     }
 
-
+    @FXML
+    void switchToTableroPopOut(ActionEvent event) throws IOException {
+	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+	    Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+	    Scene scene = parent.getScene(); // Obtener la escena
+	    Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+	    root = FXMLLoader.load(getClass().getResource("TABLERO POP-OUT.fxml"));
+	    stage.setScene(new Scene(root));
+	    stage.show();
+    }
+    
     @FXML
     void popOut(MouseEvent event) {
     	Node source = (Node) event.getSource();
@@ -163,13 +173,4 @@ public class popOutController {
             e.printStackTrace();
         }
     }
-    @FXML
-    void reset(ActionEvent event) {
-        if (gridPane != null) {
-            game.reset(gridPane);
-        } else {
-            System.out.println("GridPane no encontrado.");
-        }
-    }
-
 }

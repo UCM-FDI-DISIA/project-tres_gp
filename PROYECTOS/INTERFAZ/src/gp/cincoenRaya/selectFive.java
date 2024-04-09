@@ -58,7 +58,10 @@ public class selectFive {
 
     @FXML
     private MenuItem btnVolver;
-
+    
+    @FXML
+    private MenuItem btnReset;
+    
     @FXML
     private GridPane gridPane;
 
@@ -122,6 +125,17 @@ public class selectFive {
 		stage.show();
 	}
 
+    @FXML
+    void switchToTablero5INROW(ActionEvent event) throws IOException {
+	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+	    Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+	    Scene scene = parent.getScene(); // Obtener la escena
+	    Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+	    root = FXMLLoader.load(getClass().getResource("TABLERO 5 IN ROW.fxml"));
+	    stage.setScene(new Scene(root));
+	    stage.show();
+    }
+    
 	@FXML
 	void switchToScene2Menu(ActionEvent event) throws IOException {
 	    MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
