@@ -171,7 +171,7 @@ public class Game {
 	}
 	
 	public boolean someoneWin() {
-		if (container.isFinished(turn)) someoneWin = true;
+		if (container.isFinished(turn, DIM_X)) someoneWin = true;
 		return someoneWin;
 	}
 

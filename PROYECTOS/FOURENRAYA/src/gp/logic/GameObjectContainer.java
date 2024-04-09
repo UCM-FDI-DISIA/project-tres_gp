@@ -154,9 +154,11 @@ public class GameObjectContainer {
 	// Si se encuentra un posible ganador, no se deja de buscar, pues sde pueden hacer dos 
 			// conecta 4 con solo una ficha
 			// Por tanto, se almacena esa solucion en un lista de listas de posiciones
-	public boolean isFinished(int turn) {
+	public boolean isFinished(int turn, int dim) {
 		boolean isFinished = false;
-		int length = 3;
+		int length;
+		if (dim == 7) length = 3;
+		else length = 4;
 		for (int i = 0; i < objects.size(); i++) {
 			
 			GameObject currentObject  = objects.get(i);
@@ -166,7 +168,7 @@ public class GameObjectContainer {
 				if (fitIn(length, dir, currentPosition) &&
 						checkConsecutiveTurns(turn, length, dir, currentPosition)) {
 					isFinished = true;
-					win(dir, currentPosition);
+					win(dir, currentPosition, dim);
 				}	
 			}
 		}
@@ -198,8 +200,10 @@ public class GameObjectContainer {
 	}
 	
 	// Agrega la solución encontrada a la lista de soluciones
-	private void win(Direction dir, Position pos) {
-		int length = 4;
+	private void win(Direction dir, Position pos, int dim) {
+		int length;
+		if (dim == 7) length = 4;
+		else length = 3;
 		List<Position> positionsList = new ArrayList<Position>();
 		for (int i = 0; i < length; i++) {
 			Position newPos = new Position(pos.getCol() + i * dir.getY(),
