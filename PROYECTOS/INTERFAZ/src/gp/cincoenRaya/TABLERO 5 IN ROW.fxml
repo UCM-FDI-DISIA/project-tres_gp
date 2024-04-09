@@ -139,8 +139,6 @@
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="6" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="6" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Line endX="-106.27799224853516" endY="615.9431762695312" startX="-106.27800750732422" startY="16.6502685546875" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Line endX="-99.17164611816406" endY="596.2929077148438" startX="-100.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="407.0" prefWidth="65.0" text="   " />
@@ -168,7 +166,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="8" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
-                  <Button fx:id="btnFicha6" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="428.0" prefWidth="81.0" text="   " />
+                  <Button fx:id="btnFicha6" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="413.0" prefWidth="55.0" text="   " />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="9" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
@@ -176,6 +174,17 @@
                   <Button fx:id="btnFicha7" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="447.0" prefWidth="74.0" text="   " />
                </children>
             </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+               <children>
+                  <Button fx:id="btnFicha9" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="416.0" prefWidth="54.0" text="  " />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="10" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+               <children>
+                  <Button fx:id="btnFicha8" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="566.0" prefWidth="166.0" text="   " />
+               </children>
+            </VBox>
+            <Line endX="-110.56008911132812" endY="753.893310546875" startX="-110.56011962890625" startY="8.5003662109375" GridPane.columnIndex="11" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <ImageView fitHeight="97.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true" x="341.0" y="394.0">
@@ -183,7 +192,8 @@
             <Image url="@start.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnEmpieza" layoutX="335.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#configurarTablero" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="75.0" prefWidth="111.0" text="   " />
       <Line endX="81.99998474121094" endY="393.6000061035156" layoutX="10.0" layoutY="10.0" startX="683.0" startY="393.6000061035156" />
+      <Button fx:id="btnEmpieza" layoutX="335.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#configurarTablero" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="75.0" prefWidth="111.0" text="   " />
+      <Line endX="5.600006103515625" endY="-0.899993896484375" layoutX="142.0" layoutY="404.0" startX="5.600006103515625" startY="-406.0" />
    </children>
 </AnchorPane>

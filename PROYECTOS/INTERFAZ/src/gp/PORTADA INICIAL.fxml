@@ -12,6 +12,6 @@
             <Image url="@PORTADA%204FURYROW%20CON%20LETRAS.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnJugar" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#switchToScene2" opacity="0.0" prefHeight="400.0" prefWidth="612.0" text="JUGAR" textAlignment="CENTER" textFill="#db2c2c" />
+      <Button fx:id="btnJugar" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#switchToScene2" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="400.0" prefWidth="612.0" text="  " textAlignment="CENTER" textFill="#db2c2c" />
    </children>
 </StackPane>

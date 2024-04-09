@@ -52,6 +52,9 @@ public class selectFive {
 
     @FXML
     private Button btnFicha8;
+    
+    @FXML
+    private Button btnFicha9;
 
     @FXML
     private MenuItem btnVolver;
@@ -81,7 +84,7 @@ public class selectFive {
         		game.addObject(new Piece(game, pos));
         		if(game.someoneWin()) {
         			System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
-        			Parent alertRoot = FXMLLoader.load(getClass().getResource("VOLVER A INICIAL.fxml"));
+        			Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
         			gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
                     GridPane.setHalignment(alertRoot, HPos.CENTER);
                     GridPane.setValignment(alertRoot, VPos.CENTER);

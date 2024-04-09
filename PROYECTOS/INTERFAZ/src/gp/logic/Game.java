@@ -68,8 +68,8 @@ public class Game {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					addObject(new Piece(this, new Position(0, i), first));
-					addObject(new Piece(this, new Position(DIM_X, i), second));
+					addObject(new Piece(this, new Position(0, i + 2), first));
+					addObject(new Piece(this, new Position(DIM_X + 2, i + 2), second));
 				}
 				else {
 					try {
@@ -82,8 +82,8 @@ public class Game {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}                
-					addObject(new Piece(this, new Position(0, i), second));
-					addObject(new Piece(this, new Position(DIM_X - 1, i), first));
+					addObject(new Piece(this, new Position(0, i + 2), second));
+					addObject(new Piece(this, new Position(DIM_X + 2, i + 2), first));
 				}
 			}
 	}
@@ -196,7 +196,7 @@ public class Game {
 	}
 	
 	public boolean someoneWin() {
-		if (container.isFinished(turn)) someoneWin = true;
+		if (container.isFinished(turn, DIM_X)) someoneWin = true;
 		return someoneWin;
 	}
 

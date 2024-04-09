@@ -31,4 +31,18 @@ public class SceneController {
 		stage.show();
     }
 
+    
+    @FXML
+    void onMouseEntered(MouseEvent event) {
+        // Código para el efecto al entrar con el mouse
+        Button button = (Button) event.getSource();
+        button.setOpacity(0.35); // Cambiar la opacidad para simular una luz encendida
+    }
+
+    @FXML
+    void onMouseExited(MouseEvent event) {
+        // Código para revertir el efecto al salir con el mouse
+        Button button = (Button) event.getSource();
+        button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
+    }
 }
