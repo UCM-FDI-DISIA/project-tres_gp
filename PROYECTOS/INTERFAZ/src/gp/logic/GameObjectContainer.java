@@ -126,21 +126,14 @@ public class GameObjectContainer {
 	
 	private void makePiecesFall(GridPane gridPane) {
 	    for (int col = 0; col < Game.DIM_X; col++) {
-	        for (int row = Game.DIM_Y - 2; row >= 0; row--) { // Empieza desde la penúltima fila hacia arriba
+	        for (int row = Game.DIM_Y - 1; row > 0; row--) { // Empieza desde la penúltima fila hacia arriba
 	            Position currentPos = new Position(col, row);
 	            GameObject currentObject = findObject(currentPos);
-	            if (currentObject != null) {
-	                int fallDistance = 1;
-	                while (row + fallDistance < Game.DIM_Y && findObject(new Position(col, row + fallDistance)) == null) {
-	                    fallDistance++;
-	                }
-	                if (fallDistance > 1) {
-	                    Position newPos = new Position(col, row + fallDistance - 1);
-	                    movePiece(currentObject, newPos); // Asume que esto actualiza la posición en tu modelo de datos
-
-	                    // Ahora, encuentra y mueve visualmente la ficha en el GridPane
-	                    movePieceInGridPane(gridPane, col, row, newPos.getRow());
-	                }
+	            Position nextPos = new Position(col, row-1);
+	            GameObject nextObject = findObject(nextPos);
+	            if (currentObject != null && nextObject == null) {
+	                movePiece(nextObject, currentPos); // Asume que esto actualiza la posición en tu modelo de datos
+	                movePieceInGridPane(gridPane, col, nextObject.getPosition().getRow(), currentObject.getPosition().getRow());
 	            }
 	        }
 	    }

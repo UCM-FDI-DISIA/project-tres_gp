@@ -33,6 +33,7 @@ public class Game {
 		return currentCycle;
 	}
 	
+	
 	public void update() {
 		if (!someoneWin()) {
 			flip();
