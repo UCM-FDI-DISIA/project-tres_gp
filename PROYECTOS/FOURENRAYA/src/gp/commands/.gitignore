@@ -9,3 +9,6 @@
 /AnvilCommand.class
 /ArrowCommand.class
 /IceCommand.class
+/FiveInRowCommand.class
+/PopOutCommand.class
+/ResetCommand.class
