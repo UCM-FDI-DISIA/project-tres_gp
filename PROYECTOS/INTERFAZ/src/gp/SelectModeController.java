@@ -45,6 +45,16 @@ public class SelectModeController {
     }
       
     @FXML
+    void switchToSceneJugvsIA(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("Jugador vs IA.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
+    
+    
+    @FXML
     void onMouseEntered(MouseEvent event) {
         // Código para el efecto al entrar con el mouse
         Button button = (Button) event.getSource();

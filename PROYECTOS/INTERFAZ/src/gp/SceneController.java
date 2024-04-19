@@ -31,7 +31,7 @@ public class SceneController {
 		stage.show();
     }
 
-    
+
     @FXML
     void onMouseEntered(MouseEvent event) {
         // Código para el efecto al entrar con el mouse
