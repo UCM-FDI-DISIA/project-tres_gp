@@ -53,7 +53,23 @@ public class SelectModeController {
 		stage.show();
     }
     
+    @FXML
+    void switchToSceneDifIA(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("Dif IA.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
     
+    @FXML
+    void switchToSceneLocOMult(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("1 VS 1.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
     @FXML
     void onMouseEntered(MouseEvent event) {
         // Código para el efecto al entrar con el mouse

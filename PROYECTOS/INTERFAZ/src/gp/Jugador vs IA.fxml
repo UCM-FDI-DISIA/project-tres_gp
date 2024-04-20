@@ -22,7 +22,7 @@
             <Image url="@pers.png" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="448.0" prefWidth="318.0" />
-      <Button layoutX="319.0" layoutY="-1.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="449.0" prefWidth="317.0" />
+      <Button mnemonicParsing="false" onMouseClicked="#switchToSceneLocOMult" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="448.0" prefWidth="318.0" />
+      <Button layoutX="319.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#switchToSceneDifIA" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="449.0" prefWidth="317.0" />
    </children>
 </AnchorPane>
