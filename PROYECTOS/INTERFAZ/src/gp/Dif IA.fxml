@@ -15,9 +15,6 @@
       </ImageView>
       <Line endX="566.0" layoutX="106.0" layoutY="133.0" startX="-112.0" strokeLineCap="ROUND" strokeWidth="2.0" />
       <Line endX="565.0" endY="-9.0" layoutX="107.0" layoutY="274.0" startX="-114.0" startY="-9.0" strokeLineCap="ROUND" strokeWidth="2.0" />
-      <Button mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
-      <Button layoutY="132.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
-      <Button layoutY="264.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
       <ImageView fitHeight="378.0" fitWidth="711.0" layoutY="-151.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@FACIL.png" />
@@ -33,5 +30,8 @@
             <Image url="@DIFICIL.png" />
          </image>
       </ImageView>
+      <Button mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
+      <Button layoutY="132.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
+      <Button layoutY="264.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
    </children>
 </AnchorPane>
