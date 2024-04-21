@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gp.SelectModeController">
    <children>
       <ImageView fitHeight="442.0" fitWidth="637.0" pickOnBounds="true" preserveRatio="true">
@@ -26,6 +25,6 @@
          </image>
       </ImageView>
       <Button mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="424.0" prefWidth="324.0" />
-      <Button layoutX="326.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="424.0" prefWidth="311.0" />
+      <Button layoutX="326.0" mnemonicParsing="false" onMouseClicked="#switchToTableroNormal" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="424.0" prefWidth="311.0" />
    </children>
 </AnchorPane>
