@@ -43,6 +43,15 @@ public class SelectModeController {
 		stage.setScene(scene);
 		stage.show();
     }
+    
+    @FXML
+    void switchToTableroNormalOnline(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO CLASSIC ONLINE.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
       
     @FXML
     void switchToSceneJugvsIA(MouseEvent event) throws IOException {
