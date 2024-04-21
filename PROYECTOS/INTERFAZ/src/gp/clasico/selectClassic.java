@@ -23,12 +23,15 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class selectClassic {
     private Stage stage;
     private Scene scene;
     private Parent root;
     private Game game;
+    private List<GameMemento> savedStates;
     @FXML
     private MenuItem btnVolver;
     
@@ -75,6 +78,19 @@ public class selectClassic {
     private static final int PUERTO = 12345;
     public selectClassic() {
         this.game = new Game();
+        this.savedStates = new ArrayList<>();
+    }
+    
+    private static class GameMemento{
+    	private final Game game;
+    	
+    	public GameMemento(Game game) {
+    		this.game = game;
+    	}
+    	
+    	public Game getSavedGame() {
+    		return game;
+    	}
     }
 
     @FXML
@@ -155,6 +171,8 @@ public class selectClassic {
         Button button = (Button) event.getSource();
         button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
     }
+    
+   
 
     @FXML
     private void conectarAlServidor(ActionEvent event) {
@@ -261,4 +279,23 @@ public class selectClassic {
             e.printStackTrace();
         }
     }
+    
+    @FXML
+    //Guardar el estado actual del juego
+	private void guardarPartida() {
+    	savedStates.add(new GameMemento(game));
+    }
+    
+    @FXML
+    //Restaurar el estado de la partida
+	private void restaurarPartida() {
+    	if(!savedStates.isEmpty()) {
+    		GameMemento memento = savedStates.remove(savedStates.size()-1);
+    		game = memento.getSavedGame();
+    	}else {
+    		System.out.println("No hay partidas que continuar");
+    	}
+    }
+    
 }
+
