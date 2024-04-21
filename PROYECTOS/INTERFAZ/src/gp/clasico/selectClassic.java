@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 import gp.GameObjects.Piece;
@@ -72,7 +73,7 @@ public class selectClassic {
     private Socket socket;
     private BufferedReader inputFromServer;
     private PrintWriter outputToServer;
-
+    private static final int PUERTO = 12345;
 	public selectClassic() {
 		this.game = new Game();
 	}
@@ -157,17 +158,41 @@ public class selectClassic {
 		button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
 	}
 	@FXML
-    private void conectarAlServidor(ActionEvent event) {
-        try {
-            // Establece la conexión con el servidor
-            socket = new Socket("127.0.0.1", 12345); // Cambia esto por la IP y puerto del servidor
-            inputFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outputToServer = new PrintWriter(socket.getOutputStream());
+	private void conectarAlServidor(ActionEvent event) {
+	    new Thread(() -> {
+	        try {
+	            ServerSocket servidorSocket = new ServerSocket(PUERTO);
+	            System.out.println("Servidor escuchando en la dirección: " + servidorSocket.getInetAddress().getHostAddress());
+	            System.out.println("Puerto: " + servidorSocket.getLocalPort());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	            while (!Thread.currentThread().isInterrupted()) {
+	                Socket clienteSocket = servidorSocket.accept();
+	                System.out.println("Conexión entrante desde: " + clienteSocket.getInetAddress().getHostAddress());
+
+	                // Manejar la conexión en un hilo separado para no bloquear la aceptación de más clientes
+	                new Thread(() -> manejarConexion(clienteSocket)).start();
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }).start();
+	}
+
+	private static void manejarConexion(Socket clienteSocket) {
+	    try {
+	        BufferedReader entradaDesdeCliente = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
+	        PrintWriter salidaACliente = new PrintWriter(clienteSocket.getOutputStream(), true);
+
+	        String mensaje = entradaDesdeCliente.readLine();
+	        System.out.println("Mensaje recibido del cliente: " + mensaje);
+
+	        salidaACliente.println("Mensaje recibido: " + mensaje);
+
+	        clienteSocket.close();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 	@FXML
 	private void colocarFichaOnline(MouseEvent event) {
