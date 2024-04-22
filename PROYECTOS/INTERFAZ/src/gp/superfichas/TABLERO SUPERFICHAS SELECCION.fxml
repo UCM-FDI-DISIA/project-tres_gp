@@ -22,7 +22,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff4f" height="400.0" layoutX="13.0" stroke="BLACK" strokeType="INSIDE" width="97.0" />
             <Text layoutX="22.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAYER 2" textAlignment="CENTER" wrappingWidth="83.34613037109375">
                <font>
-                  <Font name="Arial Black" size="15.0" />
+                  <Font name="Jokerman" size="16.0" />
                </font>
             </Text>
             <Ellipse fill="#ff2a1f" layoutX="62.0" layoutY="137.0" radiusX="28.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" />
@@ -53,7 +53,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff50" height="414.0" layoutX="-6.0" layoutY="-12.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
             <Text layoutX="11.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAYER 1" textAlignment="CENTER" wrappingWidth="83.34613037109375">
                <font>
-                  <Font name="Arial Black" size="15.0" />
+                  <Font name="Jokerman" size="16.0" />
                </font>
             </Text>
             <Ellipse fill="#ecff1f" layoutX="50.0" layoutY="146.0" radiusX="28.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" />
