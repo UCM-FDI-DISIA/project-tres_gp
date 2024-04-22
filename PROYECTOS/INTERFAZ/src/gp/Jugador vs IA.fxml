@@ -22,6 +22,11 @@
             <Image url="@pers.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="449.0" fitWidth="636.0">
+         <image>
+            <Image url="@friend%20or%20AI.jpg" />
+         </image>
+      </ImageView>
       <Button mnemonicParsing="false" onMouseClicked="#switchToSceneLocOMult" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="448.0" prefWidth="318.0" />
       <Button layoutX="319.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#switchToSceneDifIA" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="449.0" prefWidth="317.0" />
    </children>
