@@ -52,7 +52,32 @@ public class SelectModeController {
 		stage.setScene(scene);
 		stage.show();
     }
-      
+    @FXML
+    void switchToTableroFacil(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO CLASSIC FACIL.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
+    
+    @FXML
+    void switchToTableroMedio(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO CLASSIC MEDIO.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
+    @FXML
+    void switchToTableroDificil(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("/gp/clasico/TABLERO CLASSIC DIFICIL.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
+    
     @FXML
     void switchToSceneJugvsIA(MouseEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("Jugador vs IA.fxml"));

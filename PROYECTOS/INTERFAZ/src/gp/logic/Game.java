@@ -1,10 +1,9 @@
 package gp.logic;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-
-
 import gp.GameObjects.Anvil;
 import gp.GameObjects.Arrow;
 import gp.GameObjects.Bomb;
@@ -19,6 +18,7 @@ public class Game {
 	public static int DIM_X = 7;
 	public static final int DIM_Y = 6;
 	private int currentCycle;
+	private boolean bot = false;
 	private GameObjectContainer container;
 	private int turn = 1;
 	private boolean doExit = false;
@@ -40,6 +40,15 @@ public class Game {
 			flip();
 			currentCycle++;
 		}
+	}
+	
+	
+	public void updateBot() {
+		if (!someoneWin()) {
+			flip();
+			currentCycle++;
+		}
+		bot = !bot;
 	}
 	
 	public void fiveInRow (GridPane gridPane){
@@ -107,7 +116,7 @@ public class Game {
 	public int place(int col){
 			int row= findRow(col);
 			Position pos = new Position(col, row);
-			addObject(new Piece(this, pos));
+			addObject(new Piece(this, pos, getTurn()));
 			return row;
 	}
 	
@@ -209,6 +218,179 @@ public class Game {
 		container.reset(gridPane);
 	}
 
+	public List<Position> getFreePositions() {
+	    List<Position> freePositions = new ArrayList<>();
 
+	    for (int col = 0; col < Game.DIM_X; col++) {
+	        for (int row = 0; row < Game.DIM_Y; row++) {
+	            Position pos = new Position(col, row);
+	            if (container.findObject(pos) == null) {
+	                freePositions.add(pos);
+	            }
+	        }
+	    }
+	    return freePositions;
+	}
+
+	private static final int MAX_DEPTH = 4; // Profundidad máxima para Minimax
+	private static final int WIN_SCORE = 10000; // Puntaje de victoria
+	private static final int[] SCORES = {0, 1, 10, 100, 1000}; // Puntajes para fichas consecutivas
+
+	private int evaluateBoard() {
+	    int player1Score = getScoreForPlayer(1);
+	    int player2Score = getScoreForPlayer(2);
+	    return player1Score - player2Score;
+	}
+
+	private int getScoreForPlayer(int player) {
+	    int totalScore = 0;
+	    for (int col = 0; col < Game.DIM_X; col++) {
+	        for (int row = 0; row < Game.DIM_Y; row++) {
+	            Position pos = new Position(col, row);
+	            GameObject obj = container.findObject(pos);
+	            if (obj != null && obj.getTurn() == player) {
+	                // Evaluación horizontal
+	                totalScore += evaluateDirection(pos, 1, 0, player);
+	                // Evaluación vertical
+	                totalScore += evaluateDirection(pos, 0, 1, player);
+	                // Evaluación diagonal hacia arriba
+	                totalScore += evaluateDirection(pos, 1, 1, player);
+	                // Evaluación diagonal hacia abajo
+	                totalScore += evaluateDirection(pos, 1, -1, player);
+	            }
+	        }
+	    }
+	    return totalScore;
+	}
+
+	private int evaluateDirection(Position pos, int dirX, int dirY, int player) {
+	    int score = 0;
+	    for (int i = 1; i < 4; i++) {
+	        int col = pos.getCol() + i * dirX;
+	        int row = pos.getRow() + i * dirY;
+	        if (!isOnBoard(col) || !isOnBoard(row)) {
+	            break; // Nos salimos del tablero
+	        }
+	        GameObject obj = container.findObject(new Position(col, row));
+	        if (obj == null) {
+	            break; // No hay ficha en esta dirección
+	        }
+	        if (obj.getTurn() != player) {
+	            break; // La ficha es del oponente
+	        }
+	        score += SCORES[i]; // Aumentamos el puntaje por fichas consecutivas del jugador
+	    }
+	    return score;
+	}
+
+	public int getBestColumn() {
+	    int bestScore = Integer.MIN_VALUE;
+	    int bestCol = -1;
+
+	    for (int col = 0; col < Game.DIM_X; col++) {
+	        if (isOnBoard(col)) {
+	            // Simular el movimiento del bot en esta columna
+	            place(col);
+
+	            // Calcular el puntaje utilizando el algoritmo Minimax con profundidad limitada
+	            int score = minimax(0, false);
+
+	            // Deshacer el movimiento simulado
+	            removeLastMove();
+
+	            // Actualizar la mejor columna si se encontró un puntaje mejor
+	            if (score > bestScore) {
+	                bestScore = score;
+	                bestCol = col;
+	            }
+	        }
+	    }
+
+	    // Devolver la mejor columna encontrada
+	    return bestCol;
+	}
+	private void removeLastMove() {
+	    for (int row = Game.DIM_Y - 1; row >= 0; row--) {
+	        for (int col = 0; col < Game.DIM_X; col++) {
+	            Position pos = new Position(col, row);
+	            GameObject obj = container.findObject(pos);
+	            if (obj != null) {
+	                container.remove(obj);
+	                return; // Se encontró y eliminó el último movimiento
+	            }
+	        }
+	    }
+	}
+
+	public int botEasyMove() {
+	    List<Position> freePositions = getFreePositions();
+	    if (freePositions.isEmpty()) {
+	        // No hay posiciones libres, el bot no puede moverse
+	        return -1;
+	    }
+
+	    Random random = new Random();
+	    int index = random.nextInt(freePositions.size());
+	    Position chosenPosition = freePositions.get(index);
+
+	    // Coloca la ficha en la posición elegida
+	    int col = chosenPosition.getCol();
+	    place(col);
+
+	    // Devuelve la columna donde se colocó la ficha
+	    return col;
+	}
+	private int minimax(int depth, boolean isMaximizingPlayer) {
+	    if (depth == MAX_DEPTH || someoneWin() || isBoardFull()) {
+	        return evaluateBoard();
+	    }
+
+	    if (isMaximizingPlayer) {
+	        int bestScore = Integer.MIN_VALUE;
+	        for (int col = 0; col < Game.DIM_X; col++) {
+	            if (isOnBoard(col)) {
+	                place(col);
+	                int score = minimax(depth + 1, false);
+	                removeLastMove();
+	                bestScore = Math.max(bestScore, score);
+	            }
+	        }
+	        return bestScore;
+	    } else {
+	        int bestScore = Integer.MAX_VALUE;
+	        for (int col = 0; col < Game.DIM_X; col++) {
+	            if (isOnBoard(col)) {
+	                place(col);
+	                int score = minimax(depth + 1, true);
+	                removeLastMove();
+	                bestScore = Math.min(bestScore, score);
+	            }
+	        }
+	        return bestScore;
+	    }
+	}
+	private boolean isBoardFull() {
+		List<Position> freePositions = getFreePositions();
+		if(freePositions.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 	
+	public int botMediumMove() {
+	    // Definir el umbral de probabilidad
+	    double threshold = 0.5; // Por ejemplo, umbral del 50%
+
+	    // Generar un número aleatorio entre 0 y 1
+	    double randomValue = Math.random();
+
+	    if (randomValue < threshold) {
+	        // Realizar un movimiento aleatorio
+	        return botEasyMove();
+	    } else {
+	        // Utilizar el algoritmo Minimax para encontrar la mejor columna
+	        return getBestColumn();
+	    }
+	}
+
 }

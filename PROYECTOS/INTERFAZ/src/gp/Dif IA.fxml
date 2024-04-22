@@ -30,8 +30,8 @@
             <Image url="@DIFICIL.png" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
-      <Button layoutY="132.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
-      <Button layoutY="264.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
+      <Button mnemonicParsing="false" onMouseClicked="#switchToTableroFacil" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
+      <Button layoutY="132.0" mnemonicParsing="false" onMouseClicked="#switchToTableroMedio" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
+      <Button layoutY="264.0" mnemonicParsing="false" onMouseClicked="#switchToTableroDificil" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="132.0" prefWidth="673.0" />
    </children>
 </AnchorPane>

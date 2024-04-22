@@ -114,7 +114,7 @@ public class GameObjectContainer {
 			objects.remove(obj);
 	}
 	
-	private GameObject findObject(Position pos) {
+	public GameObject findObject(Position pos) {
 		for (int i = 0; i < objects.size(); i++) {
 			GameObject currentObject  = objects.get(i);
 			if (pos.equals(currentObject.getPosition())) {

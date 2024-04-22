@@ -297,5 +297,147 @@ public class selectClassic {
     	}
     }
     
+    
+    @FXML
+    private void colocarFichaFacil(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Node parent = source;
+        parent = parent.getParent();
+        GridPane gridPane = (GridPane) parent.getParent();
+        Integer columnaInteger = GridPane.getColumnIndex(parent);
+
+        // Verificar si la columna es null y asignar 0 como valor predeterminado
+        int columna = (columnaInteger != null) ? columnaInteger : 0;
+
+        try {
+            // Cargamos la ficha
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+            int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                // Mostrar una alerta o pantalla de victoria
+                Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                GridPane.setHalignment(alertRoot, HPos.CENTER);
+                GridPane.setValignment(alertRoot, VPos.CENTER);
+            } else {
+                game.updateBot(); // Actualiza el estado del juego
+                columna = game.botEasyMove();
+                ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+                fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+                gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+                if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                    System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                    // Mostrar una alerta o pantalla de victoria
+                    Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                    gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                    GridPane.setHalignment(alertRoot, HPos.CENTER);
+                    GridPane.setValignment(alertRoot, VPos.CENTER);
+                }
+                else {
+                   game.updateBot();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+    @FXML
+    private void colocarFichaDificil(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Node parent = source;
+        parent = parent.getParent();
+        GridPane gridPane = (GridPane) parent.getParent();
+        Integer columnaInteger = GridPane.getColumnIndex(parent);
+
+        // Verificar si la columna es null y asignar 0 como valor predeterminado
+        int columna = (columnaInteger != null) ? columnaInteger : 0;
+
+        try {
+            // Cargamos la ficha
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+            int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                // Mostrar una alerta o pantalla de victoria
+                Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                GridPane.setHalignment(alertRoot, HPos.CENTER);
+                GridPane.setValignment(alertRoot, VPos.CENTER);
+            } else {
+                game.updateBot(); // Actualiza el estado del juego
+                columna = game.getBestColumn();
+                ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+                fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+                gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+                if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                    System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                    // Mostrar una alerta o pantalla de victoria
+                    Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                    gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                    GridPane.setHalignment(alertRoot, HPos.CENTER);
+                    GridPane.setValignment(alertRoot, VPos.CENTER);
+                }
+                else {
+                   game.updateBot();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void colocarFichaMedio(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Node parent = source;
+        parent = parent.getParent();
+        GridPane gridPane = (GridPane) parent.getParent();
+        Integer columnaInteger = GridPane.getColumnIndex(parent);
+
+        // Verificar si la columna es null y asignar 0 como valor predeterminado
+        int columna = (columnaInteger != null) ? columnaInteger : 0;
+
+        try {
+            // Cargamos la ficha
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+            int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                // Mostrar una alerta o pantalla de victoria
+                Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                GridPane.setHalignment(alertRoot, HPos.CENTER);
+                GridPane.setValignment(alertRoot, VPos.CENTER);
+            } else {
+                game.updateBot(); // Actualiza el estado del juego
+                columna = game.botMediumMove();
+                ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+                fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+                gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+                if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                    System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                    // Mostrar una alerta o pantalla de victoria
+                    Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                    gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                    GridPane.setHalignment(alertRoot, HPos.CENTER);
+                    GridPane.setValignment(alertRoot, VPos.CENTER);
+                }
+                else {
+                   game.updateBot();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
