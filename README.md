@@ -18,7 +18,7 @@
             - Modo Super Fichas: En este modo, basandonos en las reglas del modo Clásico, añadiremos unas __Super Fichas__. 
             Al comienzo del juego, ambos usuarios deberán elegir dos _Super Fichas_ de las cuatro opciones que ofrecemos, ya sean repetidas o diferentes. 
             Estas fichas podrán usarse durante el juego con el objetivo de generar una ventaja para sí mismo o ya sea una desventaja para el adversario. 
-            Las __Super Fichas__ que ofrecemos son; Bomba, Yunque, Flecha y Hielo.
+            Las __Super Fichas__ que ofrecemos son; Bomba, Yunque y Flecha.
  
             - Modo Pop Out: En este modo, en cada turno el jugador decidirá si tirar una ficha suya que esté en la última fila, o si colocar una ficha nueva.
  
