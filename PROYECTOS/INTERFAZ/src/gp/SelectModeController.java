@@ -141,4 +141,13 @@ public class SelectModeController {
 		stage.setScene(scene);
 		stage.show();
     }
+    
+    @FXML
+    void switchToScene2(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("SEGUNDA PORTADA.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
 }

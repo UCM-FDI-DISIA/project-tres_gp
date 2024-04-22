@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gp.SelectModeController">
    <children>
@@ -29,5 +30,10 @@
       </ImageView>
       <Button mnemonicParsing="false" onMouseClicked="#switchToSceneLocOMult" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="448.0" prefWidth="318.0" />
       <Button layoutX="319.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#switchToSceneDifIA" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="449.0" prefWidth="317.0" />
+      <Button mnemonicParsing="false" onMouseClicked="#switchToScene2" prefHeight="30.0" prefWidth="72.0" text="Back">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
