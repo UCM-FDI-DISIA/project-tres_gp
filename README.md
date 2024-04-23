@@ -50,6 +50,8 @@
 # **Descarga del proyecto** 
   El proyecto está separado en distintos tags y releases según las entregas, podrás descargar cada versión yendo a [releases](https://github.com/UCM-FDI-DISIA/project-tres_gp/releases), o 
   para clonar el proyecto actual, deberás utilizar el siguiente [enlace](https://github.com/UCM-FDI-DISIA/project-tres_gp.git).
+  
+  Para hacer run, deberás asegurarte de añadir los jars de la carpeta lib al classpath, luego en elarguments VM del run configurations deberás poner lo siguiente: --module-path 'C:\JavaFX\lib' --add-modules javafx.controls,javafx.fxml
 
 # **Estructura del código**
 
