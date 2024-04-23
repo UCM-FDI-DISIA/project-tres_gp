@@ -136,14 +136,32 @@ public class popOutController {
     @FXML
     void popOut(MouseEvent event) {
     	Node source = (Node) event.getSource();
-	    Node parent = source;
-	    parent = parent.getParent();
-	    GridPane gridPane = (GridPane) parent.getParent();
-	    Integer columnaInteger = GridPane.getColumnIndex(parent);
+        Node parent = source.getParent();
+        GridPane gridPane = null;
 
-	    // Verificar si la columna es null y asignar 0 como valor predeterminado
-	    int columna = (columnaInteger != null) ? columnaInteger : 0;
-    	game.popOut(columna, gridPane);
+        // Verificar si el nodo padre es un GridPane
+        if (parent instanceof GridPane) {
+            gridPane = (GridPane) parent;
+        } else {
+            // Si el nodo padre no es un GridPane, buscar el GridPane en los hijos del padre
+            if (parent instanceof Parent) {
+                for (Node child : ((Parent) parent).getChildrenUnmodifiable()) {
+                    if (child instanceof GridPane) {
+                        gridPane = (GridPane) child;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Verificar si se encontró un GridPane
+        if (gridPane != null) {
+            Integer columnaInteger = GridPane.getColumnIndex(source);
+            int columna = (columnaInteger != null) ? columnaInteger : 0;
+            game.popOut(columna, gridPane);
+        } else {
+            System.err.println("No se encontró un GridPane como nodo padre o hijo.");
+        }
     }
     
     @FXML
