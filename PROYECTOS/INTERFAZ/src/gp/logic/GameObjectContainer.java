@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import gp.GameObjects.GameObject;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
@@ -130,33 +131,64 @@ public class GameObjectContainer {
 	}
 	
 	private void makePiecesFall(GridPane gridPane) {
-	    for (int col = 0; col < Game.DIM_X; col++) {
-	        for (int row = Game.DIM_Y - 1; row > 0; row--) { // Empieza desde la penúltima fila hacia arriba
-	            Position currentPos = new Position(col, row);
-	            GameObject currentObject = findObject(currentPos);
-	            Position nextPos = new Position(col, row-1);
-	            GameObject nextObject = findObject(nextPos);
-	            if (currentObject == null && nextObject != null) {
-	                movePiece(nextObject, currentPos); // Asume que esto actualiza la posición en tu modelo de datos
-	                movePieceInGridPane(gridPane, col, nextObject.getPosition().getRow(), nextObject.getPosition().getRow()+1);
+		for (int col = 0; col < Game.DIM_X; col++) {
+		    for (int row = Game.DIM_Y - 1; row >= 0; row--) {
+		        Position currentPos = new Position(col, row);
+		        GameObject currentObject = findObject(currentPos);
+
+		        if (currentObject == null) {
+		            Position abovePos = new Position(col, row - 1);
+		            GameObject aboveObject = findObject(abovePos);
+		           
+
+		            if (aboveObject != null) {
+		                System.out.println("Moving piece from " + abovePos + " to " + currentPos); // Debug line
+		                objects.remove(aboveObject);
+		                movePiece(findObject(abovePos), currentPos);
+		                movePieceInGridPane(gridPane, col, row - 1, row);	                
+		            }	            
+		        }	        
+		    }
+		}
+	    // After moving pieces internally, update the view
+	    Platform.runLater(() -> {
+	        gridPane.requestLayout();
+	    });
+
+		//Esto sirve para ver por consola el estado actual del juego, no lo que muestra JavaFx, para comprobar inconsistencias
+	    for (int row = 0; row < Game.DIM_Y; row++) {
+	        for (int col = 0; col < Game.DIM_X; col++) {
+	            GameObject obj = findObject(new Position(col, row));
+	            if (obj != null) {
+	                System.out.print(obj.getTurn() + " ");
+	            } else {
+	                System.out.print("- ");
 	            }
 	        }
+	        System.out.println();
 	    }
+	    System.out.println();
 	}
 
-	private void movePieceInGridPane(GridPane gridPane, int col, int originalRow, int newRow) {
-	    Node nodeToMove = null;
+
+	private Node findNodeInGridPane(GridPane gridPane, int col, int row) {
 	    for (Node child : gridPane.getChildren()) {
 	        if (GridPane.getColumnIndex(child) != null && GridPane.getColumnIndex(child) == col &&
-	                GridPane.getRowIndex(child) != null && GridPane.getRowIndex(child) == originalRow) {
-	            nodeToMove = child;
-	            break;
+	                GridPane.getRowIndex(child) != null && GridPane.getRowIndex(child) == row) {
+	            return child;
 	        }
 	    }
-
-	    if (nodeToMove != null) {
-	        GridPane.setRowIndex(nodeToMove, newRow); // Mueve la ficha a la nueva fila
-	    }
+	    return null;
+	}
+	
+	private void movePieceInGridPane(GridPane gridPane, int col, int originalRow, int newRow) {
+	    Platform.runLater(() -> {
+	        Node nodeToMove = findNodeInGridPane(gridPane, col, originalRow);
+	        
+	        if (nodeToMove != null) {
+	            GridPane.setRowIndex(nodeToMove, newRow); // Mueve la ficha a la nueva fila
+	        }
+	    });
 	}
 
 
@@ -252,23 +284,21 @@ public class GameObjectContainer {
 	}
 
 	public void popOut(int col, GridPane gridPane) {
-	    // Asumiendo que Game.DIM_Y es la dimensión vertical máxima y las filas comienzan desde 0
 	    GameObject object = findObject(new Position(col, Game.DIM_Y - 1));
+	    
 	    if (object != null) {
-	        remove(object); // Supongamos que esto elimina el objeto lógicamente de tu estructura de datos
-	        // Ahora, elimina visualmente la ficha
-	        Node nodeToRemove = null;
-	        for (Node child : gridPane.getChildren()) {
-	            // Busca un nodo en la posición correcta
-	            if (GridPane.getColumnIndex(child) != null && GridPane.getColumnIndex(child) == col &&
-	                    GridPane.getRowIndex(child) != null && GridPane.getRowIndex(child) == Game.DIM_Y - 1) {
-	                nodeToRemove = child;
-	                break;
-	            }
-	        }
+	        System.out.println("Objeto existente");
+	        
+	        // Elimina visualmente la ficha
+	        Node nodeToRemove = findNodeInGridPane(gridPane, col, Game.DIM_Y - 1);
 	        if (nodeToRemove != null) {
-	            gridPane.getChildren().remove(nodeToRemove); // Elimina la ficha del GridPane
+	            Platform.runLater(() -> {
+	                gridPane.getChildren().remove(nodeToRemove);
+	                gridPane.requestLayout(); // Solicita una actualización de layout
+	            });
 	        }
+	        
+	        remove(object);
 	        makePiecesFall(gridPane); // Hacer que las piezas "caigan"
 	    }
 	}
