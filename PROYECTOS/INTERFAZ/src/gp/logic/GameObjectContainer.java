@@ -143,7 +143,6 @@ public class GameObjectContainer {
 
 		            if (aboveObject != null) {
 		                System.out.println("Moving piece from " + abovePos + " to " + currentPos); // Debug line
-		                objects.remove(aboveObject);
 		                movePiece(findObject(abovePos), currentPos);
 		                movePieceInGridPane(gridPane, col, row - 1, row);	                
 		            }	            
