@@ -97,9 +97,6 @@ public class popOutController {
         try {
             ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
             int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
-            
-            Position pos = new Position(columna, fila);
-            game.addObject(new Piece(game, pos));
 
             // Obtener el índice del nodo que desencadena el evento
             int index = gridPane.getChildren().indexOf(source);
