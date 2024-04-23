@@ -9,6 +9,7 @@ public class Piece extends GameObject{
 		super(game, pos);
 	}
 	
+	
 	public Piece(Game game, Position pos, int turn) {
 		super(game, pos, turn);
 	}
@@ -16,16 +17,13 @@ public class Piece extends GameObject{
 	public Piece() {
 		super();
 	}
-	public String toString() {
-		if (turn == 1) return Messages.FICHA1;
-		else return Messages.FICHA2;
-	}
+
 
 	@Override
 	protected String getSymbol() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 }

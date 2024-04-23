@@ -336,6 +336,9 @@ public class GameObjectContainer {
 	        }
 	    }
 	}
+	public List<List<Position>> getWinners() {
+		return winners;
+	}
 
 
 

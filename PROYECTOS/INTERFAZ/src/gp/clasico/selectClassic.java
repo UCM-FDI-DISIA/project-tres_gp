@@ -105,12 +105,15 @@ public class selectClassic {
             int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
             gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
             if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
-                System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
-                // Mostrar una alerta o pantalla de victoria
-                Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
-                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
-                GridPane.setHalignment(alertRoot, HPos.CENTER);
-                GridPane.setValignment(alertRoot, VPos.CENTER);
+            	List<List<Position>> winners = game.getWinners();
+            	for (List<Position> winner : winners) {
+            	    for (Position pos : winner) {
+                    	Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
+            	        fila = pos.getRow();
+            	        columna = pos.getCol();
+            	        gridPane.add(fichaGanadora, columna, fila);
+            	    }
+            	}
             } else {
                 game.update(); // Actualiza el estado del juego
             }

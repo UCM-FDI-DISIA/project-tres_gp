@@ -391,5 +391,8 @@ public class Game {
 	        return getBestColumn();
 	    }
 	}
+	public List<List<Position>> getWinners() {
+		return container.getWinners();
+	}
 
 }

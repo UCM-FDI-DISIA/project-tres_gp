@@ -20,6 +20,8 @@ public class Messages {
 	public static final String ANVIL = "+";
 	public static final String ARROW = "➤";
 	public static final String ICE = "❏";
+	public static final String WIN = "▇";
+
 		
 	//Commands
 	

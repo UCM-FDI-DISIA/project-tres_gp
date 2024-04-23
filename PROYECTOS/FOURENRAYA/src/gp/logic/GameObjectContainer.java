@@ -28,6 +28,10 @@ public class GameObjectContainer {
         }
         return draw;
     }
+	
+	public List<List<Position>> getWinners(){
+		return winners;
+	}
 
 	public void add(GameObject object) {
 		objects.add(object);
@@ -208,6 +212,8 @@ public class GameObjectContainer {
 		for (int i = 0; i < length; i++) {
 			Position newPos = new Position(pos.getCol() + i * dir.getY(),
 					pos.getRow() + i * dir.getX());
+			GameObject currentObject = findObject(newPos);
+			currentObject.changeWinner();
 			positionsList.add(newPos);
 		}
 		winners.add(positionsList);

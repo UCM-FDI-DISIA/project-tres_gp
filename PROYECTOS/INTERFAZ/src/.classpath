@@ -6,13 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/Alvaro/Carrera/2-Segundo/Segundo Cuatrimestre/Gestión de Proyectos Software/project-tres_gp/PROYECTOS/INTERFAZ/lib/javafx-swt.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path=""/>
 </classpath>
