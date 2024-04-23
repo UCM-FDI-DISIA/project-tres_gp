@@ -150,4 +150,13 @@ public class SelectModeController {
 		stage.setScene(scene);
 		stage.show();
     }
+    
+    @FXML
+    void switchToNewContinue(MouseEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("nueva-continuar partida.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+    }
 }
