@@ -37,9 +37,10 @@
             </Text>
             <MenuButton fx:id="menuButton" ellipsisString="" layoutX="4.0" layoutY="1.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="601.0" style="-fx-border-color: black;" text="Menú">
               <items>
-                <MenuItem mnemonicParsing="false" text="Guardar" />
+                <MenuItem mnemonicParsing="false" onAction="#guardarPartida" text="Guardar Partida" />
                 <MenuItem fx:id="btnRestart" mnemonicParsing="false" onAction="#switchToTableroNormal" text="Reiniciar Partida" />
                   <MenuItem fx:id="btnVolver" mnemonicParsing="false" onAction="#switchToScene2Menu" text="Salir" />
+                  <MenuItem fx:id="btnRestaurar" mnemonicParsing="false" onAction="#restaurarPartida" text="Restaurar Partida" />
               </items>
                <font>
                   <Font name="MV Boli" size="20.0" />
@@ -47,7 +48,7 @@
             </MenuButton>
          </children>
       </AnchorPane>
-      <GridPane layoutX="95.0" layoutY="-5.0" prefHeight="407.0" prefWidth="407.0">
+      <GridPane fx:id="gridPane" layoutX="95.0" layoutY="-5.0" prefHeight="407.0" prefWidth="407.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

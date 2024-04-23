@@ -33,4 +33,29 @@ public abstract class GameObject {
 	
 	public int getTurn() {return turn;}
 	
+	// Serializa esta Piece a un String
+    public String serialize() {
+        return pos.getCol() + "," + pos.getRow() + "," + turn;
+    }
+
+    // Deserializa un String a un Piece
+    public static Piece deserialize(Game game, String data) {
+        String[] parts = data.split(",");
+        int col = Integer.parseInt(parts[0]);
+        int row = Integer.parseInt(parts[1]);
+        int turn = Integer.parseInt(parts[2]);
+        return new Piece(game, new Position(col, row), turn);
+    }
+    public static Position deserializePos(Game game, String data) {
+        String[] parts = data.split(",");
+        int col = Integer.parseInt(parts[0]);
+        int row = Integer.parseInt(parts[1]);
+        return new Position(col, row);
+    }
+    public static int deserializeTurn(Game game, String data) {
+        String[] parts = data.split(",");
+        int turn = Integer.parseInt(parts[2]);
+        return turn;
+    }
+
 }

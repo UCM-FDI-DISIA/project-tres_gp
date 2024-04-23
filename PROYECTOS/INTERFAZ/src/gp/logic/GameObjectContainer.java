@@ -20,7 +20,12 @@ public class GameObjectContainer {
 		objects = new ArrayList<>();
 		winners = new ArrayList<List<Position>>();
 	}
-	
+	public List<GameObject> getListGameObjects(){
+		return objects;
+	}
+	public void setListGameObjects(List<GameObject> lista){
+		this.objects = lista;
+	}
 	public String toString(Position pos) {
         String draw = "";
         for (int i=0;i<objects.size();i++) {

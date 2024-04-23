@@ -1,11 +1,16 @@
 package gp.clasico;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
 import gp.logic.Game;
 import gp.logic.Position;
@@ -31,12 +36,15 @@ public class selectClassic {
     private Scene scene;
     private Parent root;
     private Game game;
-    private List<GameMemento> savedStates;
+
     @FXML
     private MenuItem btnVolver;
     
     @FXML
     private MenuItem btnRestart;
+    
+    @FXML
+    private MenuItem btnRestaurar;
     
     @FXML
     private MenuItem btnConectar;
@@ -78,19 +86,6 @@ public class selectClassic {
     private static final int PUERTO = 12345;
     public selectClassic() {
         this.game = new Game();
-        this.savedStates = new ArrayList<>();
-    }
-    
-    private static class GameMemento{
-    	private final Game game;
-    	
-    	public GameMemento(Game game) {
-    		this.game = game;
-    	}
-    	
-    	public Game getSavedGame() {
-    		return game;
-    	}
     }
 
     @FXML
@@ -109,8 +104,6 @@ public class selectClassic {
             Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
             int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
             gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-            Position pos = new Position(columna, fila);
-            game.addObject(new Piece(game, pos));
             if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
                 System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
                 // Mostrar una alerta o pantalla de victoria
@@ -281,22 +274,44 @@ public class selectClassic {
     }
     
     @FXML
-    //Guardar el estado actual del juego
-	private void guardarPartida() {
-    	savedStates.add(new GameMemento(game));
-    }
-    
-    @FXML
-    //Restaurar el estado de la partida
-	private void restaurarPartida() {
-    	if(!savedStates.isEmpty()) {
-    		GameMemento memento = savedStates.remove(savedStates.size()-1);
-    		game = memento.getSavedGame();
-    	}else {
-    		System.out.println("No hay partidas que continuar");
-    	}
-    }
-    
+ // Guardar el estado actual del juego
+ private void guardarPartida(ActionEvent event) {
+     try {
+         File file = new File("partidas.txt");
+         if (file.exists()) {
+             file.delete(); // Eliminar el archivo si ya existe
+         }
+         
+         FileWriter writer = new FileWriter(file);
+         List<GameObject> pieces = game.getGameObjectContainer(); // Asumimos que esto retorna una lista de Pieces
+         for (GameObject piece : pieces) {
+             writer.write(piece.serialize() + "\n"); // Guarda cada Piece como una línea en el archivo
+         }
+         writer.close();
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+ }
+
+ @FXML
+ private void restaurarPartida(ActionEvent event) {
+     try {
+         BufferedReader reader = new BufferedReader(new FileReader("partidas.txt"));
+         List<GameObject> pieces = new ArrayList<>();
+         String line;
+         while ((line = reader.readLine()) != null) {
+             pieces.add(GameObject.deserialize(game, line));
+             Position p = GameObject.deserializePos(game, line);
+             int turn = GameObject.deserializeTurn(game, line);
+             Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turn)));
+             gridPane.add(ficha, p.getCol(), p.getRow());
+         }
+         reader.close();
+         game.setGameObjectContainer(pieces);
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+ }  
     
     @FXML
     private void colocarFichaFacil(MouseEvent event) {
@@ -435,6 +450,39 @@ public class selectClassic {
                 }
             }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void colocarFichaContinuar(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Node parent = source;
+        parent = parent.getParent();
+        GridPane gridPane = (GridPane) parent.getParent();
+        Integer columnaInteger = GridPane.getColumnIndex(parent);
+
+        // Verificar si la columna es null y asignar 0 como valor predeterminado
+        int columna = (columnaInteger != null) ? columnaInteger : 0;
+
+        try {
+            // Cargamos la ficha
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+            int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+            Position pos = new Position(columna, fila);
+            game.addObject(new Piece(game, pos));
+            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+                System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                // Mostrar una alerta o pantalla de victoria
+                Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                GridPane.setHalignment(alertRoot, HPos.CENTER);
+                GridPane.setValignment(alertRoot, VPos.CENTER);
+            } else {
+                game.update(); // Actualiza el estado del juego
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

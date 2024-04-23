@@ -34,6 +34,12 @@ public class Game {
 		return currentCycle;
 	}
 	
+	public List<GameObject> getGameObjectContainer() {
+		return container.getListGameObjects();
+	}
+	public void setGameObjectContainer(List<GameObject> lista) {
+		this.container.setListGameObjects(lista);
+	}
 	
 	public void update() {
 		if (!someoneWin()) {
