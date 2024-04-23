@@ -108,7 +108,7 @@ public class GameObjectContainer {
 	    else obj.getPosition().setCol(newPos.getCol());
 	}
 	
-	private void deletePiece(Position pos) {
+	public void deletePiece(Position pos) {
 		GameObject obj = findObject(pos);
 		if (obj != null)
 			objects.remove(obj);
