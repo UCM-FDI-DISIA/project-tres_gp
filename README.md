@@ -35,9 +35,9 @@
  
    ### *Método de desarrollo del Proyecto*
      Utilizaremos Scrum para gestionar el proyecto poco a poco, este método se basa en los siguientes 3 pilares, que son:  
-       **1. Transparencia:** en el que queremos que el desarrollo del proyecto sea visible por todos los miembros del equipo.  
-       **2. Inspección:** Queremos que se revise el progreso y resultados para identificar mejoras, incluyendo reuniones para ponernos al día de la situación del proyecto.  
-       **3. Adaptación:** Para adaptar  los aspectos que se desvían del proyecto.
+       1. Transparencia: en el que queremos que el desarrollo del proyecto sea visible por todos los miembros del equipo.  
+       2. Inspección: Queremos que se revise el progreso y resultados para identificar mejoras, incluyendo reuniones para ponernos al día de la situación del proyecto.  
+       3. Adaptación: Para adaptar  los aspectos que se desvían del proyecto.
    
    ### *Herramientas del Proyecto* 
    El desarrollo del proyecto lo haremos en Java, y para la interfaz gráfica utilizaremos JavaFx. Este software está escrito como una API de Java y que permite a los desarrolladores diseñar, 
@@ -123,7 +123,7 @@
   #### Proyectos
   En la sección de [proyectos](https://github.com/orgs/UCM-FDI-DISIA/projects/48), se encontrará el trabajo general que hay que hacer en el sprint actual, las historias de usuario
   #### Issues
-  En el apartado de [issues]((https://github.com/UCM-FDI-DISIA/project-tres_gp/issues), se publicará un poco más el día a día 
+  En el apartado de [issues](https://github.com/UCM-FDI-DISIA/project-tres_gp/issues), se publicará un poco más el día a día 
   del proyecto, problemas que se vayan teniendo, o pequeñas tareas que se vayan haciendo para completar un apartado de la sección proyectos.
   #### Tests
   Por motivos de organización, anticipación y depuración, se llevarán a cabo tests para comprobar que funcionan correctamente las funciones programadas, y comprobar que no tienen un error no 
