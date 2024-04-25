@@ -29,7 +29,13 @@ public class SuperfichaController {
 	private boolean Bomb;
 	private boolean Anvil;
 	private boolean Arrow;
-	private boolean Ice;
+	private int contBomb1 = 2;
+	private int contBomb2 = 2;
+	private int contAnvil1 = 2;
+	private int contAnvil2 = 2;
+	private int contArrow1 = 2;
+	private int contArrow2 = 2;
+	
     @FXML
     private Button btnBomba1;
 
@@ -64,12 +70,6 @@ public class SuperfichaController {
     private Button btnFlecha2;
 
     @FXML
-    private Button btnHielo1;
-
-    @FXML
-    private Button btnHielo2;
-
-    @FXML
     private MenuItem btnVolver;
     
     @FXML
@@ -102,27 +102,32 @@ public class SuperfichaController {
 	    	if(Bomb == true) {
 	    		game.bomb(columna, gridPane);
 	    		Bomb = false;
+	    		if(game.getTurn() == 1)
+	    			contBomb1--;
+	    		else
+	    			contBomb2--;
 	    	}
 	    	else if(Arrow == true) {
 	    		game.arrow(columna, gridPane);
 	    		Arrow = false;
+	    		if(game.getTurn() == 1)
+	    			contArrow1--;
+	    		else
+	    			contArrow2--;
 	    	}
 	    	else if(Anvil == true) {
 	    		game.anvil(columna, gridPane);
 	    		Anvil = false;
-	    	}
-	    	else if(Ice ==true) {
-	    		game.ice(columna, gridPane);
-	    		Ice = false;
-	    		
+	    		if(game.getTurn() == 1)
+	    			contAnvil1--;
+	    		else
+	    			contAnvil2--;
 	    	}
 	    	else {
 		        // Cargamos la ficha
 		        Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
 		        int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
 		        gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-		        Position pos = new Position(columna, fila);
-		        game.addObject(new Piece(game, pos));
 	    	}
 	    	if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
 	            System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
@@ -180,31 +185,44 @@ public class SuperfichaController {
     
     @FXML
     void bombButton(MouseEvent event) {
-    	Bomb = true;
+    	if (Bomb)
+    		Bomb = false;
+    	else
+    		Bomb = true;
+    	if(game.getTurn() == 1 && contBomb1 == 0)
+    		Bomb = false;
+    	if(game.getTurn() == 2 && contBomb2 == 0)
+    		Bomb = false;
     	Anvil = false;
     	Arrow = false;
-    	Ice = false;
     }
     @FXML
     void anvilButton(MouseEvent event) {
     	Bomb = false;
-    	Anvil = true;
+    	if (Anvil)
+    		Anvil = false;
+    	else
+    		Anvil = true;
+    	if(game.getTurn() == 1 && contAnvil1 == 0)
+    		Anvil = false;
+    	if(game.getTurn() == 2 && contAnvil2 == 0)
+    		Anvil = false;
     	Arrow = false;
-    	Ice = false;
-    }
-    @FXML
-    void iceButton(MouseEvent event) {
-    	Bomb = false;
-    	Anvil = false;
-    	Arrow = false;
-    	Ice = true;
     }
     @FXML
     void arrowButton(MouseEvent event) {
     	Bomb = false;
     	Anvil = false;
-    	Arrow = true;
-    	Ice = false;
+    	if (Arrow)
+    		Arrow = false;
+    	else
+    		Arrow = true;
+    	if(game.getTurn() == 1 && contArrow1 == 0)
+    		Arrow = false;
+    	if(game.getTurn() == 2 && contArrow2 == 0)
+    		Arrow = false;
     }
 
 }
+
+

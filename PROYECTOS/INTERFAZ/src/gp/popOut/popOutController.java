@@ -159,6 +159,7 @@ public class popOutController {
         } else {
             System.err.println("No se encontró un GridPane como nodo padre o hijo.");
         }
+        game.update();
     }
     
     @FXML
@@ -189,3 +190,5 @@ public class popOutController {
         }
     }
 }
+
+

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import gp.GameObjects.GameObject;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
@@ -69,55 +70,74 @@ public class GameObjectContainer {
 			if (fitIn(1, dir, pos)) {
 				Position newPos = new Position(pos.getCol() + 1 * dir.getY(),
 						pos.getRow() + 1 * dir.getX());
-				deletePiece(newPos);
+				deletePiece(newPos, gridPane);
 			}
 		}
 		
 		GameObject object = findObject(pos);
 		object.die();
-		makePiecesFall(gridPane);
+		for(int i = 0; i < 3; i++)
+			makePiecesFall(gridPane);
 	}
 	
 	public void anvil(Position pos, GridPane gridPane) {
 		for (int i = pos.getRow() + 1; i < Game.DIM_Y; i++) {
 			Position newPos = new Position(pos.getCol(), i);
-			GameObject currentObject = findObject(newPos);
-			objects.remove(currentObject);
+			deletePiece(newPos, gridPane);
 		}
 		GameObject object = findObject(pos);
 		object.die();
-		makePiecesFall(gridPane);
+		for(int i = 0; i < 5; i++)
+			makePiecesFall(gridPane);
 	}
 	
 	public void arrow(Position pos, GridPane gridPane) {
-		for (int i = 0; i <= pos.getCol(); i++) {
-			Position newPos = new Position(i, pos.getRow());
-			GameObject currentObject = findObject(newPos);
-			if (currentObject != null) 
-	            movePieceLeft(currentObject);
+		if(pos.getCol() != 0) {
+			for (int i = 0; i <= pos.getCol()-1; i++) {
+				Position newPos = new Position(i, pos.getRow());
+				GameObject currentObject = findObject(newPos);
+				if (currentObject != null) {
+					movePieceLeft(gridPane, currentObject);
+				}
+			}	
+			Platform.runLater(() -> {
+		        gridPane.requestLayout();
+		    });
 		}
+		
 		GameObject object = findObject(pos);
 		object.die();
-		makePiecesFall(gridPane);
-	}
-	
-	public void ice(Position pos, GridPane gridPane) {
-		GameObject object = findObject(pos);
-		object.die();
+		for(int i = 0; i < 5; i++)
+			makePiecesFall(gridPane);
 	}
 		
-	private void movePieceLeft(GameObject obj) {
+	private void movePieceLeft(GridPane gridPane, GameObject obj) {
 	    Position currentPos = obj.getPosition();
-	    Position newPos = new Position(currentPos.getCol() - 1, currentPos.getRow());
-	    if (newPos.getCol() < 0)
-	    	objects.remove(obj);
-	    else obj.getPosition().setCol(newPos.getCol());
+	    
+	    if (currentPos.getCol() == 0)
+	    	deletePiece(currentPos, gridPane);
+	    else {
+	    	Position newPos = new Position(currentPos.getCol() - 1, currentPos.getRow());
+	    	Node nodeToRemove = findNodeInGridPane(gridPane, currentPos.getCol(), currentPos.getRow());
+			if (nodeToRemove != null) {    
+				 gridPane.getChildren().remove(nodeToRemove); 
+				// Insertamos la ficha justo antes del nodo que desencadena el evento
+	            gridPane.add(nodeToRemove, currentPos.getCol() - 1, currentPos.getRow(), 1, 1);
+	                
+			}
+	    	obj.getPosition().setCol(newPos.getCol());
+	    }
 	}
 	
-	public void deletePiece(Position pos) {
+	public void deletePiece(Position pos, GridPane gridPane) {
 		GameObject obj = findObject(pos);
+		Node nodeToRemove = findNodeInGridPane(gridPane, pos.getCol(), pos.getRow());
 		if (obj != null)
 			objects.remove(obj);
+		if (nodeToRemove != null) {    
+            gridPane.getChildren().remove(nodeToRemove);
+            gridPane.requestLayout(); // Solicita una actualización de layout
+		}
 	}
 	
 	public GameObject findObject(Position pos) {
@@ -142,7 +162,6 @@ public class GameObjectContainer {
 		           
 
 		            if (aboveObject != null) {
-		                System.out.println("Moving piece from " + abovePos + " to " + currentPos); // Debug line
 		                movePiece(findObject(abovePos), currentPos);
 		                movePieceInGridPane(gridPane, col, row - 1, row);	                
 		            }	            
@@ -153,28 +172,17 @@ public class GameObjectContainer {
 	    Platform.runLater(() -> {
 	        gridPane.requestLayout();
 	    });
-
-		//Esto sirve para ver por consola el estado actual del juego, no lo que muestra JavaFx, para comprobar inconsistencias
-	    for (int row = 0; row < Game.DIM_Y; row++) {
-	        for (int col = 0; col < Game.DIM_X; col++) {
-	            GameObject obj = findObject(new Position(col, row));
-	            if (obj != null) {
-	                System.out.print(obj.getTurn() + " ");
-	            } else {
-	                System.out.print("- ");
-	            }
-	        }
-	        System.out.println();
-	    }
-	    System.out.println();
 	}
 
 
 	private Node findNodeInGridPane(GridPane gridPane, int col, int row) {
+		int contador = 0;
 	    for (Node child : gridPane.getChildren()) {
 	        if (GridPane.getColumnIndex(child) != null && GridPane.getColumnIndex(child) == col &&
 	                GridPane.getRowIndex(child) != null && GridPane.getRowIndex(child) == row) {
-	            return child;
+	        	contador++;
+	        	if (contador == 2 | col == 0)
+	        		return child;
 	        }
 	    }
 	    return null;
@@ -189,7 +197,6 @@ public class GameObjectContainer {
 	        }
 	    });
 	}
-
 
 	private void movePiece(GameObject obj, Position newPos) {
 	    obj.getPosition().setCol(newPos.getCol());
@@ -290,11 +297,9 @@ public class GameObjectContainer {
 	        
 	        // Elimina visualmente la ficha
 	        Node nodeToRemove = findNodeInGridPane(gridPane, col, Game.DIM_Y - 1);
-	        if (nodeToRemove != null) {
-	            Platform.runLater(() -> {
+	        if (nodeToRemove != null) {    
 	                gridPane.getChildren().remove(nodeToRemove);
 	                gridPane.requestLayout(); // Solicita una actualización de layout
-	            });
 	        }
 	        
 	        remove(object);
@@ -336,13 +341,14 @@ public class GameObjectContainer {
 	        }
 	    }
 	}
+
+
 	public List<List<Position>> getWinners() {
 		return winners;
 	}
 
 
-
-
-
 	
 }
+
+

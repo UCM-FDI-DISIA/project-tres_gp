@@ -8,7 +8,6 @@ import gp.GameObjects.Anvil;
 import gp.GameObjects.Arrow;
 import gp.GameObjects.Bomb;
 import gp.GameObjects.GameObject;
-import gp.GameObjects.Ice;
 import gp.GameObjects.Piece;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -168,25 +167,6 @@ public class Game {
 			container.arrow(pos, gridPane);
 	}
 	
-	public void ice(int col, GridPane gridPane){
-			int row= findRow(col);
-			Position pos = new Position(col, row);
-			addObject(new Ice(this, pos));
-			try {
-				Parent ficha = FXMLLoader.load(getClass().getResource("/gp/superfichas/FICHA HIELO J%s.fxml".formatted(getTurn())));
-				gridPane.add(ficha, col, row);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (!someoneWin()) {
-				currentCycle++;
-			}
-			container.ice(pos, gridPane);
-
-	}
-	
-	
 	public boolean isOnBoard(int col) {
 		return (col >= 0) && (col < Game.DIM_X );
 	}
@@ -300,7 +280,7 @@ public class Game {
 	            int score = minimax(0, false);
 	            Position pos = new Position(col, row);
 	            // Deshacer el movimiento simulado
-	            container.deletePiece(pos);
+	            container.deletePiece(pos, null);
 
 	            // Actualizar la mejor columna si se encontró un puntaje mejor
 	            if (score > bestScore) {
@@ -346,7 +326,7 @@ public class Game {
 	                
 	                int score = minimax(depth + 1, false);
 	                // Deshacer el movimiento simulado
-	                container.deletePiece(pos);
+	                container.deletePiece(pos, null);
 	                bestScore = Math.max(bestScore, score);
 	            }
 	        }
@@ -359,7 +339,7 @@ public class Game {
 	                Position pos = new Position(col, row);
 	                int score = minimax(depth + 1, true);
 	                // Deshacer el movimiento simulado
-	                container.deletePiece(pos);
+	                container.deletePiece(pos, null);
 	                bestScore = Math.min(bestScore, score);
 	            }
 	        }
