@@ -131,7 +131,10 @@ public class GameObjectContainer {
 	
 	public void deletePiece(Position pos, GridPane gridPane) {
 		GameObject obj = findObject(pos);
-		Node nodeToRemove = findNodeInGridPane(gridPane, pos.getCol(), pos.getRow());
+		Node nodeToRemove = null;
+		if(gridPane != null) {
+			nodeToRemove = findNodeInGridPane(gridPane, pos.getCol(), pos.getRow());
+		}
 		if (obj != null)
 			objects.remove(obj);
 		if (nodeToRemove != null) {    
