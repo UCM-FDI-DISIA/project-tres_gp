@@ -155,7 +155,7 @@ public class GameObjectContainer {
 	
 	private void makePiecesFall(GridPane gridPane) {
 		for (int col = 0; col < Game.DIM_X; col++) {
-		    for (int row = Game.DIM_Y - 1; row >= 0; row--) {
+		    for (int row = Game.DIM_Y - 1; row > 0; row--) {
 		        Position currentPos = new Position(col, row);
 		        GameObject currentObject = findObject(currentPos);
 
@@ -175,6 +175,18 @@ public class GameObjectContainer {
 	    Platform.runLater(() -> {
 	        gridPane.requestLayout();
 	    });
+	    for (int row = 0; row < Game.DIM_Y; row++) {
+	        for (int col = 0; col < Game.DIM_X; col++) {
+	            GameObject obj = findObject(new Position(col, row));
+	            if (obj != null) {
+	                System.out.print(obj.getTurn() + " ");
+	            } else {
+	                System.out.print("- ");
+	            }
+	        }
+	        System.out.println();
+	    }
+	    System.out.println();
 	}
 
 
@@ -184,7 +196,7 @@ public class GameObjectContainer {
 	        if (GridPane.getColumnIndex(child) != null && GridPane.getColumnIndex(child) == col &&
 	                GridPane.getRowIndex(child) != null && GridPane.getRowIndex(child) == row) {
 	        	contador++;
-	        	if (contador == 2 | col == 0)
+	        	if (contador == 2 | col == 0 | row == 0)
 	        		return child;
 	        }
 	    }

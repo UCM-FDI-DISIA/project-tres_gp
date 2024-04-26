@@ -29,7 +29,6 @@ public class popOutController {
 	private boolean Bomb;
 	private boolean Anvil;
 	private boolean Arrow;
-	private boolean Ice;
 	@FXML
 	private GridPane gridPane;
 	@FXML
@@ -98,7 +97,7 @@ public class popOutController {
             ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
             int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
 
-            // Obtener el índice del nodo que desencadena el evento
+            // Obtener el índ del nodo que desencadena el evento
             int index = gridPane.getChildren().indexOf(source);
 
             // Insertamos la ficha justo antes del nodo que desencadena el evento
@@ -139,7 +138,8 @@ public class popOutController {
         // Verificar si el nodo padre es un GridPane
         if (parent instanceof GridPane) {
             gridPane = (GridPane) parent;
-        } else {
+        } 
+        else {
             // Si el nodo padre no es un GridPane, buscar el GridPane en los hijos del padre
             if (parent instanceof Parent) {
                 for (Node child : ((Parent) parent).getChildrenUnmodifiable()) {
@@ -156,10 +156,29 @@ public class popOutController {
             Integer columnaInteger = GridPane.getColumnIndex(source);
             int columna = (columnaInteger != null) ? columnaInteger : 0;
             game.popOut(columna, gridPane);
+            game.update(); // Actualiza el estado del juego
+            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
+            	System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
+                // Mostrar una alerta o pantalla de victoria
+                Parent alertRoot;
+				try {
+					alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+				
+                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+                GridPane.setHalignment(alertRoot, HPos.CENTER);
+                GridPane.setValignment(alertRoot, VPos.CENTER);
+                } catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+                
         } else {
             System.err.println("No se encontró un GridPane como nodo padre o hijo.");
         }
-        game.update();
+        
+        
+        
     }
     
     @FXML
