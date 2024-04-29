@@ -14,8 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 
 public class Game {
-	public static int DIM_X = 7;
-	public static final int DIM_Y = 6;
+	public  static int DIM_X = 7;
+	public  final static int DIM_Y = 6;
 	private int currentCycle;
 	private boolean bot = false;
 	private GameObjectContainer container;
@@ -58,7 +58,7 @@ public class Game {
 	
 	public void fiveInRow (GridPane gridPane){
 		if (currentCycle == 0) {
-			DIM_X = 9;
+			DIM_X = 11;
 			int random = generateRandomNumber(1,2);
 			if (random == 1) {
 				placeRow(1,2, gridPane);
@@ -78,12 +78,12 @@ public class Game {
 		                gridPane.add(ficha, 1, i + 2);
 						ficha = FXMLLoader.load(getClass().getResource(
 								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
-		                gridPane.add(ficha, DIM_X + 2, i + 2);
+		                gridPane.add(ficha, DIM_X, i + 2);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					addObject(new Piece(this, new Position(0, i + 2), first));
-					addObject(new Piece(this, new Position(DIM_X + 2, i + 2), second));
+					addObject(new Piece(this, new Position(0, i), first));
+					addObject(new Piece(this, new Position(DIM_X, i), second));
 				}
 				else {
 					try {
@@ -92,12 +92,12 @@ public class Game {
 		                gridPane.add(ficha, 1, i + 2);
 						ficha = FXMLLoader.load(getClass().getResource(
 								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
-		                gridPane.add(ficha, DIM_X + 2, i + 2);
+		                gridPane.add(ficha, DIM_X, i + 2);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}                
-					addObject(new Piece(this, new Position(0, i + 2), second));
-					addObject(new Piece(this, new Position(DIM_X + 2, i + 2), first));
+					addObject(new Piece(this, new Position(1, i), second));
+					addObject(new Piece(this, new Position(DIM_X, i), first));
 				}
 			}
 	}
@@ -168,7 +168,7 @@ public class Game {
 	}
 	
 	public boolean isOnBoard(int col) {
-		return (col >= 0) && (col < Game.DIM_X );
+		return (col >= 0) && (col < DIM_X);
 	}
 	public int findRow(int col){
 		return container.findRow(col);		
@@ -193,7 +193,9 @@ public class Game {
 	public boolean someoneWin() {
 		return container.isFinished(turn, DIM_X);
 	}
-
+	public boolean someoneWin5() {
+		return container.isFinished(turn, 9);
+	}
 	public int getTurn() {
 		return turn;
 	}
@@ -206,7 +208,7 @@ public class Game {
 	public List<Position> getFreePositions() {
 	    List<Position> freePositions = new ArrayList<>();
 
-	    for (int col = 0; col < Game.DIM_X; col++) {
+	    for (int col = 0; col < DIM_X; col++) {
 	        Integer nextFreeRow = container.findRow(col); // Suponiendo que esta función devuelve la siguiente fila libre
 	        if (nextFreeRow != null) {
 	            freePositions.add(new Position(col, nextFreeRow));
@@ -228,8 +230,8 @@ public class Game {
 
 	private int getScoreForPlayer(int player) {
 	    int totalScore = 0;
-	    for (int col = 0; col < Game.DIM_X; col++) {
-	        for (int row = 0; row < Game.DIM_Y; row++) {
+	    for (int col = 0; col < DIM_X; col++) {
+	        for (int row = 0; row < DIM_Y; row++) {
 	            Position pos = new Position(col, row);
 	            GameObject obj = container.findObject(pos);
 	            if (obj != null && obj.getTurn() == player) {
@@ -271,7 +273,7 @@ public class Game {
 	    int bestScore = Integer.MIN_VALUE;
 	    int bestCol = -1;
 
-	    for (int col = 0; col < Game.DIM_X; col++) {
+	    for (int col = 0; col < DIM_X; col++) {
 	        if (isOnBoard(col)) {
 	            // Simular el movimiento del bot en esta columna
 	            int row = place(col);
@@ -319,7 +321,7 @@ public class Game {
 
 	    if (isMaximizingPlayer) {
 	        int bestScore = Integer.MIN_VALUE;
-	        for (int col = 0; col < Game.DIM_X; col++) {
+	        for (int col = 0; col < DIM_X; col++) {
 	            if (isOnBoard(col)) {
 	                int row = place(col);
 	                Position pos = new Position(col, row);
@@ -333,7 +335,7 @@ public class Game {
 	        return bestScore;
 	    } else {
 	        int bestScore = Integer.MAX_VALUE;
-	        for (int col = 0; col < Game.DIM_X; col++) {
+	        for (int col = 0; col < DIM_X; col++) {
 	            if (isOnBoard(col)) {
 	                int row = place(col);
 	                Position pos = new Position(col, row);

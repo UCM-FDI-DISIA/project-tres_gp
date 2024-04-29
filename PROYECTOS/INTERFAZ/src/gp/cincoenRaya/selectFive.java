@@ -28,10 +28,11 @@ public class selectFive {
 	
 	
     @FXML
-    private Button btnEmpieza;
+    private MenuItem btnEmpieza;
     
     @FXML
     private Button btnFicha;
+    
     @FXML
     private Button btnFicha2;
 
@@ -83,9 +84,7 @@ public class selectFive {
                 		"FICHA J%s 5 IN ROW.fxml".formatted(game.getTurn())));
                 int fila = game.place(columna);
                 gridPane.add(ficha, columna, fila + 2);
-        		Position pos = new Position(columna, fila);
-        		game.addObject(new Piece(game, pos));
-        		if(game.someoneWin()) {
+        		if(game.someoneWin5()) {
         			System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
         			Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
         			gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
@@ -99,7 +98,7 @@ public class selectFive {
         //}
     }
     @FXML
-    private void configurarTablero(MouseEvent event) {
+    private void configurarTablero(ActionEvent event) {
     	game.fiveInRow(gridPane);
     }
     @FXML

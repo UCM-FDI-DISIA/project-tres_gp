@@ -1,0 +1,176 @@
+package gp.clasico;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class selectClassic {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @FXML
+    private MenuItem btnConectar;
+
+    @FXML
+    private Button btnFicha;
+
+    @FXML
+    private Button btnFicha1;
+
+    @FXML
+    private Button btnFicha2;
+
+    @FXML
+    private Button btnFicha3;
+
+    @FXML
+    private Button btnFicha4;
+
+    @FXML
+    private Button btnFicha5;
+
+    @FXML
+    private Button btnFicha51;
+
+    @FXML
+    private MenuItem btnRestart;
+
+    @FXML
+    private MenuItem btnVolver;
+
+    @FXML
+    private MenuButton menuButton;
+    
+    @FXML
+    private GridPane gridPane;
+    
+    private Socket socket;
+    private DataInputStream fromServer;
+    private Socket serverSocket;
+    private DataOutputStream toServer;
+    private static final int PUERTO = 12345;
+
+    @FXML
+    void switchToScene2(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void switchToSceneInicial(ActionEvent event) throws IOException {
+        MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+        Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+        Scene scene = parent.getScene(); // Obtener la escena
+        Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+        root = FXMLLoader.load(getClass().getResource("/gp/PORTADA INICIAL.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void switchToTableroNormal(ActionEvent event) throws IOException {
+        MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
+        Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
+        Scene scene = parent.getScene(); // Obtener la escena
+        Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
+        root = FXMLLoader.load(getClass().getResource("TABLERO CLASSIC.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void onMouseEntered(MouseEvent event) {
+        // Código para el efecto al entrar con el mouse
+        Button button = (Button) event.getSource();
+        button.setOpacity(0.35); // Cambiar la opacidad para simular una luz encendida
+    }
+
+    @FXML
+    void onMouseExited(MouseEvent event) {
+        // Código para revertir el efecto al salir con el mouse
+        Button button = (Button) event.getSource();
+        button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
+    }
+   
+    @FXML
+    private void conectar(ActionEvent event) {
+        try {
+            socket = new Socket("localhost", 12345);
+            fromServer = new DataInputStream(socket.getInputStream());
+            toServer = new DataOutputStream(socket.getOutputStream());
+            // Iniciar un hilo para recibir y procesar las jugadas del servidor
+            Thread receiverThread = new Thread(this::receiveMovesFromServer);
+            receiverThread.start(); // Iniciar el hilo para recibir jugadas del servidor
+            System.out.println("Conectado al servidor.");
+        } catch (IOException e) {
+            System.out.println("Error al conectar con el servidor: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void colocarFicha(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Node parent = source.getParent();
+        GridPane gridPane = (GridPane) parent.getParent();
+        Integer columnaInteger = GridPane.getColumnIndex(parent);
+        int columna = (columnaInteger != null) ? columnaInteger : 0;
+
+        try {
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(1)));
+            toServer.writeInt(columna); // Enviamos la columna al servidor
+            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
+            
+            // Recibimos la fila calculada por el servidor
+            int filaServidor = fromServer.readInt();
+            
+            // Añadimos la ficha físicamente al GridPane
+            gridPane.add(ficha, columna, filaServidor);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void receiveMovesFromServer() {
+        try {
+            while (true) {
+                int filaServidor = fromServer.readInt();    // Leer la fila de la jugada
+                int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
+                Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
+                gridPane.add(fichaServidor, columnaServidor, filaServidor);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void desconectar(ActionEvent event) {
+        try {
+            if (socket != null && !socket.isClosed()) {
+                socket.close();
+            }
+            System.out.println("Desconectado del servidor.");
+        } catch (IOException e) {
+            System.out.println("Error al desconectar: " + e.getMessage());
+        }
+    }
+
+}
+

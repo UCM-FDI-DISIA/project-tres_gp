@@ -1,15 +1,14 @@
 package gp.clasico;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
 import gp.logic.Game;
@@ -79,14 +78,11 @@ public class selectClassic {
     @FXML
     private MenuButton menuButton;
     
-    private ServerSocket servidorSocket;
-    private Socket clienteSocket;
-    private PrintWriter outputToServer;
-    private BufferedReader inputFromServer;
+    private ServerSocket serverSocket;
+    private Socket clientSocket;
+    private DataOutputStream toClient;
+    private DataInputStream fromClient;
     private static final int PUERTO = 12345;
-    public selectClassic() {
-        this.game = new Game();
-    }
 
     @FXML
     private void colocarFicha(MouseEvent event) {
@@ -140,7 +136,6 @@ public class selectClassic {
         root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
-        cerrarConexion();
     }
 
     @FXML
@@ -167,154 +162,141 @@ public class selectClassic {
         Button button = (Button) event.getSource();
         button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
     }
+
+    public selectClassic() {
+        this.game = new Game();
+    }
     
-   
-
-    @FXML
-    private void conectarAlServidor(ActionEvent event) {
-        new Thread(() -> {
-            try {
-                servidorSocket = new ServerSocket(PUERTO);
-                System.out.println("Servidor escuchando en la dirección: " + servidorSocket.getInetAddress().getHostAddress());
-                System.out.println("Puerto: " + servidorSocket.getLocalPort());
-                System.out.println(servidorSocket);
-                clienteSocket = servidorSocket.accept();
-                System.out.println("Conexión entrante desde: " + clienteSocket.getInetAddress().getHostAddress());
-
-                // Inicializar outputToServer e inputFromServer
-                outputToServer = new PrintWriter(clienteSocket.getOutputStream(), true);
-                inputFromServer = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
+    public void conectar(ActionEvent event) {
+        try {
+            serverSocket = new ServerSocket(12345);
+            System.out.println("Servidor iniciado, esperando al cliente...");
+            new Thread(() -> {
+                try {
+                    clientSocket = serverSocket.accept();
+                    System.out.println("Cliente conectado: " + clientSocket.getInetAddress().getHostAddress());
+                    fromClient = new DataInputStream(clientSocket.getInputStream());
+                    toClient = new DataOutputStream(clientSocket.getOutputStream());
+                } catch (IOException e) {
+                    System.out.println("Error al aceptar conexión del cliente: " + e.getMessage());
+                }
+            }).start();
+        } catch (IOException e) {
+            System.out.println("No se pudo iniciar el servidor: " + e.getMessage());
+        }
     }
 
     @FXML
     private void colocarFichaOnline(MouseEvent event) {
         Node source = (Node) event.getSource();
-        Node parent = source;
-        parent = parent.getParent();
+        Node parent = source.getParent();
         GridPane gridPane = (GridPane) parent.getParent();
         Integer columnaInteger = GridPane.getColumnIndex(parent);
-
-        // Verificar si la columna es null y asignar 0 como valor predeterminado
         int columna = (columnaInteger != null) ? columnaInteger : 0;
 
         try {
-            // Verificar si el socket está conectado
-            if (servidorSocket != null && !servidorSocket.isClosed()) {
-                // Envía la columna donde se colocó la ficha al servidor
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+            int fila = game.place(columna);  // Colocamos la ficha y obtenemos la fila donde se colocó
+            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
 
-                // Cargamos la ficha localmente
-                Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+            // Enviamos la fila y la columna al cliente para que coloque su ficha
+            enviarJugada(fila, columna);
 
-                // Obtener la fila donde se coloca la ficha
-                int fila = game.place(columna);
-                outputToServer.println(columna + " " + fila);
-                outputToServer.flush();
-                // Agregar la ficha al GridPane localmente
-                gridPane.add(ficha, columna, fila);
-
-                // Actualizar el estado del juego local
-                Position pos = new Position(columna, fila);
-                game.addObject(new Piece(game, pos));
-
-                // Recibe el estado actualizado del juego desde el servidor
-                String gameState = inputFromServer.readLine();
-                String[] gameStateParts = gameState.split(" ");
-
-                int filaServidor = Integer.parseInt(gameStateParts[0]);
-                int columnaServidor = Integer.parseInt(gameStateParts[1]);
-
-                // Cargar la ficha en el GridPane basado en el estado del servidor
-                Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
-                gridPane.add(fichaServidor, columnaServidor, filaServidor);
-
-                // Actualizar el estado del juego basado en el estado del servidor
-                Position posServidor = new Position(columnaServidor, filaServidor);
-                game.addObject(new Piece(game, posServidor));
-
-                // Si alguien gana después de colocar la ficha
-                if (game.someoneWin()) {
-                    System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
-                    // Mostrar una alerta o pantalla de victoria
-                    Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
-                    gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
-                    GridPane.setHalignment(alertRoot, HPos.CENTER);
-                    GridPane.setValignment(alertRoot, VPos.CENTER);
-                    cerrarConexion();
-                } else {
-                    game.update(); // Actualiza el estado del juego
+            if (game.someoneWin()) {
+                List<List<Position>> winners = game.getWinners();
+                for (List<Position> winner : winners) {
+                    for (Position pos : winner) {
+                        Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
+                        int filaGanadora = pos.getRow();
+                        int columnaGanadora = pos.getCol();
+                        gridPane.add(fichaGanadora, columnaGanadora, filaGanadora);
+                    }
                 }
             } else {
-                // Mostrar un mensaje de error si no se puede conectar al servidor
-                System.err.println("Pulsa el botón Conectar del Menú");
+                game.update(); // Actualizamos el estado del juego
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void cerrarConexion() {
+    private void enviarJugada(int fila, int columna) {
         try {
-            if (inputFromServer != null) {
-                inputFromServer.close();
-            }
-            if (outputToServer != null) {
-                outputToServer.close();
-            }
-            if (clienteSocket != null) {
-                clienteSocket.close();
-            }
-            if (servidorSocket != null) {
-                servidorSocket.close();
-            }
+            toClient.writeInt(fila);
+            toClient.writeInt(columna);
+            toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
         } catch (IOException e) {
+            System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
             e.printStackTrace();
         }
     }
     
-    @FXML
- // Guardar el estado actual del juego
- private void guardarPartida(ActionEvent event) {
-     try {
-         File file = new File("partidas.txt");
-         if (file.exists()) {
-             file.delete(); // Eliminar el archivo si ya existe
-         }
-         
-         FileWriter writer = new FileWriter(file);
-         List<GameObject> pieces = game.getGameObjectContainer(); // Asumimos que esto retorna una lista de Pieces
-         for (GameObject piece : pieces) {
-             writer.write(piece.serialize() + "\n"); // Guarda cada Piece como una línea en el archivo
-         }
-         writer.close();
-     } catch (IOException e) {
-         e.printStackTrace();
-     }
- }
+    private void recibirJugada() {
+        try {
+            // Recibimos la columna enviada por el cliente
+            int columnaCliente = fromClient.readInt();
+            
+            // Realizamos la operación de game.place(columna) para obtener la fila correspondiente
+            int fila = game.place(columnaCliente);
+            
+            // Enviamos la fila de vuelta al cliente
+            enviarJugadaAlCliente(fila);
+        } catch (IOException e) {
+            System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
- @FXML
- private void restaurarPartida(ActionEvent event) {
-     try {
-         BufferedReader reader = new BufferedReader(new FileReader("partidas.txt"));
-         List<GameObject> pieces = new ArrayList<>();
-         String line;
-         while ((line = reader.readLine()) != null) {
-             pieces.add(GameObject.deserialize(game, line));
-             Position p = GameObject.deserializePos(game, line);
-             int turn = GameObject.deserializeTurn(game, line);
-             Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turn)));
-             gridPane.add(ficha, p.getCol(), p.getRow());
-         }
-         reader.close();
-         game.setGameObjectContainer(pieces);
-     } catch (IOException e) {
-         e.printStackTrace();
-     }
- }  
+    private void enviarJugadaAlCliente(int fila) {
+        try {
+            // Enviamos la fila al cliente
+            toClient.writeInt(fila);
+            toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
+        } catch (IOException e) {
+            System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+  
+	    @FXML
+	 // Guardar el estado actual del juego
+	 private void guardarPartida(ActionEvent event) {
+	     try {
+	         File file = new File("partidas.txt");
+	         if (file.exists()) {
+	             file.delete(); // Eliminar el archivo si ya existe
+	         }
+	         
+	         FileWriter writer = new FileWriter(file);
+	         List<GameObject> pieces = game.getGameObjectContainer(); // Asumimos que esto retorna una lista de Pieces
+	         for (GameObject piece : pieces) {
+	             writer.write(piece.serialize() + "\n"); // Guarda cada Piece como una línea en el archivo
+	         }
+	         writer.close();
+	     } catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	 }
+	
+	 @FXML
+	 private void restaurarPartida(ActionEvent event) {
+	     try {
+	         BufferedReader reader = new BufferedReader(new FileReader("partidas.txt"));
+	         List<GameObject> pieces = new ArrayList<>();
+	         String line;
+	         while ((line = reader.readLine()) != null) {
+	             pieces.add(GameObject.deserialize(game, line));
+	             Position p = GameObject.deserializePos(game, line);
+	             int turn = GameObject.deserializeTurn(game, line);
+	             Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turn)));
+	             gridPane.add(ficha, p.getCol(), p.getRow());
+	         }
+	         reader.close();
+	         game.setGameObjectContainer(pieces);
+	     } catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	 }  
     
     @FXML
     private void colocarFichaFacil(MouseEvent event) {

@@ -1,25 +1,29 @@
 package gp;
 
-import java.util.Scanner;
-import gp.control.Controller;
-import gp.logic.Game;
-import gp.view.Messages;
-import static gp.view.Messages.error;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 
-public class Main {
+public class Main extends Application {
 
-	public static void main(String[] args) {
-		Game game = new Game();
-        Scanner scanner = new Scanner(System.in);
-        Controller controller = new Controller(game, scanner);
-        System.out.println(Messages.WELCOME);
-        try {
-			controller.run();
-		} catch (Exception e) {
-			System.out.println(error(e.getMessage()));
-			e.printStackTrace();
-		}
-        System.out.println(Messages.PROMPT);
-	}
-	
+    @Override
+    public void start(Stage stage) throws IOException {
+    	try {
+    		   Parent root = FXMLLoader.load(getClass().getResource("PORTADA INICIAL.fxml"));
+    		   Scene scene = new Scene(root);
+    		   stage.setScene(scene);
+    		   stage.show();
+    		   
+    		  } catch(Exception e) {
+    		   e.printStackTrace();
+    		  }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
 }
