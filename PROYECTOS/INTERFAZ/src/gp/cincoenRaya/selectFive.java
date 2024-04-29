@@ -3,6 +3,7 @@ package gp.cincoenRaya;
 import java.io.IOException;
 
 import gp.GameObjects.Piece;
+import gp.clasico.selectClassic;
 import gp.logic.Game;
 import gp.logic.Position;
 import javafx.event.ActionEvent;
@@ -20,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class selectFive {
+public class selectFive extends selectClassic {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -84,17 +85,13 @@ public class selectFive {
                 		"FICHA J%s 5 IN ROW.fxml".formatted(game.getTurn())));
                 int fila = game.place(columna);
                 gridPane.add(ficha, columna, fila + 2);
+                
         		if(game.someoneWin5()) {
-        			System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
-        			Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
-        			gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
-                    GridPane.setHalignment(alertRoot, HPos.CENTER);
-                    GridPane.setValignment(alertRoot, VPos.CENTER);
+        			super.showWinners(gridPane);
         		}
-                game.update();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        		else {game.flip();}
+            } 
+            catch (IOException e) {e.printStackTrace();}
         //}
     }
     @FXML

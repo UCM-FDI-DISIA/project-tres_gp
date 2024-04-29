@@ -73,7 +73,7 @@ public class selectClassic {
     private Button btnFicha6;
 
     @FXML
-    private GridPane gridPane;
+	protected GridPane gridPane;
 
     @FXML
     private MenuButton menuButton;
@@ -83,39 +83,62 @@ public class selectClassic {
     private DataOutputStream toClient;
     private DataInputStream fromClient;
     private static final int PUERTO = 12345;
+    protected boolean isFinished = false;
 
     @FXML
-    private void colocarFicha(MouseEvent event) {
-        Node source = (Node) event.getSource();
+    private void colocarFicha(MouseEvent event) throws IOException {
+    	if (!isFinished) {
+    		int columna = getColumn(event);
+            try {
+                // Place piece
+            	updateGridPane(columna);
+                
+            	// Check if there is a winner
+                if (game.someoneWin()) { 
+                	isFinished = true;
+                	showWinners(gridPane);
+                } 
+                else {game.flip();} // Turn change
+            } 
+            catch (IOException e) { e.printStackTrace();}
+    	}
+    	else {endMessage();}
+    }
+    
+    protected void updateGridPane(int columna) throws IOException {
+    	Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+        int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
+        gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+    }
+    
+    protected void showWinners(GridPane gridPane) throws IOException {
+    	List<List<Position>> winners = game.getWinners();
+    	for (List<Position> winner : winners) {
+    	    for (Position pos : winner) {
+            	Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
+    	        int fila = pos.getRow();
+    	        int columna = pos.getCol();
+    	        gridPane.add(fichaGanadora, columna, fila);
+    	    }
+    	}
+    }
+    
+    protected int getColumn(MouseEvent event) {
+    	Node source = (Node) event.getSource();
         Node parent = source;
         parent = parent.getParent();
         GridPane gridPane = (GridPane) parent.getParent();
         Integer columnaInteger = GridPane.getColumnIndex(parent);
 
-        // Verificar si la columna es null y asignar 0 como valor predeterminado
-        int columna = (columnaInteger != null) ? columnaInteger : 0;
-
-        try {
-            // Cargamos la ficha
-            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
-            int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
-            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
-            	List<List<Position>> winners = game.getWinners();
-            	for (List<Position> winner : winners) {
-            	    for (Position pos : winner) {
-                    	Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
-            	        fila = pos.getRow();
-            	        columna = pos.getCol();
-            	        gridPane.add(fichaGanadora, columna, fila);
-            	    }
-            	}
-            } else {
-                game.update(); // Actualiza el estado del juego
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Comprueba si la columna es null y asigna 0 como valor predeterminado    	
+        return (columnaInteger != null) ? columnaInteger : 0;
+    }
+    
+    protected void endMessage() throws IOException {
+    	Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
+		gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+        GridPane.setHalignment(alertRoot, HPos.CENTER);
+        GridPane.setValignment(alertRoot, VPos.CENTER);
     }
 
     @FXML

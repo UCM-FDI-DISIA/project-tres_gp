@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import gp.GameObjects.Piece;
 import gp.logic.*;
+import gp.cincoenRaya.*;
 
 public class SelectModeController {
 	private Stage stage;

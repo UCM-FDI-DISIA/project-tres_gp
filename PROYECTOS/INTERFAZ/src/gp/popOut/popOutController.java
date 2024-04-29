@@ -2,7 +2,9 @@ package gp.popOut;
 
 
 import java.io.IOException;
-import gp.GameObjects.Piece;
+import java.util.List;
+
+import gp.clasico.selectClassic;
 import gp.logic.Game;
 import gp.logic.Position;
 import javafx.event.ActionEvent;
@@ -17,18 +19,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class popOutController {
-	private Stage stage;
-	private Scene scene;
+public class popOutController extends selectClassic {
+
 	private Parent root;
 	private Game game;
-	private boolean Bomb;
-	private boolean Anvil;
-	private boolean Arrow;
+
 	@FXML
 	private GridPane gridPane;
 	@FXML
@@ -81,41 +79,41 @@ public class popOutController {
     	this.game = new Game();
     }
     @FXML
-    private void colocarFicha(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Node parent = source;
-        parent = parent.getParent();
-        GridPane gridPane = (GridPane) parent.getParent();
-        Integer columnaInteger = GridPane.getColumnIndex(parent);
+    private void colocarFicha(MouseEvent event) throws IOException {
+    	if (!super.isFinished) {
+            int columna = super.getColumn(event);
+            // Cargamos la ficha
+            Parent ficha;
+            try {
+                ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+                int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
 
-        // Verificar si la columna es null y asignar 0 como valor predeterminado
-        int columna = (columnaInteger != null) ? columnaInteger : 0;
+                // Obtener el índ del nodo que desencadena el evento
+                //int index = gridPane.getChildren().indexOf(source);
 
-        // Cargamos la ficha
-        Parent ficha;
-        try {
-            ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
-            int fila = game.place(columna); // Suponemos que esto coloca la ficha lógicamente y devuelve la fila donde se colocó
-
-            // Obtener el índ del nodo que desencadena el evento
-            int index = gridPane.getChildren().indexOf(source);
-
-            // Insertamos la ficha justo antes del nodo que desencadena el evento
-            gridPane.add(ficha, columna, fila, 1, 1);
-            
-            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
-                System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
-                // Mostrar una alerta o pantalla de victoria
-                Parent alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
-                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
-                GridPane.setHalignment(alertRoot, HPos.CENTER);
-                GridPane.setValignment(alertRoot, VPos.CENTER);
-            }
-            game.update(); // Actualiza el estado del juego    
-        } catch (IOException e) {
-            // Manejar la excepción adecuadamente
-            e.printStackTrace();
-        }
+                // Insertamos la ficha justo antes del nodo que desencadena el evento
+                gridPane.add(ficha, columna, fila, 1, 1);
+                
+                if (game.someoneWin()) { 
+                	super.isFinished = true;
+                    showWinners();
+                }
+                game.flip();    
+            } catch (IOException e) {e.printStackTrace();}
+    	}
+    	else super.endMessage();
+    }
+    
+    protected void showWinners() throws IOException {
+    	List<List<Position>> winners = game.getWinners();
+    	for (List<Position> winner : winners) {
+    	    for (Position pos : winner) {
+            	Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
+    	        int fila = pos.getRow();
+    	        int columna = pos.getCol();
+    	        gridPane.add(fichaGanadora, columna, fila);
+    	    }
+    	}
     }
 
     @FXML

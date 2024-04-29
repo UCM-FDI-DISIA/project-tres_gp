@@ -26,6 +26,11 @@ public class Game {
 		container = new GameObjectContainer();
 		currentCycle = 0;
 	}
+	public Game(GridPane gridPane) {
+		fiveInRow(gridPane);
+		container = new GameObjectContainer();
+		currentCycle = 0;
+	}
 	public String positionToString(int col, int row) {
 		return container.toString(new Position(col, row));
 	}
@@ -58,7 +63,7 @@ public class Game {
 	
 	public void fiveInRow (GridPane gridPane){
 		if (currentCycle == 0) {
-			DIM_X = 11;
+			DIM_X = 9;
 			int random = generateRandomNumber(1,2);
 			if (random == 1) {
 				placeRow(1,2, gridPane);
@@ -111,7 +116,7 @@ public class Game {
         return random.nextInt(max - min + 1) + min;
     }
 	
-	private void flip() {
+	public void flip() {
 		if(turn ==1)
 			turn = 2;
 		else
