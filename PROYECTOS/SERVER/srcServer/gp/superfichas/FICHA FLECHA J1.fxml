@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="58.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Ellipse fill="#f6ff1f" layoutX="29.0" layoutY="30.0" radiusX="28.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="70.0" fitWidth="64.0" layoutX="-3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@FLECHA.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
