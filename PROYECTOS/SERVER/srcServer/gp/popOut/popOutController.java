@@ -158,7 +158,13 @@ public class popOutController extends selectClassic {
             	super.isFinished = true;
                 showWinners();
             }
-            game.flip(); 
+            else {
+            	game.flip();
+            	if (game.someoneWin()) { 
+                	super.isFinished = true;
+                    showWinners();
+                }
+            }
                 
         } else {
             System.err.println("No se encontró un GridPane como nodo padre o hijo.");
