@@ -57,8 +57,6 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
@@ -71,113 +69,91 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="4" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="4" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="2" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="3" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="7" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="6" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="7" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="5" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="4" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="3" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="7" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="6" />
-            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="11" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+            <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="6" />
             <Ellipse fill="DODGERBLUE" radiusX="28.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
-               <children>
-                  <Button fx:id="btnFicha" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="478.0" prefWidth="54.0" text="   " />
-               </children>
-            </VBox>
-            <VBox prefHeight="217.0" prefWidth="54.0" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="217.0" prefWidth="54.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha2" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="500.0" prefWidth="54.0" text="   " />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha3" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="522.0" prefWidth="54.0" text="   " />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha4" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="521.0" prefWidth="55.0" text="   " />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha5" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="498.0" prefWidth="55.0" text="   " />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="8" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha6" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="481.0" prefWidth="55.0" text="   " />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="9" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha7" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="500.0" prefWidth="55.0" text="   " />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
-               <children>
-                  <Button fx:id="btnFicha9" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="492.0" prefWidth="54.0" text="  " />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="10" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="8" GridPane.rowIndex="2" GridPane.rowSpan="2147483647">
                <children>
                   <Button fx:id="btnFicha8" mnemonicParsing="false" onMouseClicked="#colocarFicha" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" prefHeight="566.0" prefWidth="166.0" text="   " />
                </children>

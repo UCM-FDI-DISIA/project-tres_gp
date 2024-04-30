@@ -101,8 +101,8 @@ public class Game {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}                
-					addObject(new Piece(this, new Position(1, i), second));
-					addObject(new Piece(this, new Position(DIM_X, i), first));
+					addObject(new Piece(this, new Position(1, i), first));
+					addObject(new Piece(this, new Position(DIM_X, i),second ));
 				}
 			}
 	}

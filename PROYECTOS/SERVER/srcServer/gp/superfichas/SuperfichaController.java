@@ -38,6 +38,8 @@ public class SuperfichaController extends selectClassic {
 	
     @FXML
     private Button btnBomba1;
+    @FXML
+    private GridPane gridPane;
 
     @FXML
     private Button btnBomba2;

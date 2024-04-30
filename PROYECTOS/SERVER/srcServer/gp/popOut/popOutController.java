@@ -98,7 +98,7 @@ public class popOutController extends selectClassic {
                 	super.isFinished = true;
                     showWinners();
                 }
-                game.flip();    
+                else game.flip();    
             } catch (IOException e) {e.printStackTrace();}
     	}
     	else super.endMessage();
@@ -128,7 +128,7 @@ public class popOutController extends selectClassic {
     }
     
     @FXML
-    void popOut(MouseEvent event) {
+    void popOut(MouseEvent event) throws IOException {
     	Node source = (Node) event.getSource();
         Node parent = source.getParent();
         GridPane gridPane = null;
@@ -154,22 +154,11 @@ public class popOutController extends selectClassic {
             Integer columnaInteger = GridPane.getColumnIndex(source);
             int columna = (columnaInteger != null) ? columnaInteger : 0;
             game.popOut(columna, gridPane);
-            game.update(); // Actualiza el estado del juego
-            if (game.someoneWin()) { // Si alguien gana después de colocar la ficha
-            	System.out.println("Gana el Jugador%s".formatted(game.getTurn()));
-                // Mostrar una alerta o pantalla de victoria
-                Parent alertRoot;
-				try {
-					alertRoot = FXMLLoader.load(getClass().getResource("/gp/clasico/VOLVER A INICIAL.fxml"));
-				
-                gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
-                GridPane.setHalignment(alertRoot, HPos.CENTER);
-                GridPane.setValignment(alertRoot, VPos.CENTER);
-                } catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+            if (game.someoneWin()) { 
+            	super.isFinished = true;
+                showWinners();
             }
+            game.flip(); 
                 
         } else {
             System.err.println("No se encontró un GridPane como nodo padre o hijo.");

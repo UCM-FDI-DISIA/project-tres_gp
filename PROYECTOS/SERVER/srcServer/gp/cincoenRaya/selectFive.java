@@ -1,6 +1,7 @@
 package gp.cincoenRaya;
 
 import java.io.IOException;
+import java.util.List;
 
 import gp.GameObjects.Piece;
 import gp.clasico.selectClassic;
@@ -71,11 +72,11 @@ public class selectFive extends selectClassic {
     private MenuButton menuButton;
     
     public selectFive() {
-    	this.game = new Game();
+    	this.game = new Game();    	
     }
     @FXML
-    private void colocarFicha(MouseEvent event){
-        //if (event.getSource() instanceof Button) {
+    private void colocarFicha(MouseEvent event) throws IOException{
+    	if(!super.isFinished) {
     		Node obt = (Node)event.getSource();
     		obt = obt.getParent();
             int columna = GridPane.getColumnIndex(obt);
@@ -87,13 +88,27 @@ public class selectFive extends selectClassic {
                 gridPane.add(ficha, columna, fila + 2);
                 
         		if(game.someoneWin5()) {
-        			super.showWinners(gridPane);
+        			showWinners(gridPane);
         		}
         		else {game.flip();}
             } 
             catch (IOException e) {e.printStackTrace();}
-        //}
+    	}
+    	else super.endMessage();
     }
+    
+    protected void showWinners(GridPane gridPane) throws IOException {
+    	List<List<Position>> winners = game.getWinners();
+    	for (List<Position> winner : winners) {
+    	    for (Position pos : winner) {
+            	Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
+    	        int fila = pos.getRow();
+    	        int columna = pos.getCol();
+    	        gridPane.add(fichaGanadora, columna, fila +2);
+    	    }
+    	}
+    }
+    
     @FXML
     private void configurarTablero(ActionEvent event) {
     	game.fiveInRow(gridPane);
