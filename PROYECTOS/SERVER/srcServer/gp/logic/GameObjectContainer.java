@@ -275,7 +275,7 @@ public class GameObjectContainer {
 	private void win(Direction dir, Position pos, int dim) {
 		int length;
 		if (dim == 7) length = 4;
-		else length = 3;
+		else length = 5;
 		List<Position> positionsList = new ArrayList<Position>();
 		for (int i = 0; i < length; i++) {
 			Position newPos = new Position(pos.getCol() + i * dir.getY(),
