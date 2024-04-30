@@ -129,7 +129,15 @@ public class Game {
 			addObject(new Piece(this, pos, getTurn()));
 			return row;
 	}
-	
+	public int placeOnline(int col, boolean cliente){
+		int row= findRow(col);
+		Position pos = new Position(col, row);
+		if(cliente)
+			addObject(new Piece(this, pos, 1));
+		else
+			addObject(new Piece(this, pos, 2));
+		return row;
+}
 	public void bomb(int col, GridPane gridPane){
 			int row= findRow(col);
 			Position pos = new Position(col, row);

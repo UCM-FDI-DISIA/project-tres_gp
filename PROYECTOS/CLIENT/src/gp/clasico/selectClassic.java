@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ public class selectClassic {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private boolean Toca;
 
     @FXML
     private MenuItem btnConectar;
@@ -60,18 +63,7 @@ public class selectClassic {
     
     private Socket socket;
     private DataInputStream fromServer;
-    private Socket serverSocket;
     private DataOutputStream toServer;
-    private static final int PUERTO = 12345;
-
-    @FXML
-    void switchToScene2(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @FXML
     void switchToSceneInicial(ActionEvent event) throws IOException {
@@ -82,6 +74,7 @@ public class selectClassic {
         root = FXMLLoader.load(getClass().getResource("/gp/PORTADA INICIAL.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
+        desconectar();
     }
 
     @FXML
@@ -116,7 +109,9 @@ public class selectClassic {
             fromServer = new DataInputStream(socket.getInputStream());
             toServer = new DataOutputStream(socket.getOutputStream());
             // Iniciar un hilo para recibir y procesar las jugadas del servidor
-            Thread receiverThread = new Thread(this::receiveMovesFromServer);
+            Thread receiverThread = new Thread(() -> {
+					receiveMovesFromServer();
+			});
             receiverThread.start(); // Iniciar el hilo para recibir jugadas del servidor
             System.out.println("Conectado al servidor.");
         } catch (IOException e) {
@@ -128,20 +123,14 @@ public class selectClassic {
     private void colocarFicha(MouseEvent event) {
         Node source = (Node) event.getSource();
         Node parent = source.getParent();
-        GridPane gridPane = (GridPane) parent.getParent();
         Integer columnaInteger = GridPane.getColumnIndex(parent);
         int columna = (columnaInteger != null) ? columnaInteger : 0;
 
         try {
-            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(1)));
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
             toServer.writeInt(columna); // Enviamos la columna al servidor
             toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
-            
-            // Recibimos la fila calculada por el servidor
-            int filaServidor = fromServer.readInt();
-            
-            // Añadimos la ficha físicamente al GridPane
-            gridPane.add(ficha, columna, filaServidor);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,16 +141,26 @@ public class selectClassic {
             while (true) {
                 int filaServidor = fromServer.readInt();    // Leer la fila de la jugada
                 int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
-                Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
-                gridPane.add(fichaServidor, columnaServidor, filaServidor);
+                int turnoServidor = fromServer.readInt();
+                // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
+                Platform.runLater(() -> {
+                    try {
+                        Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turnoServidor)));
+                        gridPane.add(fichaServidor, columnaServidor, filaServidor);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            // Se ha cerrado la conexión del socket, probablemente porque el cliente se desconectó
+            System.out.println("El servidor se ha desconectado.");
         }
     }
 
+
     @FXML
-    private void desconectar(ActionEvent event) {
+    private void desconectar() {
         try {
             if (socket != null && !socket.isClosed()) {
                 socket.close();

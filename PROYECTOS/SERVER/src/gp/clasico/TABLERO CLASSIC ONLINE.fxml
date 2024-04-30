@@ -19,7 +19,7 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff4f" height="400.0" layoutX="13.0" stroke="BLACK" strokeType="INSIDE" width="97.0" />
             <Ellipse fill="#ff2a1f" layoutX="62.0" layoutY="205.0" radiusX="28.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text layoutX="22.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAYER 2" textAlignment="CENTER" wrappingWidth="83.34613037109375">
+            <Text layoutX="22.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SERVER" textAlignment="CENTER" wrappingWidth="83.34613037109375">
                <font>
                   <Font name="Jokerman" size="16.0" />
                </font>
@@ -30,7 +30,7 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff50" height="400.0" layoutX="2.0" stroke="BLACK" strokeType="INSIDE" width="97.0" />
             <Ellipse fill="#dbff1f" layoutX="50.0" layoutY="205.0" radiusX="28.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text layoutX="11.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAYER 1" textAlignment="CENTER" wrappingWidth="83.34613037109375">
+            <Text layoutX="11.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENT" textAlignment="CENTER" wrappingWidth="83.34613037109375">
                <font>
                   <Font name="Jokerman" size="16.0" />
                </font>
@@ -48,7 +48,7 @@
             </MenuButton>
          </children>
       </AnchorPane>
-      <GridPane layoutX="95.0" layoutY="-5.0" prefHeight="407.0" prefWidth="407.0">
+      <GridPane fx:id="gridPane" layoutX="95.0" layoutY="-5.0" prefHeight="407.0" prefWidth="407.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

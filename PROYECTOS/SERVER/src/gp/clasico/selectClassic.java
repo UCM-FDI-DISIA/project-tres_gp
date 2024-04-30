@@ -13,6 +13,7 @@ import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
 import gp.logic.Game;
 import gp.logic.Position;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,7 +74,7 @@ public class selectClassic {
     private Button btnFicha6;
 
     @FXML
-	protected GridPane gridPane;
+	private GridPane gridPane;
 
     @FXML
     private MenuButton menuButton;
@@ -148,6 +149,18 @@ public class selectClassic {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        desconectarServidor();
+    }
+    @FXML
+    private void desconectarServidor() {
+        try {
+            if (serverSocket != null && !serverSocket.isClosed()) {
+                serverSocket.close(); // Cierra el ServerSocket si está abierto
+                System.out.println("Servidor desconectado.");
+            }
+        } catch (IOException e) {
+            System.out.println("Error al desconectar el servidor: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -159,6 +172,7 @@ public class selectClassic {
         root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
+        desconectarServidor();
     }
 
     @FXML
@@ -194,20 +208,24 @@ public class selectClassic {
         try {
             serverSocket = new ServerSocket(12345);
             System.out.println("Servidor iniciado, esperando al cliente...");
-            new Thread(() -> {
+            clientSocket = serverSocket.accept();
+            System.out.println("Cliente conectado: " + clientSocket.getInetAddress().getHostAddress());
+            fromClient = new DataInputStream(clientSocket.getInputStream());
+            toClient = new DataOutputStream(clientSocket.getOutputStream());
+            // Nuevo hilo para escuchar al cliente
+            Thread serverThread = new Thread(() -> {
                 try {
-                    clientSocket = serverSocket.accept();
-                    System.out.println("Cliente conectado: " + clientSocket.getInetAddress().getHostAddress());
-                    fromClient = new DataInputStream(clientSocket.getInputStream());
-                    toClient = new DataOutputStream(clientSocket.getOutputStream());
-                } catch (IOException e) {
+                    recibirJugada(); // Llama a recibirJugada cuando el cliente coloca una ficha
+                } catch (Exception e) {
                     System.out.println("Error al aceptar conexión del cliente: " + e.getMessage());
                 }
-            }).start();
+            });
+            serverThread.start();
         } catch (IOException e) {
             System.out.println("No se pudo iniciar el servidor: " + e.getMessage());
         }
     }
+
 
     @FXML
     private void colocarFichaOnline(MouseEvent event) {
@@ -218,12 +236,12 @@ public class selectClassic {
         int columna = (columnaInteger != null) ? columnaInteger : 0;
 
         try {
-            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
-            int fila = game.place(columna);  // Colocamos la ficha y obtenemos la fila donde se colocó
+            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(1)));
+            int fila = game.placeOnline(columna, false);  // Colocamos la ficha y obtenemos la fila donde se colocó
             gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
 
             // Enviamos la fila y la columna al cliente para que coloque su ficha
-            enviarJugada(fila, columna);
+            enviarJugada(fila, columna, 1);
 
             if (game.someoneWin()) {
                 List<List<Position>> winners = game.getWinners();
@@ -243,10 +261,11 @@ public class selectClassic {
         }
     }
 
-    private void enviarJugada(int fila, int columna) {
+    private void enviarJugada(int fila, int columna, int turno) {
         try {
             toClient.writeInt(fila);
             toClient.writeInt(columna);
+            toClient.writeInt(turno);
             toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
         } catch (IOException e) {
             System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
@@ -255,32 +274,32 @@ public class selectClassic {
     }
     
     private void recibirJugada() {
-        try {
-            // Recibimos la columna enviada por el cliente
-            int columnaCliente = fromClient.readInt();
-            
-            // Realizamos la operación de game.place(columna) para obtener la fila correspondiente
-            int fila = game.place(columnaCliente);
-            
-            // Enviamos la fila de vuelta al cliente
-            enviarJugadaAlCliente(fila);
-        } catch (IOException e) {
-            System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
-            e.printStackTrace();
-        }
+    	while(true) {
+	        try {
+	            // Recibimos la columna enviada por el cliente
+	            int columnaCliente = fromClient.readInt();
+	
+	            // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
+	            Platform.runLater(() -> {
+	                try {
+	                    Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
+	                    // Realizamos la operación de game.place(columna) para obtener la fila correspondiente
+	                    int fila = game.placeOnline(columnaCliente, true);
+	                    gridPane.add(ficha, columnaCliente, fila);
+	                    // Enviamos la fila de vuelta al cliente
+	                    enviarJugada(fila, columnaCliente, 2);
+	                } catch (IOException e) {
+	                    System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
+	                    e.printStackTrace();
+	                }
+	            });
+	        } catch (IOException e) {
+	            System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
+	            e.printStackTrace();
+	        }
+    	}
     }
 
-    private void enviarJugadaAlCliente(int fila) {
-        try {
-            // Enviamos la fila al cliente
-            toClient.writeInt(fila);
-            toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
-        } catch (IOException e) {
-            System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-  
 	    @FXML
 	 // Guardar el estado actual del juego
 	 private void guardarPartida(ActionEvent event) {
