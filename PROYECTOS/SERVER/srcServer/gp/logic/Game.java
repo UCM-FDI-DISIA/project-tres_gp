@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
 public class Game {
 	public  static int DIM_X = 7;
 	public  final static int DIM_Y = 6;
-	private int currentCycle;
+	public int currentCycle;
 	private boolean bot = false;
 	private GameObjectContainer container;
 	private int turn = 1;
@@ -26,11 +26,7 @@ public class Game {
 		container = new GameObjectContainer();
 		currentCycle = 0;
 	}
-	public Game(GridPane gridPane) {
-		fiveInRow(gridPane);
-		container = new GameObjectContainer();
-		currentCycle = 0;
-	}
+
 	public String positionToString(int col, int row) {
 		return container.toString(new Position(col, row));
 	}
@@ -61,57 +57,11 @@ public class Game {
 		bot = !bot;
 	}
 	
-	public void fiveInRow (GridPane gridPane){
-		if (currentCycle == 0) {
-			DIM_X = 9;
-			int random = generateRandomNumber(1,2);
-			if (random == 1) {
-				placeRow(1,2, gridPane);
-			}
-			else placeRow(2,1, gridPane);
-		}
-	}
-	
-	public void placeRow(int first, int second, GridPane gridPane) {
-			for (int i = DIM_Y - 1; i >= 0; i--) {
-	            Parent ficha;
-				if (i % 2 == 0) {
-	
-					try {
-						ficha = FXMLLoader.load(getClass().getResource(
-								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
-		                gridPane.add(ficha, 1, i + 2);
-						ficha = FXMLLoader.load(getClass().getResource(
-								"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
-		                gridPane.add(ficha, DIM_X, i + 2);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					addObject(new Piece(this, new Position(0, i), first));
-					addObject(new Piece(this, new Position(DIM_X, i), second));
-				}
-				else {
-					try {
-						ficha = FXMLLoader.load(getClass().getResource(
-								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
-		                gridPane.add(ficha, 1, i + 2);
-						ficha = FXMLLoader.load(getClass().getResource(
-								"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
-		                gridPane.add(ficha, DIM_X, i + 2);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}                
-					addObject(new Piece(this, new Position(1, i), first));
-					addObject(new Piece(this, new Position(DIM_X, i),second ));
-				}
-			}
-	}
-	
 	public void popOut(int col, GridPane gridPane){
 		container.popOut(col, gridPane);
 	}
 	
-	private int generateRandomNumber(int min, int max) {
+	protected int generateRandomNumber(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
@@ -122,6 +72,7 @@ public class Game {
 		else
 			turn = 1;
 	}
+	
 	
 	public int place(int col){
 			int row= findRow(col);

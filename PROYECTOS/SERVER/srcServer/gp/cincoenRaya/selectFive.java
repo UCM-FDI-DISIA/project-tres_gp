@@ -6,6 +6,7 @@ import java.util.List;
 import gp.GameObjects.Piece;
 import gp.clasico.selectClassic;
 import gp.logic.Game;
+import gp.logic.Game5;
 import gp.logic.Position;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +27,7 @@ public class selectFive extends selectClassic {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	private Game game;
+	private Game5 game;
 	
 	
     @FXML
@@ -58,6 +59,9 @@ public class selectFive extends selectClassic {
     
     @FXML
     private Button btnFicha9;
+    
+    @FXML
+    private Button btnStart;
 
     @FXML
     private MenuItem btnVolver;
@@ -72,7 +76,7 @@ public class selectFive extends selectClassic {
     private MenuButton menuButton;
     
     public selectFive() {
-    	this.game = new Game();    	
+    	this.game = new Game5();    	
     }
     @FXML
     private void colocarFicha(MouseEvent event) throws IOException{
@@ -88,6 +92,7 @@ public class selectFive extends selectClassic {
                 gridPane.add(ficha, columna, fila + 2);
                 
         		if(game.someoneWin5()) {
+        			super.isFinished = true;
         			showWinners(gridPane);
         		}
         		else {game.flip();}
