@@ -14,7 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 
 public class Game {
-	public  static int DIM_X = 7;
+	public  final static int DIM_X = 7;
 	public  final static int DIM_Y = 6;
 	public int currentCycle;
 	private boolean bot = false;

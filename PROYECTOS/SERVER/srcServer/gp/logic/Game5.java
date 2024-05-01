@@ -31,10 +31,10 @@ public class Game5 extends Game{
 
 				try {
 					ficha = FXMLLoader.load(getClass().getResource(
-							"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
+							"/gp/cincoenRaya/FICHA J%s 5 IN ROW.fxml".formatted(first)));
 	                gridPane.add(ficha, 1, i + 2);
 					ficha = FXMLLoader.load(getClass().getResource(
-							"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
+							"/gp/cincoenRaya/FICHA J%s 5 IN ROW.fxml".formatted(second)));
 	                gridPane.add(ficha, DIM_X, i + 2);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -45,10 +45,10 @@ public class Game5 extends Game{
 			else {
 				try {
 					ficha = FXMLLoader.load(getClass().getResource(
-							"/gp/cincoenRaya/FICHA J2 5 IN ROW.fxml"));
+							"/gp/cincoenRaya/FICHA J%s 5 IN ROW.fxml".formatted(second)));
 	                gridPane.add(ficha, 1, i + 2);
 					ficha = FXMLLoader.load(getClass().getResource(
-							"/gp/cincoenRaya/FICHA J1 5 IN ROW.fxml"));
+							"/gp/cincoenRaya/FICHA J%s 5 IN ROW.fxml".formatted(first)));
 	                gridPane.add(ficha, DIM_X, i + 2);
 				} catch (IOException e) {
 					e.printStackTrace();
