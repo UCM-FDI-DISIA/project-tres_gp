@@ -11,6 +11,6 @@ public class Arrow extends SuperPiece {
 	public Arrow() {
 		super();
 	}
-
+	
 
 }

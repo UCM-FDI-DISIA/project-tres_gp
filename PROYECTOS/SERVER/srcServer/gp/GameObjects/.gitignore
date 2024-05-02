@@ -6,3 +6,10 @@
 /SuperPiece.class
 /Arrow.class
 /Ice.class
+/AnvilTest.class
+/BombTest.class
+/IceTest.class
+/PieceTest.class
+/SuperPieceTest.class
+/GameObjectTest.class
+/GameObjectTest$MockGameObject.class
