@@ -71,55 +71,28 @@
 	utilizar a lo largo de la partida.
 
 
-**Implementamos nuestro juego en *terminal* de la siguiente forma:**
+**Implementamos nuestro juego de la siguiente forma:**
 
-	-Tenemos el paquete GameObjects, donde tenemos as clases GameObject y la clase
-	piece. En la clase Gameobject devolvemos las posiciones de los objetos del juego,verificamos si
-	algún objeto esta en una posición determinada posición y cogemos el turno del jugador correspondiente.
-	Y en Piece cogemos que tipo de ficha según el jugador que toca.
+	-Tenemos el paquete GameObjects, donde tenemos las clases GameObject, las distintas clases de fichas
+ 	especiales (Anvil, Arrow, Bomb, Ice), la clase Piece y la clase SuperPiece. 
+  	En la clase Gameobject devolvemos las posiciones de los objetos del juego,verificamos si algún objeto 
+   	esta en una posición determinada posición y cogemos el turno del jugador correspondiente.
+    	En las clases de las distintas superfichas cogemos estas si el jugador las selecciona.
+     	En Piece cogemos que tipo de ficha según el jugador que toca. 
+     	Y en SuperPiece cogemos lo usamos para generar el mecanismo de la superficha en caso de que sea de este tipo.
+      
 
-	-Tenemos el paquete commands que es donde vamos a programar todos los comandos del juego, que son:
-	La clase ExitCommand, donde programamos la acción de salir del juego.
-	La clase HelpCommand, donde programamos una ventana de ayuda que nos diga los posibles comandos e
-	instrucciones del juego.
-	La clase NoParamsCommand, donde programamos en caso de que no se meta ningún comando o un comando incorrecto. 
-	La clase PlaceCommand, donde programamos la opción de poner una ficha en el tablero.
-	Y a parte de estos comandos, dentro del mismo paquete tenemos las clases: Command(clase superior), donde 
-	ejecutamos todos los comandos, y la clase CommandGenerator, donde creamos los comandos para oder luego ser 
-	procesados.
-
-	-Tenemos el paquete control, en el que se encuentra la clase Controller, que es la encargada de crear el juego
-	y de procesarlo hasta que acabe o salgamos de él. Es como la clase main de nuestro juego.
-
-	-Tenemos el paquete exceptions, donde se encuentran las siguientes clases:
-	CommandExecuteException, es una clase en la que llamamos a mensajes para que salgan por pantalla en caso de 
-	una excepción en la ejecución.
-	CommandParseException, es una clase en la que llamamos a mensajes para que salgan por pantalla en caso de 
-	una excepción a la hora de parsear algo.
-	FullColumnException, en esta clase lanzamos un mensaje en caso de que se produzca la excepción de que hay 
-	una columna llena de fichas en la que ya no se pueden insertar más.
-	OffWorldException, en esta clase lanzamos la excepción en forma de mensaje en caso de que intentemos insertar 
-	una ficha fuera de los límites de nuestro tablero.
-
-	-Tenemos el paquete logic, que incluye las clases Direction, Game, GameObjectContainer y Position.
+	-Tenemos el paquete logic, que incluye las clases Direction, Game, Game5, GameObjectContainer y Position.
 	En la clase Direction, obtenemos las posibles direcciones (Up, Right, Left, Down).
 	En la clase Game tenemos las variables principales del juego y las funciones básicas a realizar del juego, 
 	como ejecutar una acción, actualizar el juego, contar los ciclos, crear un objeto, versi es correcta la posición 
 	de un objeto...
+ 	En la clase Game5 implementamos la misma clase Game solo que para el modo de 5 en raya.
 	En la clase GameObjectContainer tenemos todos los objetos del juego en un array de objetos y además añadimos objetos
 	nuevos al juego.
 	En la clase Position tenemos la opción de obtener la posición de algo del juego (objeto), si coinciden posiciones
 	dos objetos y si está en el tablero un objeto.
-	
-	-Tenemos el paquete util, con la clase StringUtils, que sirve para modificar los strings que 
-	utilizamos en el juego.
-
-	-Tenemos el paquete view, que consiste en todo lo que se ve por pantalla del juego. Contiene las siguientes clases:
-	BoardPrinter, donde pintamos el tablero del juego.
-	GamePrinter (clase superior), donde pintamos todo el juego.
-	Messages, donde tenemos todos los mensajes posibles que podemos sacar por pantalla del juego.
-
-	-Por último, tenemos nuestro Main que utiliza todos los paquetes.
+ 
 
 # **Instrucciones de trabajo** 
   #### Proyectos
