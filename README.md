@@ -77,9 +77,9 @@
  	especiales (Anvil, Arrow, Bomb, Ice), la clase Piece y la clase SuperPiece. 
   	En la clase Gameobject devolvemos las posiciones de los objetos del juego,verificamos si algún objeto 
    	esta en una posición determinada posición y cogemos el turno del jugador correspondiente.
-    	En las clases de las distintas superfichas cogemos estas si el jugador las selecciona.
-     	En Piece cogemos que tipo de ficha según el jugador que toca. 
-     	Y en SuperPiece cogemos lo usamos para generar el mecanismo de la superficha en caso de que sea de este tipo.
+    En las clases de las distintas superfichas cogemos estas si el jugador las selecciona.
+    En Piece cogemos que tipo de ficha según el jugador que toca. 
+    Y en SuperPiece cogemos lo usamos para generar el mecanismo de la superficha en caso de que sea de este tipo.
       
 
 	-Tenemos el paquete logic, que incluye las clases Direction, Game, Game5, GameObjectContainer y Position.
