@@ -10,6 +10,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +26,6 @@ public class selectClassic {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private boolean Toca;
 
     @FXML
     private MenuItem btnConectar;
@@ -65,26 +66,35 @@ public class selectClassic {
     private Socket socket;
     private DataInputStream fromServer;
     private DataOutputStream toServer;
-
+    private boolean ganado = false;
     @FXML
     void switchToSceneInicial(ActionEvent event) throws IOException {
         MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
         Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
         Scene scene = parent.getScene(); // Obtener la escena
         Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
-        root = FXMLLoader.load(getClass().getResource("/gp/PORTADA INICIAL.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/srcClient/gp/PORTADA INICIAL.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
         desconectar();
     }
 
     @FXML
+    void switchToSceneInicialExit(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/gp/PORTADA INICIAL.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        desconectar();
+    }
+    @FXML
     void switchToTableroNormal(ActionEvent event) throws IOException {
         MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
         Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
         Scene scene = parent.getScene(); // Obtener la escena
         Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
-        root = FXMLLoader.load(getClass().getResource("TABLERO CLASSIC.fxml"));
+        root = FXMLLoader.load(getClass().getResource("TABLERO CLASSIC ONLINE.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -123,25 +133,43 @@ public class selectClassic {
 
     @FXML
     private void colocarFicha(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Node parent = source.getParent();
-        Integer columnaInteger = GridPane.getColumnIndex(parent);
-        int columna = (columnaInteger != null) ? columnaInteger : 0;
+    	if(!ganado) {
+	        Node source = (Node) event.getSource();
+	        Node parent = source.getParent();
+	        Integer columnaInteger = GridPane.getColumnIndex(parent);
+	        int columna = (columnaInteger != null) ? columnaInteger : 0;
+	
+	        try {
+	            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
+	            toServer.writeInt(columna); // Enviamos la columna al servidor
+	            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
+	
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+    	}
+    	else {
+    		try {
+				endMessage();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
 
-        try {
-            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
-            toServer.writeInt(columna); // Enviamos la columna al servidor
-            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
+    
+    protected void endMessage() throws IOException {
+    	Parent alertRoot = FXMLLoader.load(getClass().getResource("VOLVER A INICIAL.fxml"));
+		gridPane.add(alertRoot, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+        GridPane.setHalignment(alertRoot, HPos.CENTER);
+        GridPane.setValignment(alertRoot, VPos.CENTER);
+    }
+    
     private void receiveMovesFromServer() {
         try {
             while (true) {
-            	boolean ganado = fromServer.readBoolean();
+            	ganado = fromServer.readBoolean();
             	if(!ganado) {
 	                int filaServidor = fromServer.readInt();    // Leer la fila de la jugada
 	                int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
@@ -166,7 +194,7 @@ public class selectClassic {
         }
     }
         
-        private void receiveWinnersFromServer() {
+    private void receiveWinnersFromServer() {
             try {
                 int numSets = fromServer.readInt(); // Lee el número de conjuntos de ganadores
                 for (int i = 0; i < numSets; i++) {

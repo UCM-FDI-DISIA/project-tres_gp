@@ -251,37 +251,45 @@ public class selectClassic {
 
     @FXML
     private void colocarFichaOnline(MouseEvent event) {
-    	if(game.getTurn() == 2) {
-	        Node source = (Node) event.getSource();
-	        Node parent = source.getParent();
-	        GridPane gridPane = (GridPane) parent.getParent();
-	        Integer columnaInteger = GridPane.getColumnIndex(parent);
-	        int columna = (columnaInteger != null) ? columnaInteger : 0;
-	
-	        try {
-	            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
-	            int fila = game.placeOnline(columna, false);  // Colocamos la ficha y obtenemos la fila donde se colocó
-	            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-	
-	            // Enviamos la fila y la columna al cliente para que coloque su ficha
-	            enviarJugada(fila, columna, 2);
-	
-	            if (game.someoneWin()) {
-	            	List<List<Position>> winners = game.getWinners();
-	            	sendWinnersToClient(winners, true); 
-	            	isFinished = true;
-	            	showWinners(gridPane);
-	
-	            } else {
-	                game.flip(); // Actualizamos el estado del juego
-	            }
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+    	if(!isFinished) {
+	    	if(game.getTurn() == 2) {
+		        Node source = (Node) event.getSource();
+		        Node parent = source.getParent();
+		        GridPane gridPane = (GridPane) parent.getParent();
+		        Integer columnaInteger = GridPane.getColumnIndex(parent);
+		        int columna = (columnaInteger != null) ? columnaInteger : 0;
+		
+		        try {
+		            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+		            int fila = game.placeOnline(columna, false);  // Colocamos la ficha y obtenemos la fila donde se colocó
+		            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+		
+		            // Enviamos la fila y la columna al cliente para que coloque su ficha
+		            enviarJugada(fila, columna, 2);
+		
+		            if (game.someoneWin()) {
+		            	List<List<Position>> winners = game.getWinners();
+		            	sendWinnersToClient(winners, true); 
+		            	isFinished = true;
+		            	showWinners(gridPane);
+		
+		            } else {
+		                game.flip(); // Actualizamos el estado del juego
+		            }
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+	    	}
+	    	else {
+	    		System.out.println("NO ES TU TURNO");
+	    	}
     	}
-    	else {
-    		System.out.println("NO ES TU TURNO");
-    	}
+    	else {try {
+			endMessage();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
     }
 
     private void enviarJugada(int fila, int columna, int turno) {

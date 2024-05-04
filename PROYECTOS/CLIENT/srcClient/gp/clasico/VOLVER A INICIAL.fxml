@@ -7,11 +7,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="114.0" prefWidth="342.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gp.clasico.selectClassic">
    <children>
-      <Text fontSmoothingType="LCD" layoutX="64.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PULSA PARA SALIR" wrappingWidth="213.6164093017578">
+      <Text fontSmoothingType="LCD" layoutX="64.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRESS TO EXIT" textAlignment="CENTER" wrappingWidth="213.6164093017578">
          <font>
-            <Font name="System Bold Italic" size="23.0" />
+            <Font name="Arial Black" size="25.0" />
          </font>
       </Text>
-      <Button fx:id="btnSalirGana" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#switchToScene2" opacity="0.0" prefHeight="114.0" prefWidth="342.0" text="Button" />
+      <Button fx:id="btnSalirGana" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#switchToSceneInicialExit" opacity="0.0" prefHeight="114.0" prefWidth="342.0" text="Button" />
    </children>
 </AnchorPane>
