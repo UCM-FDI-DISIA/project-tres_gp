@@ -124,6 +124,27 @@ public class selectClassic {
     	}
     }
     
+    private void sendWinnersToClient(List<List<Position>> winners, boolean sendWinners) {
+        try {
+            toClient.writeBoolean(sendWinners); // Envía el booleano indicando si se deben procesar los ganadores
+            if (sendWinners) {
+                toClient.writeInt(winners.size()); // Envía el número de conjuntos de ganadores
+                for (List<Position> winner : winners) {
+                    toClient.writeInt(winner.size()); // Envía el número de posiciones en este conjunto
+                    for (Position pos : winner) {
+                        toClient.writeInt(pos.getRow()); // Envía la fila
+                        toClient.writeInt(pos.getCol()); // Envía la columna
+                    }
+                }
+            }
+            toClient.flush(); // Asegura que los datos se envíen inmediatamente
+        } catch (IOException e) {
+            System.out.println("Error al enviar los ganadores al cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    
     protected int getColumn(MouseEvent event) {
     	Node source = (Node) event.getSource();
         Node parent = source;
@@ -220,6 +241,7 @@ public class selectClassic {
                     System.out.println("Error al aceptar conexión del cliente: " + e.getMessage());
                 }
             });
+            System.out.println("Empieza el cliente.");
             serverThread.start();
         } catch (IOException e) {
             System.out.println("No se pudo iniciar el servidor: " + e.getMessage());
@@ -229,40 +251,42 @@ public class selectClassic {
 
     @FXML
     private void colocarFichaOnline(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Node parent = source.getParent();
-        GridPane gridPane = (GridPane) parent.getParent();
-        Integer columnaInteger = GridPane.getColumnIndex(parent);
-        int columna = (columnaInteger != null) ? columnaInteger : 0;
-
-        try {
-            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(1)));
-            int fila = game.placeOnline(columna, false);  // Colocamos la ficha y obtenemos la fila donde se colocó
-            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-
-            // Enviamos la fila y la columna al cliente para que coloque su ficha
-            enviarJugada(fila, columna, 1);
-
-            if (game.someoneWin()) {
-                List<List<Position>> winners = game.getWinners();
-                for (List<Position> winner : winners) {
-                    for (Position pos : winner) {
-                        Parent fichaGanadora = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
-                        int filaGanadora = pos.getRow();
-                        int columnaGanadora = pos.getCol();
-                        gridPane.add(fichaGanadora, columnaGanadora, filaGanadora);
-                    }
-                }
-            } else {
-                game.update(); // Actualizamos el estado del juego
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	if(game.getTurn() == 2) {
+	        Node source = (Node) event.getSource();
+	        Node parent = source.getParent();
+	        GridPane gridPane = (GridPane) parent.getParent();
+	        Integer columnaInteger = GridPane.getColumnIndex(parent);
+	        int columna = (columnaInteger != null) ? columnaInteger : 0;
+	
+	        try {
+	            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+	            int fila = game.placeOnline(columna, false);  // Colocamos la ficha y obtenemos la fila donde se colocó
+	            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
+	
+	            // Enviamos la fila y la columna al cliente para que coloque su ficha
+	            enviarJugada(fila, columna, 2);
+	
+	            if (game.someoneWin()) {
+	            	List<List<Position>> winners = game.getWinners();
+	            	sendWinnersToClient(winners, true); 
+	            	isFinished = true;
+	            	showWinners(gridPane);
+	
+	            } else {
+	                game.flip(); // Actualizamos el estado del juego
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+    	}
+    	else {
+    		System.out.println("NO ES TU TURNO");
+    	}
     }
 
     private void enviarJugada(int fila, int columna, int turno) {
         try {
+        	toClient.writeBoolean(false);
             toClient.writeInt(fila);
             toClient.writeInt(columna);
             toClient.writeInt(turno);
@@ -274,29 +298,43 @@ public class selectClassic {
     }
     
     private void recibirJugada() {
-    	while(true) {
-	        try {
-	            // Recibimos la columna enviada por el cliente
-	            int columnaCliente = fromClient.readInt();
-	
-	            // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
-	            Platform.runLater(() -> {
-	                try {
-	                    Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
-	                    // Realizamos la operación de game.place(columna) para obtener la fila correspondiente
-	                    int fila = game.placeOnline(columnaCliente, true);
-	                    gridPane.add(ficha, columnaCliente, fila);
-	                    // Enviamos la fila de vuelta al cliente
-	                    enviarJugada(fila, columnaCliente, 2);
-	                } catch (IOException e) {
-	                    System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
-	                    e.printStackTrace();
-	                }
-	            });
-	        } catch (IOException e) {
-	            System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
-	            e.printStackTrace();
-	        }
+    	if(game.getTurn() == 1) {
+	    	while(true) {
+		        try {
+		            // Recibimos la columna enviada por el cliente
+		            int columnaCliente = fromClient.readInt();
+		
+		            // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
+		            Platform.runLater(() -> {
+		                try {
+		                    Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
+		                    // Realizamos la operación de game.place(columna) para obtener la fila correspondiente
+		                    int fila = game.placeOnline(columnaCliente, true);
+		                    gridPane.add(ficha, columnaCliente, fila);
+		                    // Enviamos la fila de vuelta al cliente
+		                    enviarJugada(fila, columnaCliente, game.getTurn());
+		                    if (game.someoneWin()) {
+		    	            	List<List<Position>> winners = game.getWinners();
+		    	            	sendWinnersToClient(winners, true); 
+		    	            	isFinished = true;
+		    	            	showWinners(gridPane);
+		    	
+		    	            } else {
+		    	                game.flip(); // Actualizamos el estado del juego
+		    	            }
+		                } catch (IOException e) {
+		                    System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
+		                    e.printStackTrace();
+		                }
+		            });
+		        } catch (IOException e) {
+		            System.out.println("Error al recibir la jugada del cliente: " + e.getMessage());
+		            e.printStackTrace();
+		        }
+	    	}
+    	}
+    	else {
+    		System.out.println("No es el turno del cliente");
     	}
     }
 

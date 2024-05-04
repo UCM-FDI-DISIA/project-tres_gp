@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -114,6 +115,7 @@ public class selectClassic {
 			});
             receiverThread.start(); // Iniciar el hilo para recibir jugadas del servidor
             System.out.println("Conectado al servidor.");
+            
         } catch (IOException e) {
             System.out.println("Error al conectar con el servidor: " + e.getMessage());
         }
@@ -139,23 +141,53 @@ public class selectClassic {
     private void receiveMovesFromServer() {
         try {
             while (true) {
-                int filaServidor = fromServer.readInt();    // Leer la fila de la jugada
-                int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
-                int turnoServidor = fromServer.readInt();
-                // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
-                Platform.runLater(() -> {
-                    try {
-                        Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turnoServidor)));
-                        gridPane.add(fichaServidor, columnaServidor, filaServidor);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+            	boolean ganado = fromServer.readBoolean();
+            	if(!ganado) {
+	                int filaServidor = fromServer.readInt();    // Leer la fila de la jugada
+	                int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
+	                int turnoServidor = fromServer.readInt();
+		                // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
+		            Platform.runLater(() -> {
+		                try {
+		                    Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turnoServidor)));
+		                    gridPane.add(fichaServidor, columnaServidor, filaServidor);
+		                } catch (IOException e) {
+		                        e.printStackTrace();
+		                }
+		            });
+            	}
+            	else {
+            		receiveWinnersFromServer();
+            	}
             }
         } catch (IOException e) {
             // Se ha cerrado la conexión del socket, probablemente porque el cliente se desconectó
-            System.out.println("El servidor se ha desconectado.");
+        	e.printStackTrace();
         }
+    }
+        
+        private void receiveWinnersFromServer() {
+            try {
+                int numSets = fromServer.readInt(); // Lee el número de conjuntos de ganadores
+                for (int i = 0; i < numSets; i++) {
+                    int setSize = fromServer.readInt(); // Lee el tamaño de este conjunto de ganadores
+                    for (int j = 0; j < setSize; j++) {
+                        int fila = fromServer.readInt(); // Lee la fila de la posición ganadora
+                        int columna = fromServer.readInt(); // Lee la columna de la posición ganadora
+                        Platform.runLater(() -> {
+                            try {
+                                Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA GANADORA.fxml"));
+                                gridPane.add(fichaServidor, columna, fila);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println("Error al recibir la lista de ganadores del servidor: " + e.getMessage());
+                e.printStackTrace();
+            }
     }
 
 
