@@ -84,7 +84,7 @@ funciones como cambiar la opacidad de los botones al poner un ratón encima.
     El servidor comprueba la posición de la ficha y calcula en la fila correspondiente, después la manda al cliente de nuevo (thread).
     El cliente la recibe y la coloca visualmente. Si se termina la partida el cliente tiene una función booleana para ello.
 
-**Implementamos nuestro juego de la siguiente forma:**
+**Implementamos nuestro juego (objetos y lógica) de la siguiente forma:**
 
 	-Tenemos el paquete GameObjects, donde tenemos las clases GameObject, las distintas clases de fichas
  	especiales (Anvil, Arrow, Bomb, Ice), la clase Piece y la clase SuperPiece. 
