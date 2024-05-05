@@ -60,7 +60,7 @@
 **Implementamos nuestro *servidor* (interfaz) de la siguiente forma:**
 
    - Hay un paquete general que gestiona las pantallas de antes de los modos, así como algunas 
-   	funciones de esta como la opacidad de los botones al seleccionar con el ratón..
+   	funciones de esta como la opacidad de los botones al seleccionar con el ratón.
 
 	- Tenemos un paquete por cada modo de juego (Clásico, 5enRaya, Superfichas, PopOut).
 	
@@ -75,13 +75,14 @@
      y en sus lógicas básicas respectivamente, explicado en el siguiente punto.
 
 **Implementamos nuestro *cliente* de la siguiente forma:**
+
 	- Hay un paquete general que se encarga de gestionar el movimiento de pantallas en la interfaz, así como algunas 
  	funciones como cambiar la opacidad de los botones al poner un ratón encima.
 	
    	- Tenemos el paquete clásico que funciona de la siguiente manera: el jugador del cliente coloca una ficha y se manda 
-    	la columna al servidor a través de un thread (se escribe y continuamente se comprueba que hay ahí a través de una función).
-     	El servidor comprueba la posición de la ficha y calcula en la fila correspondiente, después la manda al cliente de nuevo (thread). 
-      	El cliente la recibe y la coloca visualmente. Si se termina la partida el cliente tiene una función booleana para ello.
+    la columna al servidor a través de un thread (se escribe y continuamente se comprueba que hay ahí a través de una función).
+    El servidor comprueba la posición de la ficha y calcula en la fila correspondiente, después la manda al cliente de nuevo (thread).
+    El cliente la recibe y la coloca visualmente. Si se termina la partida el cliente tiene una función booleana para ello.
 
 **Implementamos nuestro juego de la siguiente forma:**
 
