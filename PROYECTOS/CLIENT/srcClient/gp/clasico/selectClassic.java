@@ -71,7 +71,7 @@ public class selectClassic {
         Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
         Scene scene = parent.getScene(); // Obtener la escena
         Stage stage = (Stage) scene.getWindow(); // Obtener el Stage
-        root = FXMLLoader.load(getClass().getResource("/srcClient/gp/PORTADA INICIAL.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/gp/PORTADA INICIAL.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
         desconectar();
@@ -131,29 +131,32 @@ public class selectClassic {
 
     @FXML
     private void colocarFicha(MouseEvent event) {
-    	if(!ganado) {
-	        Node source = (Node) event.getSource();
-	        Node parent = source.getParent();
-	        Integer columnaInteger = GridPane.getColumnIndex(parent);
-	        int columna = (columnaInteger != null) ? columnaInteger : 0;
-	
-	        try {
-	            toServer.writeInt(columna); // Enviamos la columna al servidor
-	            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
-	
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-    	}
+    	if(toServer == null)
+    		System.out.println("No hay conexión con el servidor");
     	else {
-    		try {
-				endMessage();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	    	if(!ganado) {
+		        Node source = (Node) event.getSource();
+		        Node parent = source.getParent();
+		        Integer columnaInteger = GridPane.getColumnIndex(parent);
+		        int columna = (columnaInteger != null) ? columnaInteger : 0;
+		
+		        try {
+		            toServer.writeInt(columna); // Enviamos la columna al servidor
+		            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
+		
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+	    	}
+	    	else {
+	    		try {
+					endMessage();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
     	}
-
     }
     
     protected void endMessage() throws IOException {
@@ -182,7 +185,11 @@ public class selectClassic {
 		            });
             	}
             	else {
-            		receiveWinnersFromServer();
+            		int completo = fromServer.readInt();
+            		if(completo == 0) {
+            			receiveWinnersFromServer();
+            		}
+            		
             	}
             }
         } catch (IOException e) {

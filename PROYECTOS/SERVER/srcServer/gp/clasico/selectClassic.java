@@ -129,6 +129,7 @@ public class selectClassic {
     private void sendWinnersToClient(List<List<Position>> winners, boolean sendWinners) {
         try {
             toClient.writeBoolean(sendWinners); // Envía el booleano indicando si se deben procesar los ganadores
+            toClient.writeInt(0);
             if (sendWinners) {
                 toClient.writeInt(winners.size()); // Envía el número de conjuntos de ganadores
                 for (List<Position> winner : winners) {
@@ -301,6 +302,7 @@ public class selectClassic {
     private void sendCompleteTable() {
         try {
         	toClient.writeBoolean(true);
+        	toClient.writeInt(1);
             toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
         } catch (IOException e) {
             System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
