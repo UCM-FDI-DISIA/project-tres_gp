@@ -15,13 +15,11 @@ public class Game5 extends Game{
 	}
 	
 	public void fiveInRow (GridPane gridPane){
-		if (super.currentCycle == 0) {
-			int random = super.generateRandomNumber(1,2);
-			if (random == 1) {
-				placeRow(1,2, gridPane);
-			}
-			else placeRow(2,1, gridPane);
+		int random = super.generateRandomNumber(1,2);
+		if (random == 1) {
+			placeRow(1,2, gridPane);
 		}
+		else placeRow(2,1, gridPane);
 	}
 	
 	public void placeRow(int first, int second, GridPane gridPane) {

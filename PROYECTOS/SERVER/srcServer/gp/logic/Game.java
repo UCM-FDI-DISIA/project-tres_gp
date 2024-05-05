@@ -16,7 +16,6 @@ import javafx.scene.layout.GridPane;
 public class Game {
 	public  final static int DIM_X = 7;
 	public  final static int DIM_Y = 6;
-	public int currentCycle;
 	private boolean bot = false;
 	private GameObjectContainer container;
 	private int turn = 1;
@@ -24,14 +23,10 @@ public class Game {
 	private boolean someoneWin = false;
 	public Game() {
 		container = new GameObjectContainer();
-		currentCycle = 0;
 	}
 
 	public String positionToString(int col, int row) {
 		return container.toString(new Position(col, row));
-	}
-	public int getCycle() {
-		return currentCycle;
 	}
 	
 	public List<GameObject> getGameObjectContainer() {
@@ -41,18 +36,10 @@ public class Game {
 		this.container.setListGameObjects(lista);
 	}
 	
-	public void update() {
-		if (!someoneWin()) {
-			flip();
-			currentCycle++;
-		}
-	}
-	
 	
 	public void updateBot() {
 		if (!someoneWin()) {
 			flip();
-			currentCycle++;
 		}
 		bot = !bot;
 	}
@@ -167,7 +154,6 @@ public class Game {
 	}
 	
 	public void reset(GridPane gridPane) {
-		currentCycle = 0;
 		container.reset(gridPane);
 	}
 
@@ -175,8 +161,8 @@ public class Game {
 	    List<Position> freePositions = new ArrayList<>();
 
 	    for (int col = 0; col < DIM_X; col++) {
-	        Integer nextFreeRow = container.findRow(col); // Suponiendo que esta función devuelve la siguiente fila libre
-	        if (nextFreeRow != null) {
+	        int nextFreeRow = container.findRow(col); // Suponiendo que esta función devuelve la siguiente fila libre
+	        if (nextFreeRow != -1) {
 	            freePositions.add(new Position(col, nextFreeRow));
 	        }
 	    }
@@ -185,7 +171,6 @@ public class Game {
 
 
 	private static final int MAX_DEPTH = 4; // Profundidad máxima para Minimax
-	private static final int WIN_SCORE = 10000; // Puntaje de victoria
 	private static final int[] SCORES = {0, 1, 10, 100, 1000}; // Puntajes para fichas consecutivas
 
 	private int evaluateBoard() {

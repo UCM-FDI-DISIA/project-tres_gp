@@ -1,17 +1,13 @@
 package gp.logic;
 
 import java.util.List;
-import java.util.Set;
 
 import gp.GameObjects.GameObject;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 
 public class GameObjectContainer {
@@ -49,7 +45,7 @@ public class GameObjectContainer {
             Position p = new Position(col, row);
             for (int i = 0; i < objects.size(); i++) {
                 GameObject c=objects.get(i);
-                if(c.isOnPosition(p)) {
+                if(c.isOnPosition(p) ) {
                     find = true;
                 }
             }
@@ -59,10 +55,7 @@ public class GameObjectContainer {
                 row--;
             }
         }
-        if(!find) return Game.DIM_Y - 1;
-        else return (Integer) null;
-
-
+        return -1;
     }
 	
 	public void bomb(Position pos, GridPane gridPane) {

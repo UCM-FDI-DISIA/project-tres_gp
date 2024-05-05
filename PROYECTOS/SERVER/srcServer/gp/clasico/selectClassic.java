@@ -83,7 +83,6 @@ public class selectClassic {
     private Socket clientSocket;
     private DataOutputStream toClient;
     private DataInputStream fromClient;
-    private static final int PUERTO = 12345;
     protected boolean isFinished = false;
 
     @FXML
@@ -93,7 +92,10 @@ public class selectClassic {
             try {
                 // Place piece
             	updateGridPane(columna);
-                
+            	List<Position> free = game.getFreePositions();
+            	if (free.isEmpty()) {
+            		isFinished =  true;
+            	}
             	// Check if there is a winner
                 if (game.someoneWin()) { 
                 	isFinished = true;
@@ -164,7 +166,7 @@ public class selectClassic {
     }
 
     @FXML
-    void switchToScene2(MouseEvent event) throws IOException {
+	protected void switchToScene2(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gp/SEGUNDA PORTADA.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -185,7 +187,7 @@ public class selectClassic {
     }
 
     @FXML
-    void switchToScene2Menu(ActionEvent event) throws IOException {
+	protected void switchToScene2Menu(ActionEvent event) throws IOException {
         MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
         Parent parent = (Parent) menuItem.getParentPopup().getOwnerNode(); // Obtener el nodo padre del menú emergente
         Scene scene = parent.getScene(); // Obtener la escena
@@ -208,14 +210,14 @@ public class selectClassic {
     }
 
     @FXML
-    void onMouseEntered(MouseEvent event) {
+	protected void onMouseEntered(MouseEvent event) {
         // Código para el efecto al entrar con el mouse
         Button button = (Button) event.getSource();
         button.setOpacity(0.35); // Cambiar la opacidad para simular una luz encendida
     }
 
     @FXML
-    void onMouseExited(MouseEvent event) {
+	protected void onMouseExited(MouseEvent event) {
         // Código para revertir el efecto al salir con el mouse
         Button button = (Button) event.getSource();
         button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
@@ -263,10 +265,14 @@ public class selectClassic {
 		            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(game.getTurn())));
 		            int fila = game.placeOnline(columna, false);  // Colocamos la ficha y obtenemos la fila donde se colocó
 		            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
-		
+		            
 		            // Enviamos la fila y la columna al cliente para que coloque su ficha
 		            enviarJugada(fila, columna, 2);
-		
+		            List<Position> free = game.getFreePositions();
+	            	if (free.isEmpty()) {
+	            		isFinished =  true;
+	            		sendCompleteTable();
+	            	}
 		            if (game.someoneWin()) {
 		            	List<List<Position>> winners = game.getWinners();
 		            	sendWinnersToClient(winners, true); 
@@ -290,6 +296,16 @@ public class selectClassic {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}}
+    }
+    
+    private void sendCompleteTable() {
+        try {
+        	toClient.writeBoolean(true);
+            toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
+        } catch (IOException e) {
+            System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void enviarJugada(int fila, int columna, int turno) {
@@ -554,7 +570,7 @@ public class selectClassic {
                 GridPane.setHalignment(alertRoot, HPos.CENTER);
                 GridPane.setValignment(alertRoot, VPos.CENTER);
             } else {
-                game.update(); // Actualiza el estado del juego
+                game.flip(); // Actualiza el estado del juego
             }
         } catch (IOException e) {
             e.printStackTrace();

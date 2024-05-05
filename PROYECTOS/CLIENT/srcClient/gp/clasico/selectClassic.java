@@ -4,8 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.List;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -140,7 +138,6 @@ public class selectClassic {
 	        int columna = (columnaInteger != null) ? columnaInteger : 0;
 	
 	        try {
-	            Parent ficha = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(2)));
 	            toServer.writeInt(columna); // Enviamos la columna al servidor
 	            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
 	

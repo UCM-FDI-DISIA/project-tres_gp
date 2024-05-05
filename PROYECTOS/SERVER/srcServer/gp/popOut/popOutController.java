@@ -10,8 +10,6 @@ import gp.logic.Position;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -94,6 +92,10 @@ public class popOutController extends selectClassic {
                 // Insertamos la ficha justo antes del nodo que desencadena el evento
                 gridPane.add(ficha, columna, fila, 1, 1);
                 
+                List<Position> free = game.getFreePositions();
+            	if (free.isEmpty()) {
+            		isFinished =  true;
+            	}
                 if (game.someoneWin()) { 
                 	super.isFinished = true;
                     showWinners();
@@ -175,14 +177,14 @@ public class popOutController extends selectClassic {
     }
     
     @FXML
-    void onMouseEntered(MouseEvent event) {
+    protected void onMouseEntered(MouseEvent event) {
         // Código para el efecto al entrar con el mouse
         Button button = (Button) event.getSource();
         button.setOpacity(0.45); // Cambiar la opacidad para simular una luz encendida
     }
 
     @FXML
-    void onMouseExited(MouseEvent event) {
+    protected void onMouseExited(MouseEvent event) {
         // Código para revertir el efecto al salir con el mouse
         Button button = (Button) event.getSource();
         button.setOpacity(0.0); // Restaurar la opacidad original para apagar la "luz"
