@@ -76,8 +76,8 @@
 
 **Implementamos nuestro *cliente* de la siguiente forma:**
 
-	- Hay un paquete general que se encarga de gestionar el movimiento de pantallas en la interfaz, así como algunas 
- 	funciones como cambiar la opacidad de los botones al poner un ratón encima.
+- Hay un paquete general que se encarga de gestionar el movimiento de pantallas en la interfaz, así como algunas 
+funciones como cambiar la opacidad de los botones al poner un ratón encima.
 	
    	- Tenemos el paquete clásico que funciona de la siguiente manera: el jugador del cliente coloca una ficha y se manda 
     la columna al servidor a través de un thread (se escribe y continuamente se comprueba que hay ahí a través de una función).
