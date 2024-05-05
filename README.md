@@ -70,6 +70,12 @@
 	- En el modo de juego Superfichas, a cada lado del tablero aparecen las diferentes fichas que los jugadores pueden
 	utilizar a lo largo de la partida.
 
+  	- También tenemos un paquete que se encarga de controlar el cambio de pantallas de la interfaz, así como algunas 
+   	funciones de esta como la opacidad de los botones al seleccionar con el ratón.
+
+    - Y por último tenemos los paquetes GameObject y Logic, que consisten en los distintos objetos que contiene el juego 
+     y en sus lógicas básicas respectivamente, explicado en el siguiente punto.
+
 
 **Implementamos nuestro juego de la siguiente forma:**
 
