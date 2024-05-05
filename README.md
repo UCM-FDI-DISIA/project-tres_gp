@@ -55,11 +55,12 @@
 
 # **Estructura del código**
 
-**En este apartado se explican tanto la estructura del código en interfaz, como en terminal:**
+**En este apartado se explican tanto la estructura del código en el servidor, como en el cliente:**
 
-**Implementamos nuestra *interfaz* de la siguiente forma:**
+**Implementamos nuestro *servidor* (interfaz) de la siguiente forma:**
 
-   - Hay un paquete general que gestiona las pantallas de antes de los modos.
+   - Hay un paquete general que gestiona las pantallas de antes de los modos, así como algunas 
+   	funciones de esta como la opacidad de los botones al seleccionar con el ratón..
 
 	- Tenemos un paquete por cada modo de juego (Clásico, 5enRaya, Superfichas, PopOut).
 	
@@ -70,12 +71,17 @@
 	- En el modo de juego Superfichas, a cada lado del tablero aparecen las diferentes fichas que los jugadores pueden
 	utilizar a lo largo de la partida.
 
-  	- También tenemos un paquete que se encarga de controlar el cambio de pantallas de la interfaz, así como algunas 
-   	funciones de esta como la opacidad de los botones al seleccionar con el ratón.
-
     - Y por último tenemos los paquetes GameObject y Logic, que consisten en los distintos objetos que contiene el juego 
      y en sus lógicas básicas respectivamente, explicado en el siguiente punto.
 
+**Implementamos nuestro *cliente* de la siguiente forma:**
+	- Hay un paquete general que se encarga de gestionar el movimiento de pantallas en la interfaz, así como algunas 
+ 	funciones como cambiar la opacidad de los botones al poner un ratón encima.
+	
+   	- Tenemos el paquete clásico que funciona de la siguiente manera: el jugador del cliente coloca una ficha y se manda 
+    	la columna al servidor a través de un thread (se escribe y continuamente se comprueba que hay ahí a través de una función).
+     	El servidor comprueba la posición de la ficha y calcula en la fila correspondiente, después la manda al cliente de nuevo (thread). 
+      	El cliente la recibe y la coloca visualmente. Si se termina la partida el cliente tiene una función booleana para ello.
 
 **Implementamos nuestro juego de la siguiente forma:**
 
