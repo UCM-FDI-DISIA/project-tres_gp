@@ -24,7 +24,7 @@ public class selectClassic {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    private boolean esMiTurno = false;
     @FXML
     private MenuItem btnConectar;
 
@@ -65,6 +65,7 @@ public class selectClassic {
     private DataInputStream fromServer;
     private DataOutputStream toServer;
     private boolean ganado = false;
+    private boolean conectado = true;
     @FXML
     void switchToSceneInicial(ActionEvent event) throws IOException {
         MenuItem menuItem = (MenuItem) event.getSource(); // Obtener el MenuItem
@@ -151,6 +152,7 @@ public class selectClassic {
 	    	else {
 	    		try {
 					endMessage();
+					desconectar();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -168,21 +170,24 @@ public class selectClassic {
     
     private void receiveMovesFromServer() {
         try {
-            while (true) {
+            while (conectado) {
             	ganado = fromServer.readBoolean();
             	if(!ganado) {
 	                int filaServidor = fromServer.readInt();    // Leer la fila de la jugada
 	                int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
 	                int turnoServidor = fromServer.readInt();
-		                // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
-		            Platform.runLater(() -> {
-		                try {
-		                    Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turnoServidor)));
-		                    gridPane.add(fichaServidor, columnaServidor, filaServidor);
-		                } catch (IOException e) {
-		                        e.printStackTrace();
-		                }
-		            });
+	                esMiTurno = (turnoServidor == 1);
+	                if(esMiTurno) {
+			                // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
+			            Platform.runLater(() -> {
+			                try {
+			                    Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turnoServidor)));
+			                    gridPane.add(fichaServidor, columnaServidor, filaServidor);
+			                } catch (IOException e) {
+			                        e.printStackTrace();
+			                }
+			            });
+	                }
             	}
             	else {
             		int completo = fromServer.readInt();
@@ -193,6 +198,7 @@ public class selectClassic {
             	}
             }
         } catch (IOException e) {
+        	desconectar();
             // Se ha cerrado la conexión del socket, probablemente porque el cliente se desconectó
         	e.printStackTrace();
         }
@@ -227,6 +233,7 @@ public class selectClassic {
     private void desconectar() {
         try {
             if (socket != null && !socket.isClosed()) {
+            	conectado = false;
                 socket.close();
             }
             System.out.println("Desconectado del servidor.");

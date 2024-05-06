@@ -84,6 +84,8 @@ public class selectClassic {
     private DataOutputStream toClient;
     private DataInputStream fromClient;
     protected boolean isFinished = false;
+    private boolean conectado = true;
+
 
     @FXML
     private void colocarFicha(MouseEvent event) throws IOException {
@@ -179,6 +181,7 @@ public class selectClassic {
     private void desconectarServidor() {
         try {
             if (serverSocket != null && !serverSocket.isClosed()) {
+            	conectado = false;
                 serverSocket.close(); // Cierra el ServerSocket si está abierto
                 System.out.println("Servidor desconectado.");
             }
@@ -268,7 +271,7 @@ public class selectClassic {
 		            gridPane.add(ficha, columna, fila); // Añadimos la ficha físicamente al GridPane
 		            
 		            // Enviamos la fila y la columna al cliente para que coloque su ficha
-		            enviarJugada(fila, columna, 2);
+		            enviarJugada(fila, columna, game.getTurn());
 		            List<Position> free = game.getFreePositions();
 	            	if (free.isEmpty()) {
 	            		isFinished =  true;
@@ -293,8 +296,8 @@ public class selectClassic {
     	}
     	else {try {
 			endMessage();
+			desconectarServidor();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}}
     }
@@ -304,6 +307,7 @@ public class selectClassic {
         	toClient.writeBoolean(true);
         	toClient.writeInt(1);
             toClient.flush(); // Aseguramos que los datos se envíen inmediatamente
+            desconectarServidor();
         } catch (IOException e) {
             System.out.println("Error al enviar la jugada al cliente: " + e.getMessage());
             e.printStackTrace();
@@ -325,7 +329,7 @@ public class selectClassic {
     
     private void recibirJugada() {
     	if(game.getTurn() == 1) {
-	    	while(true) {
+	    	while(conectado) {
 		        try {
 		            // Recibimos la columna enviada por el cliente
 		            int columnaCliente = fromClient.readInt();
