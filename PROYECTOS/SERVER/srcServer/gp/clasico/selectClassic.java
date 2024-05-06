@@ -35,7 +35,7 @@ public class selectClassic {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private Game game;
+    public Game game;
 
     @FXML
     private MenuItem btnVolver;
@@ -74,12 +74,12 @@ public class selectClassic {
     private Button btnFicha6;
 
     @FXML
-	private GridPane gridPane;
+	public GridPane gridPane;
 
     @FXML
     private MenuButton menuButton;
     
-    private ServerSocket serverSocket;
+    public ServerSocket serverSocket;
     private Socket clientSocket;
     private DataOutputStream toClient;
     private DataInputStream fromClient;
@@ -178,7 +178,7 @@ public class selectClassic {
         desconectarServidor();
     }
     @FXML
-    private void desconectarServidor() {
+    public void desconectarServidor() {
         try {
             if (serverSocket != null && !serverSocket.isClosed()) {
             	conectado = false;

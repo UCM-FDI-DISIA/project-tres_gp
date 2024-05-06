@@ -23,7 +23,7 @@ public class selectFive extends selectClassic {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	private Game5 game;
+	public Game5 game;
 	
 	
     @FXML
