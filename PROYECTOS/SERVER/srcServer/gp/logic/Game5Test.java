@@ -1,49 +1,38 @@
-// No funciona por el paquete de JavaFX, funcionaba para la consola
+package gp.logic;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-/*package gp.logic;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
-import org.junit.Test;
-
-import gp.GameObjects.GameObject;
 import gp.GameObjects.Piece;
-import gp.logic.Game5;
-import gp.logic.Position;
 import javafx.scene.layout.GridPane;
 
-public class Game5Test {
+class Game5Test {
 
     @Test
-    public void testConstructor() {
-        Game5 game = new Game5();
-        assertEquals(0, game.getCycle());
-    }
-    
-    @Test
-    public void testFiveInRow() {
-        Game5 game = new Game5();
+    void testFiveInRow() {
+        Game5 game5 = new Game5();
+        
         GridPane gridPane = new GridPane();
         
-        game.fiveInRow(gridPane);
+        game5.fiveInRow(gridPane);
         
-        List<GameObject> gameObjects = game.getGameObjectContainer();
-        assertEquals(2 * Game5.DIM_Y, gameObjects.size());
-        for (int i = 0; i < Game5.DIM_Y; i++) {
-            Piece firstPiece = (Piece) gameObjects.get(i);
-            Piece secondPiece = (Piece) gameObjects.get(Game5.DIM_Y + i);
-            assertEquals(1, firstPiece.getTurn());
-            assertEquals(2, secondPiece.getTurn());
-            Position firstPosition = firstPiece.getPosition();
-            Position secondPosition = secondPiece.getPosition();
-            assertEquals(0, firstPosition.getCol());
-            assertEquals(i, firstPosition.getRow());
-            assertEquals(Game5.DIM_X, secondPosition.getCol());
-            assertEquals(i, secondPosition.getRow());
+        assertFalse(isPieceAdded(game5, 1, 2)); 
+        assertTrue(isPieceAdded(game5, 9, 2)); 
+    }
+    
+    private boolean isPieceAdded(Game5 game, int column, int row) {
+        var container = game.getGameObjectContainer();
+
+        for (var gameObject : container) {
+            if (gameObject instanceof Piece) {
+                Piece piece = (Piece) gameObject;
+                if (piece.getPosition().getCol() == column && piece.getPosition().getRow() == row) {
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 }
-*/

@@ -1,35 +1,32 @@
 package gp.logic;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import gp.logic.Direction;
 
 public class DirectionTest {
 
     @Test
     public void testGetX() {
-        int leftX = Direction.LEFT.getX();
-        int rightX = Direction.RIGHT.getX();
-        int downX = Direction.DOWN.getX();
-        int upX = Direction.UP.getX();
-
-        // Assert
-        assertEquals(-1, leftX);
-        assertEquals(1, rightX);
-        assertEquals(0, downX);
-        assertEquals(0, upX);
+        assertEquals(-1, Direction.LEFT.getX());
+        assertEquals(1, Direction.RIGHT.getX());
+        assertEquals(0, Direction.DOWN.getX());
+        assertEquals(0, Direction.UP.getX());
+        assertEquals(-1, Direction.UP_LEFT.getX());
+        assertEquals(1, Direction.UP_RIGHT.getX());
+        assertEquals(-1, Direction.DOWN_LEFT.getX());
+        assertEquals(1, Direction.DOWN_RIGHR.getX());
     }
 
     @Test
     public void testGetY() {
-        int leftY = Direction.LEFT.getY();
-        int rightY = Direction.RIGHT.getY();
-        int downY = Direction.DOWN.getY();
-        int upY = Direction.UP.getY();
-
-        // Assert
-        assertEquals(0, leftY);
-        assertEquals(0, rightY);
-        assertEquals(1, downY);
-        assertEquals(-1, upY);
+        assertEquals(0, Direction.LEFT.getY());
+        assertEquals(0, Direction.RIGHT.getY());
+        assertEquals(1, Direction.DOWN.getY());
+        assertEquals(-1, Direction.UP.getY());
+        assertEquals(-1, Direction.UP_LEFT.getY());
+        assertEquals(-1, Direction.UP_RIGHT.getY());
+        assertEquals(1, Direction.DOWN_LEFT.getY());
+        assertEquals(1, Direction.DOWN_RIGHR.getY());
     }
 }

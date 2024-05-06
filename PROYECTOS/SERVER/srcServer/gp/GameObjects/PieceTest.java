@@ -1,19 +1,37 @@
 package gp.GameObjects;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import gp.GameObjects.GameObject;
+import gp.GameObjects.Piece;
 import gp.logic.Game;
 import gp.logic.Position;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
 
     @Test
-    public void testDefaultConstructor() {
-        Piece piece = new Piece();
+    public void testConstructorWithGameAndPosition() {
+        Game game = new Game();
+        Position pos = new Position(3, 4);
+        Piece piece = new Piece(game, pos);
+        assertEquals(pos, piece.getPosition());
+    }
 
-        // Assert
-        assertNotNull(piece);
-        assertNull(piece.getPosition());
-        assertEquals(0, piece.getTurn());
+    @Test
+    public void testConstructorWithGamePositionAndTurn() {
+        Game game = new Game();
+        Position pos = new Position(3, 4);
+        int turn = 2;
+        Piece piece = new Piece(game, pos, turn);
+        assertEquals(pos, piece.getPosition());
+        assertEquals(turn, piece.getTurn());
+    }
+
+    @Test
+    public void testDie() {
+        Game game = new Game();
+        Position pos = new Position(3, 4);
+        Piece piece = new Piece(game, pos);
+        piece.die();
     }
 }

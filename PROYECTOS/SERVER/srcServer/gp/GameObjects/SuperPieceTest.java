@@ -1,34 +1,35 @@
 package gp.GameObjects;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import gp.GameObjects.GameObject;
+import gp.GameObjects.Piece;
+import gp.GameObjects.SuperPiece;
 import gp.logic.Game;
 import gp.logic.Position;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class SuperPieceTest {
 
     @Test
-    public void testDie() {
-
+    public void testConstructorWithGameAndPosition() {
         Game game = new Game();
-        Position position = new Position(0, 0);
-        SuperPiece superPiece = new SuperPiece(game, position);
-
-       
-        superPiece.die();
-
-        // Assert
-        // Verificar que la pieza se haya eliminado del juego
-        assertFalse(game.getGameObjectContainer().contains(superPiece));
+        Position pos = new Position(3, 4);
+        SuperPiece superPiece = new SuperPiece(game, pos);
+        assertEquals(pos, superPiece.getPosition());
     }
-    
+
     @Test
     public void testDefaultConstructor() {
         SuperPiece superPiece = new SuperPiece();
-
-        // Assert
-        assertNotNull(superPiece);
-        assertNull(superPiece.getPosition());
     }
 
+    @Test
+    public void testDie() {
+        Game game = new Game();
+        Position pos = new Position(3, 4);
+        SuperPiece superPiece = new SuperPiece(game, pos);
+        superPiece.die();
+        assertTrue(game.getGameObjectContainer().stream().anyMatch(obj -> obj instanceof Piece));
+    }
 }

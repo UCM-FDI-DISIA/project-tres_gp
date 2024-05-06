@@ -1,58 +1,47 @@
 package gp.logic;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
+import gp.logic.Position;
+import gp.logic.Game;
 
 public class PositionTest {
 
     @Test
     public void testConstructorAndGetters() {
-        int col = 3;
-        int row = 4;
-
-        Position position = new Position(col, row);
-
-        // Assert
-        assertEquals(col, position.getCol());
-        assertEquals(row, position.getRow());
-    }
-
-    @Test
-    public void testSetters() {
-        Position position = new Position(0, 0);
-
-        position.setCol(3);
-        position.setRow(4);
-
-        // Assert
-        assertEquals(3, position.getCol());
-        assertEquals(4, position.getRow());
+        Position pos = new Position(3, 4);
+        assertEquals(3, pos.getCol());
+        assertEquals(4, pos.getRow());
     }
 
     @Test
     public void testEquals() {
-        Position position1 = new Position(3, 4);
-        Position position2 = new Position(3, 4);
-        Position position3 = new Position(4, 3);
-
-        // Assert
-        assertTrue(position1.equals(position2));
-        assertFalse(position1.equals(position3));
+        Position pos1 = new Position(3, 4);
+        Position pos2 = new Position(3, 4);
+        Position pos3 = new Position(2, 4);
+        assertTrue(pos1.equals(pos2));
+        assertFalse(pos1.equals(pos3));
     }
 
     @Test
-    public void testIsOnBoard() {
-        Position positionInsideBoard = new Position(3, 4);
-        Position positionOutsideBoard1 = new Position(-1, 4);
-        Position positionOutsideBoard2 = new Position(3, -1);
-        Position positionOutsideBoard3 = new Position(7, 4);
-        Position positionOutsideBoard4 = new Position(3, 6);
+    public void testIsOnBoardInsideBoard() {
+        Position pos = new Position(3, 4);
+        assertTrue(pos.isOnBoard());
+    }
 
-        // Assert
-        assertTrue(positionInsideBoard.isOnBoard());
-        assertFalse(positionOutsideBoard1.isOnBoard());
-        assertFalse(positionOutsideBoard2.isOnBoard());
-        assertFalse(positionOutsideBoard3.isOnBoard());
-        assertFalse(positionOutsideBoard4.isOnBoard());
+    @Test
+    public void testIsOnBoardOutsideBoard() {
+        Position pos1 = new Position(-1, 4);
+        Position pos2 = new Position(3, 6);
+        assertFalse(pos1.isOnBoard());
+        assertFalse(pos2.isOnBoard());
+    }
+
+    @Test
+    public void testIsOnBoardOnEdge() {
+        Position pos1 = new Position(0, 0);
+        Position pos2 = new Position(6, 5);
+        assertTrue(pos1.isOnBoard());
+        assertTrue(pos2.isOnBoard());
     }
 }

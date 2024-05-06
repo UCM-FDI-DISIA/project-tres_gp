@@ -1,63 +1,73 @@
 package gp.GameObjects;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import gp.GameObjects.GameObject;
 import gp.logic.Game;
 import gp.logic.Position;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class GameObjectTest {
 
     @Test
-    public void testDefaultConstructor() {
-        GameObject gameObject = new MockGameObject();
-
-        // Assert
-        assertNotNull(gameObject);
-        assertNull(gameObject.getPosition());
+    public void testGetPosition() {
+        Game game = new Game();
+        Position pos = new Position(3, 4);
+        GameObject gameObject = new GameObject(game, pos) {
+            @Override
+            public void die() {}
+        };
+        assertEquals(pos, gameObject.getPosition());
     }
 
+    @Test
+    public void testIsOnPosition() {
+        Game game = new Game();
+        Position pos1 = new Position(3, 4);
+        Position pos2 = new Position(5, 6);
+        GameObject gameObject = new GameObject(game, pos1) {
+            @Override
+            public void die() {}
+        };
+        assertEquals(true, gameObject.isOnPosition(pos1));
+        assertEquals(false, gameObject.isOnPosition(pos2));
+    }
 
     @Test
-    public void testDie() {
-        
-        GameObject gameObject = new MockGameObject();
+    public void testSerialize() {
+        Game game = new Game();
+        Position pos = new Position(3, 4);
+        GameObject gameObject = new GameObject(game, pos) {
+            @Override
+            public void die() {}
+        };
+        String serialized = gameObject.serialize();
+        assertEquals("3,4,1", serialized);
+    }
 
-        gameObject.die();
-
-        // Assert
+    @Test
+    public void testDeserialize() {
+        Game game = new Game();
+        String data = "3,4,1";
+        GameObject gameObject = GameObject.deserialize(game, data);
+        assertEquals(3, gameObject.getPosition().getCol());
+        assertEquals(4, gameObject.getPosition().getRow());
+        assertEquals(1, gameObject.getTurn());
     }
 
     @Test
     public void testDeserializePos() {
-        
-        Position position = GameObject.deserializePos(null, "3,4");
-
-        // Assert
-        assertNotNull(position);
-        assertEquals(3, position.getCol());
-        assertEquals(4, position.getRow());
+        Game game = new Game();
+        String data = "3,4";
+        Position pos = GameObject.deserializePos(game, data);
+        assertEquals(3, pos.getCol());
+        assertEquals(4, pos.getRow());
     }
 
     @Test
     public void testDeserializeTurn() {
-      
-        int turn = GameObject.deserializeTurn(null, "3,4,0");
-
-        // Assert
-        assertEquals(0, turn);
-    }
-
-    private static class MockGameObject extends GameObject {
-        public MockGameObject(Game game, Position pos) {
-            super(game, pos);
-        }
-
-        public MockGameObject() {
-            super();
-        }
-
-        @Override
-        public void die() {
-        }
+        Game game = new Game();
+        String data = "3,4,2";
+        int turn = GameObject.deserializeTurn(game, data);
+        assertEquals(2, turn);
     }
 }
