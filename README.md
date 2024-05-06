@@ -51,7 +51,14 @@
   El proyecto está separado en distintos tags y releases según las entregas, podrás descargar cada versión yendo a [releases](https://github.com/UCM-FDI-DISIA/project-tres_gp/releases), o 
   para clonar el proyecto actual, deberás utilizar el siguiente [enlace](https://github.com/UCM-FDI-DISIA/project-tres_gp.git).
   
-  Para hacer run, deberás asegurarte de añadir los jars de la carpeta lib al classpath, luego en elarguments VM del run configurations deberás poner lo siguiente: --module-path 'C:\JavaFX\lib' --add-modules javafx.controls,javafx.fxml
+  Para que el proyecto funcione correctamente, lo primero que tienes que saber es que el srcServer es todo el juego, y el srcClient es solo el modo online, que se conecta con el servidor (Este modo en servidor está disponible picando classic, play with a friend, online, y luego pulsar conectar, primero en servidor y luego en cliente), una vez dicho esto, lo que habrá que hacer es en el srcClient, ir a buildPath, dentro de este ir a configure Build Path..., una vez dentro seleccionaremos la ventana de libraries, y clicando en modulepath, le daremos a añadir libreria, selecciona User Library, selecciona la opción de User Libraries..., le daremos a New..., le ponemos el nombre exacto de JavaFX (importante el nombre), le damos a add External JARs..., vamos a la carpeta SERVER, luego a javafx-sdk-21.0.2, lib, y seleccionamos todos dentro de lib, a partir de aquí es apply and close hasta salir, estará configurado el server y el client.
+  
+  Para hacer run, crearemos una nueva configuración, una para el cliente y otra para el servidor, y en la ventana de Arguments, en VM Arguments, para ambos pondremos lo siguiente:--module-path 'C:\JavaFX\lib' --add-modules javafx.controls,javafx.fxml, ya estaría configurado.
+
+Video Explicativo:
+
+https://github.com/UCM-FDI-DISIA/project-tres_gp/assets/127221222/e8074785-96ef-4710-895c-860fd0a15864
+
 
 # **Estructura del código**
 
