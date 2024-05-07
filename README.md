@@ -59,6 +59,14 @@ Video Explicativo:
 
 https://github.com/UCM-FDI-DISIA/project-tres_gp/assets/127221222/e8074785-96ef-4710-895c-860fd0a15864
 
+Run tests:
+
+Para hacer run los tests, seleccionas la clase a la que hacer el test y vas a run configurations, en source | default, sale add, entramos, y ahora como ya lo hemos importado antes, será seleccionar el JavaFX que sale, y luego poner en run configurations lo mismo que antes --module-path 'C:\JavaFX\lib' --add-modules javafx.controls,javafx.fxml
+
+Video Explicativo con clase de ejemplo:
+
+https://github.com/UCM-FDI-DISIA/project-tres_gp/assets/127221222/32206054-e972-4934-b95c-7ff066d83a34
+
 
 # **Estructura del código**
 
