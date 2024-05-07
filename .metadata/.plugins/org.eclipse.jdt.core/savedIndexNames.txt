@@ -9,7 +9,6 @@ INDEX VERSION 1.134+C:\Users\Usuario\Documents\Alvaro\Carrera\2-Segundo\Segundo 
 3593845673.index
 1357398581.index
 1865797976.index
-1359730595.index
 8309235.index
 3175781576.index
 1359229705.index

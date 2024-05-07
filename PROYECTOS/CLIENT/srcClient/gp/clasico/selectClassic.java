@@ -24,6 +24,7 @@ public class selectClassic {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private boolean cliente = true;
 
     @FXML
     private MenuItem btnConectar;
@@ -135,18 +136,20 @@ public class selectClassic {
     		System.out.println("No hay conexión con el servidor");
     	else {
 	    	if(!ganado) {
-		        Node source = (Node) event.getSource();
-		        Node parent = source.getParent();
-		        Integer columnaInteger = GridPane.getColumnIndex(parent);
-		        int columna = (columnaInteger != null) ? columnaInteger : 0;
-		
-		        try {
-		            toServer.writeInt(columna); // Enviamos la columna al servidor
-		            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
-		
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        }
+	    		if(cliente) {
+			        Node source = (Node) event.getSource();
+			        Node parent = source.getParent();
+			        Integer columnaInteger = GridPane.getColumnIndex(parent);
+			        int columna = (columnaInteger != null) ? columnaInteger : 0;
+			
+			        try {
+			            toServer.writeInt(columna); // Enviamos la columna al servidor
+			            toServer.flush(); // Aseguramos que los datos se envíen inmediatamente
+			
+			        } catch (IOException e) {
+			            e.printStackTrace();
+			        }
+	    		}
 	    	}
 	    	else {
 	    		try {
@@ -175,6 +178,7 @@ public class selectClassic {
 	                int columnaServidor = fromServer.readInt(); // Leer la columna de la jugada
 	                int turnoServidor = fromServer.readInt();
 		                // Agenda la actualización de la interfaz de usuario en el hilo de JavaFX
+	                cliente = !cliente;
 		            Platform.runLater(() -> {
 		                try {
 		                    Parent fichaServidor = FXMLLoader.load(getClass().getResource("/gp/FICHA JUGADOR %s.fxml".formatted(turnoServidor)));
